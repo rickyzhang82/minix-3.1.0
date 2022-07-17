@@ -120,7 +120,7 @@ make hdboot
     1:31.05 real      50.23 user      35.50 sys
 ```
 
-Quad-core Intel(R) Xeon(R) CPU E3-1225 v5 @ 3.30GHz takes `26.41`
+By using kvm acceleartion in QEMU, quad-core Intel(R) Xeon(R) CPU E3-1225 v5 @ 3.30GHz takes `5.36`.
 
 ```
 …
@@ -138,8 +138,7 @@ Quad-core Intel(R) Xeon(R) CPU E3-1225 v5 @ 3.30GHz takes `26.41`
      7088     2284     1356     10728  ../servers/init/init
    ------   ------   ------   -------
    175328    34424  5533432   5743184  total
-      26.41 real      13.98 user      11.10 sys
-
+       5.36 real       0.78 user       3.31 sys
 ```
 
 
