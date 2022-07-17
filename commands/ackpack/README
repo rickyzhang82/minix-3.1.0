@@ -1,0 +1,372 @@
+** Minix ACK ($Rev: 234 $, $Date: 2005/09/01 12:15:43 $)
+
+This is the second release of the Minix ACK compiler software. It provides
+sources for the C, Modula-2, and Pascal compilers, i386 and i86 assemblers
+and code generators, linker, and EM optimisers that are standard on Minix
+systems, as well as sources for the compilers and runtime environments for
+Basic and Occam, and the grind symbolic debugger. The software has also
+been divided into a number of different packages.
+
+This software also includes the following patches to standard Minix:
+
+   - fixing an error with the Pascal runtime environment. This patch is
+     not required if you don't use Pascal.
+
+   - changing /usr/src/commands/i386/Makefile to increase the memory
+     allocated to /usr/bin/acd. This patch is strongly recommended if
+     you want to use the Basic or Occam languages.
+
+Before attempting to build this software or install any of the patches
+it is recommended that you backup your existing system.
+
+For the impatient (text after '#' is a comment; and '$' preceeds commands):
+
+!!  Identify the 'root' of the installation. On Minix 3 this will be
+!!  the directory /usr/src/commands/minixack-1.1.2, and on Minix 2 it
+!!  will typically be /usr/src/minixack-1.1.2 (or wherever you installed
+!!  the package)
+
+    $ cd <root>
+
+    # Prepare Minix system for ACK sources (increase memory allocated to
+    # the C compiler)
+    $ make prepare-ack
+
+    # Optional: Patch Minix sources and rebuild libraries (only do this once)
+    # Note that rebuilding the libraries can take a while.
+    $ make fix-pascal-support
+
+    # Optional: Patch the ACD pass description file
+    # (adds support for Basic & Occam - only do these once)
+    $ make fix-basic-support
+    $ make fix-occam-support
+
+    # Then either of...
+    $ make          # to build the ACK executables
+    $ make install  # to install them into /usr/lib
+
+For all others, the document consists of the following sections
+explaining why the above commands are used.
+
+    Software Packages
+    Installing the Sources
+    Changing Program Memory Allocations
+    Patching Minix library sources to support Pascal heap allocation
+    Changing the ACD pass description file to support Basic and Occam
+    Building the ACK System
+    Symbolic Debugger
+    Possible Errors
+    Limitations and Future Work
+    Summary of Changes
+
+This release of the Minix ACK sources is based on the ACK-5.5 sources
+(available at http://www.cs.vu.nl/ack). The original sources have been
+modified heavily, and a summary of the most significant changes is
+provided at the end of this document.
+
+Latest versions of this software can be found at: www.laurasia.com.au/ack/
+
+I'd like to thank Vrije Universiteit for releasing the ACK sources
+under an open source license. This has allowed me to do this work.
+Any errors that I have unwittingly introduced into the ACK sources
+are a result of my actions and limited understanding, and should not
+deter you from the quality of the original work.
+
+I hope you have as much fun with this software as I have.
+
+Michael Kennett
+(Adelaide, August 2005)
+
+
+Software Packages
+-----------------
+
+The following packages are currently available:
+
+    mxack11cor    Core Minix compiler package, containing:
+                      C front-end
+                      EM processing code (optimisers, encoder, decoder)
+                      x86/x386 code-generators and assemblers
+                      Minix binary image converter
+                      Necessary utilities and system modules
+    mxack11pc     Pascal front-end (libraries in standard Minix)
+    mxack11m2     Modula-2 front-end (libraries in standard Minix),
+                  and Modula-2 Makefile utility (m2mm)
+    mxack11bas    Basic front-end and runtime library sources
+    mxack11ocm    Occam front-end and runtime library sources
+    mxack11dbg    Grind symbolic debugger and runtime support
+
+*** The core package MUST be installed; all other packages are optional.
+
+Note that all packages have the suffix '.taz', and the package names fit
+within the 14-character limit imposed by Minix-2. It is anticipated that
+more of the ACK-5.5 sources will be ported to Minix, and made available
+as packages that extend the core compiler package.
+
+Installing the Sources
+----------------------
+
+To install the ACK sources from a set of floppies (e.g. created by
+fdvol) enter the command:
+
+    $ setup <dir>         # recommend <dir> = /usr/src
+
+where <dir> is the directory into which the sources will be unpacked.
+Note that all files in the source package are contained within the
+directory 'minixack-1.1.2', and hence, after unpacking into <dir>, the
+source files are located within the directory <dir>/minixack-1.1.2.
+
+
+Changing Program Memory Allocations
+-----------------------------------
+
+Compiling the ACK sources places significant demands on the existing
+compiler and other system commands, and it is necessary to increase
+the amount of memory that is allocated to them. The chmem(1) command
+can be used to increase the memory allocated to a command.
+
+For my Minix setup (2.0.3), I had to enter the following commands
+prior to building the ACK sources:
+
+    $ chmod u+w /usr/lib/cv /usr/lib/em_cemcom.ansi
+    $ chmem =512000 /usr/lib/cv             #(default 128k -> 500k)
+    $ chmem =512000 /usr/lib/em_cemcom.ansi #(default 448k -> 500k)
+    $ chmod u-w /usr/lib/cv /usr/lib/em_cemcom.ansi
+
+[The increased memory for /usr/lib/cv is required for a debug build
+with 'cc -g'; if insufficient memory is allocated to /usr/lib/cv, a
+debug build can fail to emit symbols, and the warning
+"/usr/lib/cv: (warning) No name list generated" is printed. Note
+that it will also be necessary to increase the memory available
+to binary utilities such as /usr/bin/nm.]
+
+This has been automated, and can be invoked by the 'prepare-ack' make
+target, e.g.:
+
+    $ cd <root>
+    $ make prepare-ack
+
+
+Patching Minix Library Sources (to support Pascal heap allocation)
+------------------------------
+
+This step is required to support dynamic memory (i.e. heap) allocation
+in Pascal programs, and may be omitted if you do not want to use Pascal.
+
+The following Pascal program cannot be built using the standard Minix
+Pascal compiler:
+
+    program tst;
+    var p1: ^integer;
+    begin
+      new(p1);
+    end.
+
+If you attempt to compile this program (on an unpatched system), you will
+get the following error:
+
+    Undefined:
+            .reghp
+            .strhp
+
+Fixing this error requires patching the Minix libraries. The patch changes
+the implementation of the brk(2) system call, and hence affects almost all
+C programs built against the patched libraries, as well as Pascal programs.
+
+For convenience, the patch can be installed as follows:
+
+    $ cd <root>
+    $ make fix-pascal-support
+
+Note that the system libraries will be rebuilt (this may take a while).
+
+If the patch is not applied, the 'make test-pc' command (and 'make test')
+will print the following error message:
+
+    *** 'make fix-pascal-support' to support heap allocation
+
+Changing the ACD Pass Description File (to support Basic and Occam)
+--------------------------------------
+
+This step is required to support the Basic and Occam compilers. It may
+be omitted if you do not want to use either the Basic or Occam languages
+(but note that the Basic and Occam compilers and runtime libraries are
+installed into /usr/lib/).
+
+For convenience, the patch can be installed as follows:
+
+    $ cd <root>
+    $ make fix-basic-support
+    $ make fix-occam-support
+
+This edits the ACD pass description file in /usr/lib, performs a chmem(1)
+on /usr/bin/acd so that the new description file can be processed, and
+patches /usr/src/commands/i386/Makefile so that all future builds of
+/usr/bin/acd will have the correct amount of memory, and finally, creates
+the commands 'basic' and 'occam' that can be used to compile programs
+written in those languages.
+
+If these patches are not applied, compiling Basic or Occam programs will
+fail with the error:
+    <filename>: can't compile, no transformation applies
+
+Building the ACK System
+-----------------------
+
+...is as easy as typing:
+
+    $ make
+
+The Makefile has been configured to place all intermediate object files
+into the 'obj' subdirectory, and all final executables into the 'image'
+subdirectory.
+
+Note that ~3.5MB disk space is required for the build, with the final
+executables requiring ~1MB.
+
+The targets supported by the Makefile are:
+
+    <default>       Build the ACK executables (placing them into image)
+    install         Build the ACK executables, and then install them
+                    into /usr/lib. Note that the installed executables
+                    are owned by 'bin', with group 'operator'.
+    clean           Remove all intermediate object files.
+    very-clean      Remove all intermediate object files AND the final
+                    executables.
+    prepare-ack     Prepares your Minix system to compile the ACK sources.
+    fix-basic-suuport   Adds support for Basic to Minix
+    fix-occam-suuport   Adds support for Occam to Minix
+    fix-pascal-support  Patches the system libraries to support dynamic
+                    memory allocation in Pascal programs.
+    grind           Build the grind symbolic debugger
+    install-grind   Install the grind symbolic debugger
+
+
+Symbolic Debugger
+-----------------
+
+The 'grind' symbolic debugger can be used to assist in finding errors
+in programs. It should be noted that the debugger is currently under
+development, and can sometimes hang or exhibit other erroneous behaviour.
+The grind symbolic debugger is not included in the standard installation,
+and must be built and installed separately. This can be done with the
+command:
+
+    $ make install-grind
+
+Use of the debugger is currently for 'experts' - it might be necessary to
+increase the memory allocated to several processes in the system, particularly
+those involved in the compilation and executable image creation (i.e. found
+in /usr/lib), or that are used for viewing ACK information (i.e. anm, asize).
+In other words, anybody using the debugger is expected to be able to use the
+chmem(1) command, and to know when this is necessary.
+
+
+Possible Errors
+---------------
+
+cc: /usr/lib/em_cemcom.ansi: Signal 11 - core dumped
+    ~ insufficient memory allocated to /usr/lib/em_cemcom.ansi.
+      See 'Changing Program Memory Allocations' above.
+
+/usr/lib/cv: No memory.
+    ~ insufficient memory allocated to /usr/lib/cv.
+      See 'Changing Program Memory Allocations' above.
+
+make: No memory for temporary string
+make: No memory for name
+make: No memory for dependant
+make: No memory for command
+make: No memory for macro
+make in ?: Exit code 127
+    ~ insufficient memory allocated to /usr/bin/make. These errors
+      can occur with very large makefiles. The makefiles for the ACK
+      system have been rewritten to avoid these errors, but if they
+      do occur, increase the amount of memory allocated to /usr/bin/make.
+      See 'Changing Program Memory Allocations' above for examples on
+      increasing the memory allocated to a process.
+
+<filename>: can't compile, no transformation applies
+    The ACD description file does not know how to compile the file.
+    See the section 'Changing the ACD Pass Description File' above.
+
+Limitations and Future Work
+---------------------------
+
+It is unlikely that this code will be ported to 16-bit Minix. Support for
+the i86 assembler and code-generator has been included in this release,
+so whilst it is possible to build 16-bit Minix binaries, I have not tried
+to run this software under 16-bit Minix.
+
+The current Makefiles are not really suitable for development work. It is
+often necessary to clean all intermediate files, and to rebuild all sources
+to get a clean image. The Makefile from the first release has been split
+into many pieces, and it is no longer necessary to increase the amount of
+memory allocated to /usr/bin/make (however two make processes are now
+resident during the build and a greater total amount of memory is
+required).
+
+The standard Minix build process does not create debug versions of
+the libraries, and hence, it is not possible to 'step inside' library
+functions inside the debugger.
+
+The compiler core (em_cemcom.ansi) is currently built as a cross-compiler,
+but this is unnecessary. It is unfortunately req'd by the acd(1) compiler
+driver, which passes the -V option to em_cemcom.ansi (c.f. the definition
+of ACK_CEM in /usr/lib/descr).
+
+The original ACK system supported many different back-ends, which are
+not included in this source package. This release includes support for
+the i386 and i86 backends in the as/ and ncg/ subdirectories.
+
+For some unknown reason, the new em_decode binary is larger than the
+previous version.
+
+The documentation (man pages etc...) has not been updated. Copies of the
+original documentation are available at the VU ACK website in Postscript
+(http://www.cs.vu.nl/ack).
+
+Both the Basic and Occam compilers work, but there are problems with them.
+Here is a list of the known limitations:
+  [basic] inkey$ is not supported; basic programs using inkey$ will compile,
+          but result in a linking error (the symbol __inkey is undefined).
+  [basic] No support for exponentiation or logarithms.
+  [basic] Traps are not correctly raised, and if an abnormal condition
+          arises (e.g. division by zero), the basic process crashes.
+  [occam] There is no support for changing channel properties (i.e. text,
+          raw).
+  [occam] Missing 'dec.ocm' and other standard library files
+  [occam] Build with '-g' fails (not yet investigated).
+
+Summary of Changes
+------------------
+
+(release 1.1.2)
+- fix image creation
+- include util/cgg (need for alternative backends)
+(release 1.1.1)
+- fix support for -O2
+
+(release 1.1)
+- reorganise Makefile into many separate files
+- clean build (i.e. no warnings emitted) [except for grind, and m2mm]
+- inclusion of Basic, Modula-2, Occam, and Pascal front-ends
+- inclusion of i86 backend, and separation of the machine dependent
+  code in the as/ and ncg/ subdirectories
+- patch for standard Minix libraries to support dynamic memory allocation in
+  the Pascal runtime environment (fixing an error in the runtime libraries)
+- inclusion of grind and necessary runtime support
+- inclusion of Modula-2 Makefile utility (m2mm)
+
+(release 1.0)
+- simplified build system
+- ANSI'fication of sources; adding prototypes and removing implicit type
+  definitions; removed <ansi.h> header file that defined macros to hide
+  the differences between ANSI and K&R C; stricter handling of functions
+  with variable argument lists.
+- more use of standard C libraries; removed bulk of modules/system and
+  modules/print.
+- em_led memory handling changed significantly. Now uses malloc() and
+  friends instead of sbrk(), making the code more portable across different
+  platforms.
+

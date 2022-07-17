@@ -1,0 +1,185 @@
+lynx 2.8.5 rel.1 for Minix (32bits)
+===================================
+
+The following is a description to build lynx under Minix v3
+
+You need to be in the lynx2-8-5/MINIX directory now if
+you are reading this file.
+
+1. Configure 
+
+The script "lynx.sh" allows you to run the configuration utility
+that lynx uses to know which option you have in your system.
+It creates all Makefile's under the right directories and some
+include (.h) files.
+
+You need to run the script from the lynx2-8-5 directory
+
+As you are in lynx2-8-5/MINIX
+
+# cd ..
+# sh MINIX/lynx.sh
+
+While the system is configuring you will see messages like
+
+...
+checking if you want verbose trace code... no
+checking if you want to link with dbmalloc for testing... no
+checking if you want to link with dmalloc for testing... no
+checking for working const... yes
+checking for Cygwin environment... no
+checking for mingw32 environment... no
+...
+
+...
+checking for wborder... no
+checking for wredrawln... no
+checking for wresize... no
+srcdir is .
+updating cache config.cache
+creating ./config.status
+creating makefile
+creating WWW/Library/Implementation/makefile
+creating src/makefile
+creating src/chrtrans/makefile
+creating lynx_cfg.h
+#
+
+In this point, the system is configured ready to build lynx.
+
+
+2. Now you need to build lynx
+
+# make                -> build/compiles lynx 
+
+
+The following is an output from the make command while building lynx
+
+...
+cd WWW/Library/Implementation && make CC="cc" \
+                LY_CFLAGS="-wa -wo -D_MINIX -D_POSIX_SOURCE " \
+                CPPFLAGS="-I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURC
+E=500 -D_POSIX_C_SOURCE" \
+                LYFLAGS=""
+ cc -DHAVE_CONFIG_H -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500
+-D_POSIX_C_SOURCE  \
+                -I../../.. \
+                -I../../../src \
+                -I../../.. \
+                -I../../../src \
+                 -I../../../WWW/Library/Implementation -wa -wo -D_MINIX -D_POSIX
+_SOURCE    -I../../../WWW/Library/Implementation/ -DACCESS_AUTH -c ../../../WWW/
+Library/Implementation/HTParse.c
+...
+
+When lynx finish to be build, the output is like
+
+...
+Copying Lynx executable into top-level directory
+rm -f ../lynx
+cp lynx ../
+Welcome to Lynx!
+#
+
+lynx is ready in the current directory.
+
+
+
+3. Now you need install lynx and documentation
+
+You need to run the following sequence of commands
+
+# make install        -> install lynx and configuration files
+# make install-help   -> install man pages and help files
+# make install-doc    -> install documentation and samples
+
+
+lynx is installed in /usr/local/bin and config in /usr/local/lib
+
+
+
+Some posible errors
+====================
+
+1. if you have problems while running the shell scripts, check
+with size that stack is over 512K
+
+
+# size /bin/sh
+   text    data     bss    stack   memory
+  64368   10616    3292  1048576  1126852  /bin/sh
+
+
+Use chmem if size is small.
+
+2. while using lynx, default stack is 1Mbyte, but if you connect
+to some big news servers, memory can be short. Use chmem to add
+more memory in 512KBytes increments.
+
+
+3. lynx uses /tmp as directory for working. All work is done creating
+temporary html files in /tmp.
+Check you have plenty disk space if you download big files. 
+
+4. some steps in compilation may need more memory. The following
+are the memory sizes of my current configuration 
+
+# size /usr/lib/*
+
+   text    data     bss    stack   memory
+  26240   37444    2444    32768    98896  /usr/lib/asmconv
+  32768    6376   16304   550000   605448  /usr/lib/cpp
+  36864    7540   12400   550000   606804  /usr/lib/cpp.ansi
+  10560    1740    3060  1500000  1515360  /usr/lib/cv
+ 110592   51592   13156  3155360  3330700  /usr/lib/em_cemcom.ansi
+  12288    2660    9568   550000   574516  /usr/lib/em_decode
+   8192    2192    4592   550000   564976  /usr/lib/em_ego
+  16384    2620   10860   550000   579864  /usr/lib/em_encode
+  24576    2980   56572  9500000  9584128  /usr/lib/em_led
+  98304   38652   11068   550000   698024  /usr/lib/em_m2
+  28672   19080    1736   550000   599488  /usr/lib/em_opt
+  28672   19080    1736   550000   599488  /usr/lib/em_opt2
+  77824   20264   11092   550000   659180  /usr/lib/em_pc
+
+
+Check your configuration in the memory column, and increase
+the apropiate tool using chmem command.
+
+
+Configuration
+=============
+
+The default instalation uses /usr/local/lib/lynx.cfg as configuration file.
+
+Some parameters to modify (you can add these at the end)
+
+STARTFILE:file://localhost/~/
+HELPFILE:file:/usr/local/lib/lynx_help/lynx_help_main.html
+PARTIAL:TRUE
+SHOW_KB_RATE:BYTES,ETA
+SOURCE_CACHE:FILE
+LIST_NEWS_NUMBERS:TRUE
+LIST_NEWS_DATES:TRUE
+INFOSECS:1
+MESSAGESECS:1
+ALERTSECS:1
+DEFAULT_EDITOR:/usr/bin/mined
+FTP_PASSIVE:TRUE
+NNTPSERVER:[your news server]
+NEWS_POSTING:TRUE
+
+PARTIAL allows you to see the page while downloading, very nice feauture.
+
+SHOW_KB_RATE shows you while downloading the size and the expected time
+to end download. You can modify to KB,ETA  to see information in Kbytes.
+
+FTP_PASSIVE is prefered so some firewalls does not allow active sessions.
+
+INFOSECS/MESSAGESECS/ALERTSECS to 1 second to avoid hang a lot showing
+messages. I prefer this timeouts, defaults of 1/2 and 3 seconds.
+
+
+
+
+
+

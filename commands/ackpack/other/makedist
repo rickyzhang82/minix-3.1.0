@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# Create distribution packages.
+
+# Assume that this script is <root>/other/makedist; find <root>
+d=`dirname $0`
+if [ . = $d ]
+then
+    root=..
+else
+    root=$d/..
+fi
+
+if [ ! -d $root -o ! -f $root/README -o ! -f $root/Copyright -o ! -d $root/other ]
+then
+    echo "Wierd: cannot find installation root directory"
+    exit 1
+fi
+
+# Package directory - create if necessary
+dist=$root/dist
+[ ! -d $dist ] && mkdir $dist
+
+# Find the name of the root directory (gives release version etc...)
+x=`( cd $root ; pwd )`
+a=`basename $x`
+
+ver=11
+p=mxack${ver}
+rev=2
+
+# Split out language specific header files from the core
+H="$a/h/arch.h $a/h/cg* $a/h/em* $a/h/local.h $a/h/out.h $a/h/ranlib.h $a/h/stb.h"
+H_BAS="$a/h/bc*"
+H_M2="$a/h/m2*"
+H_OCM="$a/h/ocm*"
+H_PC="$a/h/pc*"
+m=$a/make/Make
+t=$a/make/Test
+MAKE="$m.cemcom $m.cpp $m.ego $m.ego $m.em $m.encode $m.led $m.llgen $m.mod $m.ncgg $m.opt $m.tabgen"
+MAKE_I86="$a/make/i86/Make.as $a/make/i86/Make.cg"
+MAKE_I386="$a/make/i386/Make.as $a/make/i386/Make.cg"
+MAKE_CV="$a/make/minix/Make.cv"
+MAKE_GRIND="$m.grind"
+MAKE_BAS="$m.basic $m.libbas $t.basic"
+MAKE_M2="$m.m2 $m.m2mm $t.m2"
+MAKE_OCM="$m.occam $m.libocm $t.occam"
+MAKE_PC="$m.pc $t.pc"
+u=$a/util
+UTIL="$u/LLgen $u/cmisc $u/data $u/ego $u/led $u/misc $u/ncgg $u/opt $u/shf"
+o=$a/other
+OTHER="$o/__brk.s $o/_brk.s $o/em_strhp.s $o/makedist $o/msg_size.c $o/prepare"
+OTHER_BASIC="$o/fixbasic"
+OTHER_OCCAM="$o/fixoccam"
+OTHER_PC="$o/fixpascal"
+OTHER_GRIND="$o/db $o/fixgrind"
+# Back-end needs care - split out the core & machine-dependent pieces
+AS="$a/as/share/README $a/as/share/comm[0-8].[chy]"
+AS_I86="$a/as/i86"
+AS_I386="$a/as/i386"
+NCG="$a/ncg/proto/*.[ch] $a/ncg/proto/con_float"
+NCG_I86="$a/ncg/i86"
+NCG_I386="$a/ncg/i386"
+
+echo -n Package: $dist/${p}${rev}.tgz...
+( cd $root/.. ; tar cf - $a/Copyright $a/Makefile $a/README \
+	$AS $AS_I86 $AS_I386 $a/cv $a/etc $a/h $a/lang $a/make $a/modules \
+	$OTHER $OTHER_BASIC $OTHER_OCCAM $OTHER_PC $OTHER_GRIND \
+	$a/util $NCG $NCG_I86 $NCG_I386 \
+	| gzip -9 ) > $dist/${p}${rev}.tgz
+
+

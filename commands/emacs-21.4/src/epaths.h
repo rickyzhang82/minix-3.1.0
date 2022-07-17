@@ -1,0 +1,8 @@
+#define PATH_LOADSEARCH "/usr/local/share/emacs/21.4/site-lisp:/usr/local/share/emacs/site-lisp:/usr/local/share/emacs/21.4/leim:/usr/local/share/emacs/21.4/lisp"
+#define PATH_DUMPLOADSEARCH "../lisp"
+#define PATH_EXEC "/usr/local/libexec/emacs/21.4/i686-pc-minix"
+#define PATH_DATA "/usr/local/share/emacs/21.4/etc"
+#define PATH_BITMAPS ""
+#define PATH_DOC "/usr/local/share/emacs/21.4/etc"
+#define PATH_INFO "/usr/local/info"
+#define PATH_X_DEFAULTS ""

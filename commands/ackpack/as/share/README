@@ -1,0 +1,51 @@
+Short notes on the assembler code
+---------------------------------
+
+The assembler has at most three passes (c.f. THREE_PASS), with passes
+1 and 3 always being done. The first pass starts by building the internal
+assembler structures and parses all sources. Note that if the assembler
+is not configured as a linker (ASLD) then just a single source file can
+be processed at a time. The parse() function is really just a thin
+wrapper around yyparse(), adding checks for undefined symbols.
+
+Before tackling yyparse(), we need to understand what the input tokens
+are. The tokenisation routines are contained in comm5.c.
+
+   alpha -> inident(), IDENT, or if in hash table, the defined token value
+   digit -> innumber(), if suffix is 'f' or 'b', then infbsym(), else NUMBER
+            infbsym() FBSYM
+   symbol (=<>|&) -> induo()
+            == (OP_EQ), <> (OP_NE), <= (OP_LE), >= (OP_GE)
+            << (OP_LL), >> (OP_RR), || (OP_OO), && (OP_AA)
+            otherwise return the symbol character
+   quotes -> instring() [STRING]
+   ! -> comment character - skip till end of line
+
+The basic alphanumeric tokens are defined in comm3.c, and are:
+    .define/.extern         EXTERN
+    .                       DOT
+    .data1/.data2/.data4    DATA
+    .ascii/.asciz           ASCII
+    .align                  ALIGN
+    .assert                 ASSERT
+    .space                  SPACE
+    .comm                   COMMON
+    .sect                   SECTION
+    .base                   BASE
+    .symb                   SYMB
+    .symd                   SYMD
+    .line                   LINE
+    .file                   FILE
+    .nolist/.list           LIST
+
+The grammar is defined in comm2.y.
+
+A typical assembly language file will start by defining the output
+sections (with .sect), and then use .define/.extern to declare symbols.
+There is typically then an identifier (label). In terms of the code, this
+sequence calls newsect() for each section that is defined. In each case,
+a call to switchsect() is made. This establishes:
+    DOTVAL     typically incremented for each emitted byte (c.f. emit1())
+    DOTSCT
+    DOTTYP
+

@@ -1,0 +1,2326 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:678: checking host system type
+configure:748: checking for gcc
+configure:861: checking whether the C compiler (cc -wa -wo -D_MINIX -D_POSIX_SOURCE -i -stack 1m) works
+configure:877: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:903: checking whether the C compiler (cc -wa -wo -D_MINIX -D_POSIX_SOURCE -i -stack 1m) is a cross-compiler
+configure:908: checking whether we are using GNU C
+configure:917: cc -E conftest.c
+configure:936: checking whether cc accepts -g
+configure:968: checking how to run the C preprocessor
+configure:989: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:1048: checking whether ln -s works
+configure:1069: checking whether make sets ${MAKE}
+configure:1107: checking for a BSD compatible install
+configure:1164: checking for lint
+configure:1164: checking for alint
+configure:1164: checking for lclint
+configure:1164: checking for tdlint
+configure:1195: checking build system type
+configure:1221: checking for ranlib
+configure:1288: checking for ar
+configure:1357: checking for archiver options (symbol AR_OPTS)
+configure:1368: checking for AIX
+configure:1392: checking for POSIXized ISC
+configure:1418: checking if you want to see long compiling messages
+configure:1470: checking if you want to check memory-leaks
+configure:1497: checking if you want to enable debug-code
+configure:1539: checking if you want to enable lynx trace code *recommended* 
+configure:1563: checking if you want verbose trace code
+configure:1746: checking if you want to link with dbmalloc for testing
+configure:1808: checking if you want to link with dmalloc for testing
+configure:1876: checking for working const
+configure:1930: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+configure:1952: checking for Cygwin environment
+configure:1968: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+"configure", line 1964: __CYGWIN32__ undefined
+configure: failed program was:
+#line 1957 "configure"
+#include "confdefs.h"
+
+int main() {
+
+#ifndef __CYGWIN__
+#define __CYGWIN__ __CYGWIN32__
+#endif
+return __CYGWIN__;
+; return 0; }
+configure:1985: checking for mingw32 environment
+configure:1997: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+"configure", line 1993: __MINGW32__ undefined
+configure: failed program was:
+#line 1990 "configure"
+#include "confdefs.h"
+
+int main() {
+return __MINGW32__;
+; return 0; }
+configure:2029: checking for executable suffix
+configure:2039: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:2060: checking for object suffix
+configure:2066: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+configure:2367: checking for cc option to accept ANSI C
+configure:2439: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE  -DCC_HAS_PROTOS -I/usr/include -I. conftest.c 1>&5
+configure:2505: checking for ranlib
+configure:2533: checking for ANSI C header files
+configure:2546: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:2613: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:2637: checking for inline
+configure:2651: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+"configure", line 2647: inline is not a type identifier
+configure: failed program was:
+#line 2644 "configure"
+#include "confdefs.h"
+
+int main() {
+} inline foo() {
+; return 0; }
+configure:2651: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+"configure", line 2647: __inline__ is not a type identifier
+configure: failed program was:
+#line 2644 "configure"
+#include "confdefs.h"
+
+int main() {
+} __inline__ foo() {
+; return 0; }
+configure:2651: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+"configure", line 2647: __inline is not a type identifier
+configure: failed program was:
+#line 2644 "configure"
+#include "confdefs.h"
+
+int main() {
+} __inline foo() {
+; return 0; }
+configure:2677: checking for off_t
+configure:2710: checking for size_t
+configure:2745: checking for working alloca.h
+configure:2757: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:2778: checking for alloca
+configure:2811: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:2980: checking for unistd.h
+configure:2990: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:3019: checking for getpagesize
+configure:3047: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3072: checking for working mmap
+configure:3220: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+"configure", line 3106: cannot open include file "sys/mman.h"
+"configure", line 3191: PROT_READ undefined
+"configure", line 3191: PROT_WRITE undefined
+"configure", line 3192: MAP_PRIVATE undefined
+"configure", line 3192: MAP_FIXED undefined
+configure: failed program was:
+#line 3080 "configure"
+#include "confdefs.h"
+
+/* Thanks to Mike Haertel and Jim Avera for this test.
+   Here is a matrix of mmap possibilities:
+	mmap private not fixed
+	mmap private fixed at somewhere currently unmapped
+	mmap private fixed at somewhere already mapped
+	mmap shared not fixed
+	mmap shared fixed at somewhere currently unmapped
+	mmap shared fixed at somewhere already mapped
+   For private mappings, we should verify that changes cannot be read()
+   back from the file, nor mmap's back from the file at a different
+   address.  (There have been systems where private was not correctly
+   implemented like the infamous i386 svr4.0, and systems where the
+   VM page cache was not coherent with the filesystem buffer cache
+   like early versions of FreeBSD and possibly contemporary NetBSD.)
+   For shared mappings, we should conversely verify that changes get
+   propogated back to all the places they're supposed to be.
+
+   Grep wants private fixed already mapped.
+   The main things grep needs to know about mmap are:
+   * does it exist and is it safe to write into the mmap'd area
+   * how to use it (BSD variants)  */
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+
+/* This mess was copied from the GNU getpagesize.h.  */
+#ifndef HAVE_GETPAGESIZE
+# ifdef HAVE_UNISTD_H
+#  include <unistd.h>
+# endif
+
+/* Assume that all systems that can run configure have sys/param.h.  */
+# ifndef HAVE_SYS_PARAM_H
+#  define HAVE_SYS_PARAM_H 1
+# endif
+
+# ifdef _SC_PAGESIZE
+#  define getpagesize() sysconf(_SC_PAGESIZE)
+# else /* no _SC_PAGESIZE */
+#  ifdef HAVE_SYS_PARAM_H
+#   include <sys/param.h>
+#   ifdef EXEC_PAGESIZE
+#    define getpagesize() EXEC_PAGESIZE
+#   else /* no EXEC_PAGESIZE */
+#    ifdef NBPG
+#     define getpagesize() NBPG * CLSIZE
+#     ifndef CLSIZE
+#      define CLSIZE 1
+#     endif /* no CLSIZE */
+#    else /* no NBPG */
+#     ifdef NBPC
+#      define getpagesize() NBPC
+#     else /* no NBPC */
+#      ifdef PAGESIZE
+#       define getpagesize() PAGESIZE
+#      endif /* PAGESIZE */
+#     endif /* no NBPC */
+#    endif /* no NBPG */
+#   endif /* no EXEC_PAGESIZE */
+#  else /* no HAVE_SYS_PARAM_H */
+#   define getpagesize() 8192	/* punt totally */
+#  endif /* no HAVE_SYS_PARAM_H */
+# endif /* no _SC_PAGESIZE */
+
+#endif /* no HAVE_GETPAGESIZE */
+
+#ifdef __cplusplus
+extern "C" { void *malloc(unsigned); }
+#else
+char *malloc();
+#endif
+
+int
+main()
+{
+	char *data, *data2, *data3;
+	int i, pagesize;
+	int fd;
+
+	pagesize = getpagesize();
+
+	/*
+	 * First, make a file with some known garbage in it.
+	 */
+	data = malloc(pagesize);
+	if (!data)
+		exit(1);
+	for (i = 0; i < pagesize; ++i)
+		*(data + i) = rand();
+	umask(0);
+	fd = creat("conftestmmap", 0600);
+	if (fd < 0)
+		exit(1);
+	if (write(fd, data, pagesize) != pagesize)
+		exit(1);
+	close(fd);
+
+	/*
+	 * Next, try to mmap the file at a fixed address which
+	 * already has something else allocated at it.  If we can,
+	 * also make sure that we see the same garbage.
+	 */
+	fd = open("conftestmmap", O_RDWR);
+	if (fd < 0)
+		exit(1);
+	data2 = malloc(2 * pagesize);
+	if (!data2)
+		exit(1);
+	data2 += (pagesize - ((int) data2 & (pagesize - 1))) & (pagesize - 1);
+	if (data2 != mmap(data2, pagesize, PROT_READ | PROT_WRITE,
+	    MAP_PRIVATE | MAP_FIXED, fd, 0L))
+		exit(1);
+	for (i = 0; i < pagesize; ++i)
+		if (*(data + i) != *(data2 + i))
+			exit(1);
+
+	/*
+	 * Finally, make sure that changes to the mapped area
+	 * do not percolate back to the file as seen by read().
+	 * (This is a bug on some variants of i386 svr4.0.)
+	 */
+	for (i = 0; i < pagesize; ++i)
+		*(data2 + i) = *(data2 + i) + 1;
+	data3 = malloc(pagesize);
+	if (!data3)
+		exit(1);
+	if (read(fd, data3, pagesize) != pagesize)
+		exit(1);
+	for (i = 0; i < pagesize; ++i)
+		if (*(data + i) != *(data3 + i))
+			exit(1);
+	close(fd);
+	unlink("conftestmmap");
+	exit(0);
+}
+
+configure:3244: checking whether we are using the GNU C Library 2.1 or newer
+"configure", line 3252: cannot open include file "features.h"
+configure:3311: checking for argz.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+"configure", line 3318: cannot open include file "argz.h"
+configure: failed program was:
+#line 3316 "configure"
+#include "confdefs.h"
+#include <argz.h>
+configure:3311: checking for limits.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:3311: checking for locale.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:3311: checking for nl_types.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+"configure", line 3318: cannot open include file "nl_types.h"
+configure: failed program was:
+#line 3316 "configure"
+#include "confdefs.h"
+#include <nl_types.h>
+configure:3311: checking for malloc.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+"configure", line 3318: cannot open include file "malloc.h"
+configure: failed program was:
+#line 3316 "configure"
+#include "confdefs.h"
+#include <malloc.h>
+configure:3311: checking for stddef.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:3311: checking for stdlib.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:3311: checking for string.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:3311: checking for unistd.h
+configure:3311: checking for sys/param.h
+configure:3321: cc -E -I/usr/include -I. conftest.c >/dev/null 2>conftest.out
+configure:3352: checking for feof_unlocked
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	_feof_unlocked
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char feof_unlocked(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char feof_unlocked();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_feof_unlocked) || defined (__stub___feof_unlocked)
+choke me
+#else
+feof_unlocked();
+#endif
+
+; return 0; }
+configure:3352: checking for fgets_unlocked
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	_fgets_unlocked
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char fgets_unlocked(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char fgets_unlocked();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_fgets_unlocked) || defined (__stub___fgets_unlocked)
+choke me
+#else
+fgets_unlocked();
+#endif
+
+; return 0; }
+configure:3352: checking for getcwd
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for getegid
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for geteuid
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for getgid
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for getuid
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for mempcpy
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	_mempcpy
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char mempcpy(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char mempcpy();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_mempcpy) || defined (__stub___mempcpy)
+choke me
+#else
+mempcpy();
+#endif
+
+; return 0; }
+configure:3352: checking for munmap
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	_munmap
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char munmap(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char munmap();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_munmap) || defined (__stub___munmap)
+choke me
+#else
+munmap();
+#endif
+
+; return 0; }
+configure:3352: checking for putenv
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for setenv
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	_setenv
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char setenv(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char setenv();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_setenv) || defined (__stub___setenv)
+choke me
+#else
+setenv();
+#endif
+
+; return 0; }
+configure:3352: checking for setlocale
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for stpcpy
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	_stpcpy
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char stpcpy(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char stpcpy();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_stpcpy) || defined (__stub___stpcpy)
+choke me
+#else
+stpcpy();
+#endif
+
+; return 0; }
+configure:3352: checking for strchr
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for strcasecmp
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for strdup
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for strtoul
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+configure:3352: checking for tsearch
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	_tsearch
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char tsearch(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char tsearch();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_tsearch) || defined (__stub___tsearch)
+choke me
+#else
+tsearch();
+#endif
+
+; return 0; }
+configure:3352: checking for __argz_count
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	___argz_count
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char __argz_count(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char __argz_count();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub___argz_count) || defined (__stub_____argz_count)
+choke me
+#else
+__argz_count();
+#endif
+
+; return 0; }
+configure:3352: checking for __argz_stringify
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	___argz_stringify
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char __argz_stringify(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char __argz_stringify();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub___argz_stringify) || defined (__stub_____argz_stringify)
+choke me
+#else
+__argz_stringify();
+#endif
+
+; return 0; }
+configure:3352: checking for __argz_next
+configure:3380: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+Undefined:
+	___argz_next
+configure: failed program was:
+#line 3357 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char __argz_next(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char __argz_next();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub___argz_next) || defined (__stub_____argz_next)
+choke me
+#else
+__argz_next();
+#endif
+
+; return 0; }
+configure:3421: checking for iconv
+configure:3439: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+"configure", line 3432: cannot open include file "iconv.h"
+"configure", line 3433: iconv_t is not a type identifier
+configure: failed program was:
+#line 3429 "configure"
+#include "confdefs.h"
+#include <stdlib.h>
+#include <iconv.h>
+int main() {
+iconv_t cd = iconv_open("","");
+       iconv(cd,NULL,NULL,NULL,NULL);
+       iconv_close(cd);
+; return 0; }
+configure:3461: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  -liconv 1>&5
+"configure", line 3454: cannot open include file "iconv.h"
+"configure", line 3455: iconv_t is not a type identifier
+configure: failed program was:
+#line 3451 "configure"
+#include "confdefs.h"
+#include <stdlib.h>
+#include <iconv.h>
+int main() {
+iconv_t cd = iconv_open("","");
+         iconv(cd,NULL,NULL,NULL,NULL);
+         iconv_close(cd);
+; return 0; }
+configure:3536: checking for nl_langinfo and CODESET
+configure:3548: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+"configure", line 3543: cannot open include file "langinfo.h"
+"configure", line 3544: CODESET undefined
+configure: failed program was:
+#line 3541 "configure"
+#include "confdefs.h"
+#include <langinfo.h>
+int main() {
+char* cs = nl_langinfo(CODESET);
+; return 0; }
+configure:3571: checking for LC_MESSAGES
+configure:3583: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -i -stack 1m conftest.c  1>&5
+"configure", line 3579: LC_MESSAGES undefined
+configure: failed program was:
+#line 3576 "configure"
+#include "confdefs.h"
+#include <locale.h>
+int main() {
+return LC_MESSAGES
+; return 0; }
+configure:3604: checking whether NLS is requested
+configure:4396: checking if you want full utility pathnames
+configure:4421: checking for system mailer
+configure:4448: checking system mail flags
+configure:4566: checking if we should define _XOPEN_SOURCE
+configure:4582: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. conftest.c 1>&5
+"configure", line 4577: make is not a type identifier
+"configure", line 4577: an is not a type identifier
+configure: failed program was:
+#line 4572 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+int main() {
+
+#ifndef _XOPEN_SOURCE
+make an error
+#endif
+; return 0; }
+configure:4602: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 conftest.c 1>&5
+"configure", line 4597: make is not a type identifier
+"configure", line 4597: an is not a type identifier
+configure: failed program was:
+#line 4592 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+int main() {
+
+#ifdef _XOPEN_SOURCE
+make an error
+#endif
+; return 0; }
+configure:4624: checking if we should define _POSIX_C_SOURCE
+configure:4755: checking if you want ssl library
+configure:4776: checking if you want experimental gnutls support
+configure:4797: checking if you want socks library
+configure:4817: checking if you want socks5 library
+configure:5069: checking for network libraries
+configure:5080: checking for gethostname
+configure:5108: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c  1>&5
+configure:5247: checking for main in -linet
+configure:5262: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -linet   1>&5
+/usr/lib/em_led: can't read /lib/i386/libinet.a (fatal)
+configure: failed program was:
+#line 5255 "configure"
+#include "confdefs.h"
+
+int main() {
+main()
+; return 0; }
+configure:5287: checking for socket
+configure:5315: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c  1>&5
+configure:5454: checking for gethostbyname
+configure:5482: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c  1>&5
+configure:5565: checking for strcasecmp
+configure:5681: checking for inet_aton function
+configure:5698: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c   1>&5
+configure:6129: checking for screen type
+configure:6199: checking for extra include directories
+configure:6223: checking if we have identified curses headers
+configure:6243: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:6266: checking for curses.h
+configure:6276: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:6306: checking for ncurses version
+configure:6365: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c   1>&5
+"configure", line 6358: make is not a type identifier
+"configure", line 6358: an is not a type identifier
+"configure", line 6358: error is not a type identifier
+"configure", line 6361: integer not expected
+configure: failed program was:
+#line 6341 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+#include <stdio.h>
+int main()
+{
+	FILE *fp = fopen("out6936", "w");
+#ifdef NCURSES_VERSION
+# ifdef NCURSES_VERSION_PATCH
+	fprintf(fp, "%s.%d\n", NCURSES_VERSION, NCURSES_VERSION_PATCH);
+# else
+	fprintf(fp, "%s\n", NCURSES_VERSION);
+# endif
+#else
+# ifdef __NCURSES_H
+	fprintf(fp, "old\n");
+# else
+	make an error
+# endif
+#endif
+	exit(0);
+}
+configure:6389: checking if we have identified curses libraries
+configure:6398: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c   1>&5
+Undefined:
+	_initscr
+configure: failed program was:
+#line 6391 "configure"
+#include "confdefs.h"
+#include <curses.h>
+int main() {
+initscr(); tgoto("?", 0,0)
+; return 0; }
+configure:6570: checking for tgoto
+configure:6598: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c   1>&5
+configure:6668: checking for initscr in -lcursesX
+configure:6687: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcursesX    1>&5
+/usr/lib/em_led: can't read /lib/i386/libcursesX.a (fatal)
+configure: failed program was:
+#line 6676 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char initscr();
+
+int main() {
+initscr()
+; return 0; }
+configure:6668: checking for initscr in -lcurses
+configure:6687: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses    1>&5
+configure:6785: checking for curses performance tradeoff
+configure:6806: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 6800: ; not expected
+configure: failed program was:
+#line 6792 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+int main() {
+
+#if defined(wbkgdset) && defined(clearok) && defined(getbkgd)
+	int x = ERR;
+#else
+	int x = ;	/* force an error */
+#endif
+	
+; return 0; }
+configure:6848: checking for curses touchline function
+configure:6862: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_touchline
+configure: failed program was:
+#line 6854 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+int main() {
+touchline(stdscr, 1,2,3);
+; return 0; }
+configure:6878: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_touchline
+configure: failed program was:
+#line 6870 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+int main() {
+touchline(stdscr, 1,2);
+; return 0; }
+configure:9603: checking for location of config-file
+configure:9615: checking if you want only a few charsets
+configure:9676: checking for ANSI C header files
+configure:9780: checking whether time.h and sys/time.h may both be included
+configure:9794: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:9819: checking for dirent.h that defines DIR
+configure:9832: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:9857: checking for opendir in -ldir
+configure:9876: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -ldir  -lcurses   1>&5
+/usr/lib/em_led: can't read /lib/i386/libdir.a (fatal)
+configure: failed program was:
+#line 9865 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char opendir();
+
+int main() {
+opendir()
+; return 0; }
+configure:9960: checking for arpa/inet.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:9960: checking for fcntl.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:9960: checking for limits.h
+configure:9960: checking for stdlib.h
+configure:9960: checking for string.h
+configure:9960: checking for sys/fcntl.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 9967: cannot open include file "sys/fcntl.h"
+configure: failed program was:
+#line 9965 "configure"
+#include "confdefs.h"
+#include <sys/fcntl.h>
+configure:9960: checking for sys/filio.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 9967: cannot open include file "sys/filio.h"
+configure: failed program was:
+#line 9965 "configure"
+#include "confdefs.h"
+#include <sys/filio.h>
+configure:9960: checking for sys/ioctl.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:9960: checking for sys/param.h
+configure:9960: checking for sys/timeb.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 9967: cannot open include file "sys/timeb.h"
+configure: failed program was:
+#line 9965 "configure"
+#include "confdefs.h"
+#include <sys/timeb.h>
+configure:9960: checking for sys/time.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:9960: checking for syslog.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 9967: cannot open include file "syslog.h"
+configure: failed program was:
+#line 9965 "configure"
+#include "confdefs.h"
+#include <syslog.h>
+configure:9960: checking for termio.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 9967: cannot open include file "termio.h"
+configure: failed program was:
+#line 9965 "configure"
+#include "confdefs.h"
+#include <termio.h>
+configure:9960: checking for termios.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:9960: checking for unistd.h
+configure:9960: checking for vfork.h
+configure:9970: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 9967: cannot open include file "vfork.h"
+configure: failed program was:
+#line 9965 "configure"
+#include "confdefs.h"
+#include <vfork.h>
+configure:9998: checking termio.h and termios.h
+configure:10017: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:10037: checking for sigaction and structs
+configure:10058: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:10082: checking for sys/wait.h
+configure:10092: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:10220: checking for union wait
+configure:10237: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+compiles ok w/o union wait
+configure:10362: checking for stdarg.h
+configure:10372: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+configure:10362: checking for varargs.h
+configure:10372: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 10369: cannot open include file "varargs.h"
+configure: failed program was:
+#line 10367 "configure"
+#include "confdefs.h"
+#include <varargs.h>
+configure:10399: checking for standard varargs
+configure:10420: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:10440: checking for uid_t in sys/types.h
+configure:10474: checking type of array argument to getgroups
+configure:10507: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:10545: checking for pid_t
+configure:10578: checking for uid_t in sys/types.h
+configure:10612: checking for mode_t
+configure:10649: checking for working alloca.h
+configure:10682: checking for alloca
+configure:10882: checking for vfork.h
+configure:10917: checking for working vfork
+configure:11068: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_vfork
+configure: failed program was:
+#line 10973 "configure"
+#include "confdefs.h"
+/* Thanks to Paul Eggert for this test.  */
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+#ifdef HAVE_VFORK_H
+#include <vfork.h>
+#endif
+/* On some sparc systems, changes by the child to local and incoming
+   argument registers are propagated back to the parent.
+   The compiler is told about this with #include <vfork.h>,
+   but some compilers (e.g. gcc -O) don't grok <vfork.h>.
+   Test for this by using a static variable whose address
+   is put into a register that is clobbered by the vfork.  */
+static
+#ifdef __cplusplus
+sparc_address_test (int arg)
+#else
+sparc_address_test (arg) int arg;
+#endif
+{
+  static pid_t child;
+  if (!child) {
+    child = vfork ();
+    if (child < 0) {
+      perror ("vfork");
+      _exit(2);
+    }
+    if (!child) {
+      arg = getpid();
+      write(-1, "", 0);
+      _exit (arg);
+    }
+  }
+}
+main() {
+  pid_t parent = getpid ();
+  pid_t child;
+
+  sparc_address_test ();
+
+  child = vfork ();
+
+  if (child == 0) {
+    /* Here is another test for sparc vfork register problems.
+       This test uses lots of local variables, at least
+       as many local variables as main has allocated so far
+       including compiler temporaries.  4 locals are enough for
+       gcc 1.40.3 on a Solaris 4.1.3 sparc, but we use 8 to be safe.
+       A buggy compiler should reuse the register of parent
+       for one of the local variables, since it will think that
+       parent can't possibly be used any more in this routine.
+       Assigning to the local variable will thus munge parent
+       in the parent process.  */
+    pid_t
+      p = getpid(), p1 = getpid(), p2 = getpid(), p3 = getpid(),
+      p4 = getpid(), p5 = getpid(), p6 = getpid(), p7 = getpid();
+    /* Convince the compiler that p..p7 are live; otherwise, it might
+       use the same hardware register for all 8 local variables.  */
+    if (p != p1 || p != p2 || p != p3 || p != p4
+	|| p != p5 || p != p6 || p != p7)
+      _exit(1);
+
+    /* On some systems (e.g. IRIX 3.3),
+       vfork doesn't separate parent from child file descriptors.
+       If the child closes a descriptor before it execs or exits,
+       this munges the parent's descriptor as well.
+       Test for this by closing stdout in the child.  */
+    _exit(close(fileno(stdout)) != 0);
+  } else {
+    int status;
+    struct stat st;
+
+    while (wait(&status) != child)
+      ;
+    exit(
+	 /* Was there some problem with vforking?  */
+	 child < 0
+
+	 /* Did the child fail?  (This shouldn't happen.)  */
+	 || status
+
+	 /* Did the vfork/compiler bug occur?  */
+	 || parent != getpid()
+
+	 /* Did the file descriptor bug occur?  */
+	 || fstat(fileno(stdout), &st) != 0
+	 );
+  }
+}
+configure:11092: checking if we should use fcntl or ioctl
+configure:11110: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+"configure", line 11105: FIONBIO undefined
+configure: failed program was:
+#line 11098 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <sys/ioctl.h>
+
+int main() {
+
+        int ret = ioctl(0, FIONBIO, (char *)0);
+	
+; return 0; }
+configure:11136: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11159: checking for broken/missing definition of remove
+configure:11172: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11212: checking for lstat
+configure:11227: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for cuserid
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for ftime
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_ftime
+configure: failed program was:
+#line 11275 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char ftime(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char ftime();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_ftime) || defined (__stub___ftime)
+choke me
+#else
+ftime();
+#endif
+
+; return 0; }
+configure:11270: checking for getcwd
+configure:11270: checking for getgroups
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for gettimeofday
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for getuid
+configure:11270: checking for mktemp
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for mkdtemp
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_mkdtemp
+configure: failed program was:
+#line 11275 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char mkdtemp(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char mkdtemp();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_mkdtemp) || defined (__stub___mkdtemp)
+choke me
+#else
+mkdtemp();
+#endif
+
+; return 0; }
+configure:11270: checking for popen
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for putenv
+configure:11270: checking for readdir
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for setuid
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for strerror
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for truncate
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_truncate
+configure: failed program was:
+#line 11275 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char truncate(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char truncate();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_truncate) || defined (__stub___truncate)
+choke me
+#else
+truncate();
+#endif
+
+; return 0; }
+configure:11270: checking for ttyname
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11270: checking for unsetenv
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_unsetenv
+configure: failed program was:
+#line 11275 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char unsetenv(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char unsetenv();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_unsetenv) || defined (__stub___unsetenv)
+choke me
+#else
+unsetenv();
+#endif
+
+; return 0; }
+configure:11270: checking for vasprintf
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_vasprintf
+configure: failed program was:
+#line 11275 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char vasprintf(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char vasprintf();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_vasprintf) || defined (__stub___vasprintf)
+choke me
+#else
+vasprintf();
+#endif
+
+; return 0; }
+configure:11270: checking for waitpid
+configure:11298: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11328: checking for mktime
+configure:11356: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11328: checking for strstr
+configure:11356: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11385: checking for random-integer functions
+configure:11410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11426: checking for range of random-integers
+configure:11456: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11492: checking for strstr declaration
+configure:11506: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11519: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11561: checking for getgrgid declaration
+configure:11577: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11592: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11561: checking for getgrnam declaration
+configure:11577: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11592: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11634: checking if TRUE/FALSE are defined
+configure:11649: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11676: checking if external errno is declared
+configure:11695: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11723: checking if external errno exists
+configure:11739: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11769: checking if we can set errno
+configure:11805: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11828: checking for setlocale()
+configure:11841: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:11862: checking if NGROUPS is defined
+configure:11882: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 11878: NGROUPS undefined
+configure: failed program was:
+#line 11868 "configure"
+#include "confdefs.h"
+
+#if HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
+#if HAVE_LIMITS_H
+#include <limits.h>
+#endif
+
+int main() {
+int x = NGROUPS
+; return 0; }
+configure:11904: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:11936: checking if external sys_nerr is declared
+configure:11955: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 11951: sys_nerr undefined
+configure: failed program was:
+#line 11942 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+#include <stdio.h>
+#include <sys/types.h>
+#include <errno.h> 
+int main() {
+long x = (long) sys_nerr
+; return 0; }
+configure:11983: checking if external sys_nerr exists
+configure:11999: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_sys_nerr
+configure: failed program was:
+#line 11989 "configure"
+#include "confdefs.h"
+
+#undef sys_nerr
+extern int sys_nerr;
+
+int main() {
+sys_nerr = 2
+; return 0; }
+configure:12028: checking if external sys_errlist is declared
+configure:12047: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12043: sys_errlist undefined
+configure: failed program was:
+#line 12034 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+#include <stdio.h>
+#include <sys/types.h>
+#include <errno.h> 
+int main() {
+long x = (long) sys_errlist
+; return 0; }
+configure:12075: checking if external sys_errlist exists
+configure:12091: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_sys_errlist
+configure: failed program was:
+#line 12081 "configure"
+#include "confdefs.h"
+
+#undef sys_errlist
+extern int sys_errlist;
+
+int main() {
+sys_errlist = 2
+; return 0; }
+configure:12124: checking for lastlog.h
+configure:12134: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 12131: cannot open include file "lastlog.h"
+configure: failed program was:
+#line 12129 "configure"
+#include "confdefs.h"
+#include <lastlog.h>
+configure:12124: checking for paths.h
+configure:12134: cc -E -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 12131: cannot open include file "paths.h"
+configure: failed program was:
+#line 12129 "configure"
+#include "confdefs.h"
+#include <paths.h>
+configure:12161: checking for lastlog path
+configure:12182: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12178: _PATH_LASTLOG undefined
+configure: failed program was:
+#line 12167 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#ifdef HAVE_LASTLOG_H
+#include <lastlog.h>
+#else
+#ifdef HAVE_PATHS_H
+#include <paths.h>
+#endif
+#endif
+int main() {
+char *path = _PATH_LASTLOG
+; return 0; }
+configure:12209: checking for utmp implementation
+configure:12234: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12229: cannot open include file "utmpx.h"
+"configure", line 12235: unknown struct-type
+"configure", line 12235: size of local x unknown
+"configure", line 12236: unknown selector ut_name
+configure: failed program was:
+#line 12225 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmpx.h>
+#define getutent getutxent
+#ifdef USE_LASTLOG
+#include <lastlog.h>	/* may conflict with utmpx.h on Linux */
+#endif
+
+int main() {
+struct utmpx x;
+	 char *name = x.ut_name; /* utmp.h and compatible definitions */
+	
+; return 0; }
+configure:12253: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12248: cannot open include file "utmpx.h"
+"configure", line 12254: unknown struct-type
+"configure", line 12254: size of local x unknown
+"configure", line 12255: unknown selector ut_user
+configure: failed program was:
+#line 12244 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmpx.h>
+#define getutent getutxent
+#ifdef USE_LASTLOG
+#include <lastlog.h>	/* may conflict with utmpx.h on Linux */
+#endif
+
+int main() {
+struct utmpx x;
+	 char *name = x.ut_user; /* utmpx.h must declare this */
+	
+; return 0; }
+configure:12234: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:12283: checking if utmp.ut_host is declared
+configure:12298: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:12321: checking if utmp.ut_name is declared
+configure:12346: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+configure:12377: checking for exit-status in utmp
+configure:12398: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12394: unknown selector ut_exit
+configure: failed program was:
+#line 12389 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_exit.__e_exit = 0
+; return 0; }
+configure:12398: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12394: unknown selector ut_exit
+configure: failed program was:
+#line 12389 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_exit.e_exit = 0
+; return 0; }
+configure:12398: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12394: unknown selector ut_exit
+configure: failed program was:
+#line 12389 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_exit.ut_e_exit = 0
+; return 0; }
+configure:12398: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12394: unknown selector ut_exit
+configure: failed program was:
+#line 12389 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_exit.ut_exit = 0
+; return 0; }
+configure:12429: checking if utmp.ut_xtime is declared
+configure:12444: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12440: unknown selector ut_xtime
+configure: failed program was:
+#line 12435 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_xtime = 0
+; return 0; }
+configure:12461: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12457: unknown selector ut_tv
+configure: failed program was:
+#line 12452 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_tv.tv_sec
+; return 0; }
+configure:12495: checking if utmp.ut_session is declared
+configure:12510: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 12506: unknown selector ut_session
+configure: failed program was:
+#line 12501 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_session
+; return 0; }
+configure:12534: checking if utmp is SYSV flavor
+configure:12555: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_endutent
+	_setutent
+	_pututline
+	_getutid
+configure: failed program was:
+#line 12541 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+
+struct utmp x;
+	setutent ();
+	getutid(&x);
+	pututline(&x);
+	endutent();
+; return 0; }
+configure:12578: checking if external h_errno exists
+configure:12594: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+configure:12625: checking if bibp: URLs should be supported
+configure:12649: checking if configuration info should be browsable
+configure:12673: checking if new-style forms-based options screen should be used
+configure:12697: checking if old-style options menu should be used
+configure:12721: checking if experimental address-list page should be used
+configure:12745: checking if experimental charset-selection logic should be used
+configure:12769: checking if experimental CJK logic should be used
+configure:12793: checking if color-style code should be used
+configure:12870: checking if experimental htmlized lynx.cfg should be built
+configure:12900: checking whether to enable ipv6
+configure:13524: checking if experimental element-justification logic should be used
+configure:13548: checking if experimental keyboard-layout logic should be used
+configure:13573: checking if experimental locale-charset selection logic should be used
+configure:13597: checking if experimental nested-table logic should be used
+configure:13621: checking if scrollbar code should be used
+configure:13644: checking if alternative line-edit bindings should be used
+configure:13668: checking if you want to use extended HTML DTD logic
+configure:13692: checking if file-upload logic should be used
+configure:13716: checking if partial-display should be used
+configure:13740: checking if persistent-cookie logic should be used
+configure:13764: checking if html source should be colorized
+configure:13788: checking if read-progress message should show ETA
+configure:13812: checking if source caching should be used
+configure:13836: checking if you want to use external commands
+configure:13863: checking if you want to use setfont support
+configure:13887: checking if you want cgi-link support
+configure:13906: checking if you want change-exec support
+configure:13930: checking if you want exec-links support
+configure:13954: checking if you want exec-scripts support
+configure:13978: checking if you want internal-links feature
+configure:14002: checking if you want to fork NSL requests
+configure:14026: checking if you want to log URL requests via syslog
+configure:14050: checking if you want to underline links
+configure:14078: checking if help files should be gzip'ed
+configure:14098: checking if you want to use libbz2 for decompression of some bzip2 files
+configure:14427: checking if you want to use zlib for decompression of some gzip files
+configure:14442: checking if we need to add -I option to get zlib.h
+configure:14451: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 14446: cannot open include file "zlib.h"
+configure: failed program was:
+#line 14444 "configure"
+#include "confdefs.h"
+#include <zlib.h>
+int main() {
+
+; return 0; }
+configure:14580: checking for gzopen
+configure:14608: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lcurses   1>&5
+Undefined:
+	_gzopen
+configure: failed program was:
+#line 14585 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char gzopen(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char gzopen();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_gzopen) || defined (__stub___gzopen)
+choke me
+#else
+gzopen();
+#endif
+
+; return 0; }
+configure:14628: checking for gzopen in -lz
+configure:14638: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -lz -lcurses   1>&5
+/usr/lib/em_led: can't read /lib/i386/libz.a (fatal)
+configure: failed program was:
+#line 14631 "configure"
+#include "confdefs.h"
+#include <zlib.h>
+int main() {
+gzopen("name","mode")
+; return 0; }
+configure:14707: checking for -lz in /usr/local/lib
+configure:14717: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+configure:14754: checking if you want to exclude FINGER code
+configure:14778: checking if you want to exclude GOPHER code
+configure:14802: checking if you want to exclude NEWS code
+configure:14826: checking if you want to exclude FTP code
+configure:14855: checking if directory-editor code should be used
+configure:14882: checking if you wish to allow extracting from archives via DirEd
+configure:14901: checking if DirEd mode should override keys
+configure:14927: checking if you wish to allow permissions commands via DirEd
+configure:14953: checking if you wish to allow executable-permission commands via DirEd
+configure:14972: checking if you wish to allow tar commands from DirEd
+configure:14998: checking if you wish to allow uudecode commands from DirEd
+configure:15024: checking if you wish to allow zip and unzip commands from DirEd
+configure:15050: checking if you wish to allow gzip and gunzip commands from DirEd
+configure:15077: checking if you want long-directory listings
+configure:15103: checking if parent-directory references are permitted
+configure:15128: checking for telnet
+(line 15219) testing defining path for /usr/bin/telnet ...
+configure:15238: checking for tn3270
+configure:15238: checking for tn3270
+configure:15348: checking for rlogin
+(line 15439) testing defining path for /usr/bin/rlogin ...
+configure:15459: checking for mv
+(line 15550) testing defining path for /bin/mv ...
+configure:15570: checking for gzip
+(line 15661) testing defining path for /usr/local/bin/gzip ...
+configure:15680: checking for gunzip
+(line 15771) testing defining path for /usr/local/bin/gunzip ...
+configure:15790: checking for unzip
+configure:15790: checking for unzip
+configure:15900: checking for bzip2
+(line 15991) testing defining path for /usr/local/bin/bzip2 ...
+configure:16013: checking for compress
+(line 16104) testing defining path for /usr/bin/compress ...
+configure:16123: checking for rm
+(line 16214) testing defining path for /bin/rm ...
+configure:16233: checking for tar
+(line 16324) testing defining path for /usr/bin/tar ...
+configure:16343: checking for uudecode
+(line 16434) testing defining path for /usr/bin/uudecode ...
+configure:16453: checking for zcat
+(line 16544) testing defining path for /usr/bin/zcat ...
+configure:16563: checking for zip
+configure:16563: checking for zip
+configure:16728: checking for /bin/install
+(line 16819) testing defining path for /bin/install ...
+configure:18582: checking if we can include termio.h with curses
+configure:18600: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -DHAVE_CONFIG_H -I. -I. -I./src -I./WWW/Library/Implementation conftest.c 1>&5
+"configure", line 18595: cannot open include file "termio.h"
+configure: failed program was:
+#line 18591 "configure"
+#include "confdefs.h"
+
+#include <LYCurses.h>
+#include <termio.h>
+int main() {
+putchar(0x0a)
+; return 0; }
+configure:18630: checking for curses/term.h
+configure:18640: cc -E  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 18637: cannot open include file "curses/term.h"
+configure: failed program was:
+#line 18635 "configure"
+#include "confdefs.h"
+#include <curses/term.h>
+configure:18630: checking for term.h
+configure:18640: cc -E  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c >/dev/null 2>conftest.out
+"configure", line 18637: cannot open include file "term.h"
+configure: failed program was:
+#line 18635 "configure"
+#include "confdefs.h"
+#include <term.h>
+configure:18668: checking if curses supports alternate-character set
+configure:18685: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 18681: chtype is not a type identifier
+"configure", line 18681: acs_map undefined
+configure: failed program was:
+#line 18676 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+	
+int main() {
+chtype x = acs_map['l']; acs_map['m'] = 0
+; return 0; }
+configure:18685: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 18681: chtype is not a type identifier
+"configure", line 18681: _acs_map undefined
+configure: failed program was:
+#line 18676 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+	
+int main() {
+chtype x = _acs_map['l']; _acs_map['m'] = 0
+; return 0; }
+configure:18708: checking if curses supports fancy attributes
+configure:18727: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+configure:18795: checking if curses supports color attributes
+configure:18816: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 18806: chtype is not a type identifier
+"configure", line 18806: COLOR_BLUE undefined
+configure: failed program was:
+#line 18801 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+
+int main() {
+chtype x = COLOR_BLUE;
+	 has_colors();
+	 start_color();
+#ifndef NCURSES_BROKEN
+	 wbkgd(curscr, getbkgd(stdscr)); /* X/Open XPG4 aka SVr4 Curses */
+#endif
+	
+; return 0; }
+configure:18850: checking for termio.h
+configure:18850: checking for termios.h
+configure:18850: checking for unistd.h
+configure:18986: checking declaration of size-change
+configure:19039: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+size-change succeeded ()
+configure:19078: checking if ttytype is declared in curses library
+configure:19091: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19087: ttytype undefined
+configure: failed program was:
+#line 19084 "configure"
+#include "confdefs.h"
+#include <curses.h>
+int main() {
+char *x = &ttytype[1]; *x = 1
+; return 0; }
+configure:19112: checking if curses supports wide characters
+configure:19132: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+Undefined:
+	_waddnwstr
+configure: failed program was:
+#line 19118 "configure"
+#include "confdefs.h"
+
+#include <stdlib.h>
+#include <curses.h>
+int main() {
+
+    wchar_t temp[2];
+    wchar_t wch = 'A';
+    temp[0] = wch;
+    waddnwstr(stdscr, temp, 1);
+
+; return 0; }
+configure:19222: checking if we must define _XOPEN_SOURCE_EXTENDED
+configure:19240: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+Undefined:
+	_getbegyx
+	_winnstr
+configure: failed program was:
+#line 19228 "configure"
+#include "confdefs.h"
+
+#include <stdlib.h>
+#include <curses.h>
+int main() {
+
+	long x = winnstr(stdscr, "", 0);
+	int x1, y1;
+	getbegyx(stdscr, y1, x1)
+; return 0; }
+configure:19261: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+Undefined:
+	_getbegyx
+	_winnstr
+configure: failed program was:
+#line 19248 "configure"
+#include "confdefs.h"
+
+#define _XOPEN_SOURCE_EXTENDED
+#include <stdlib.h>
+#include <curses.h>
+int main() {
+
+	long x = winnstr(stdscr, "", 0);
+	int x1, y1;
+	getbegyx(stdscr, y1, x1)
+; return 0; }
+configure:19280: checking for term.h
+configure:19302: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 19297: cannot open include file "curses.hterm.h"
+configure: failed program was:
+#line 19293 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+#include <curses.hterm.h>
+int main() {
+WINDOW *x
+; return 0; }
+configure:19302: cc -c -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE conftest.c 1>&5
+"configure", line 19297: cannot open include file "term.h"
+configure: failed program was:
+#line 19293 "configure"
+#include "confdefs.h"
+
+#include <curses.h>
+#include <term.h>
+int main() {
+WINDOW *x
+; return 0; }
+configure:19370: checking for assume_default_colors
+(line 19372) testing assume_default_colors ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: assume_default_colors undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef assume_default_colors
+long foo = (long)(&assume_default_colors);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for cbreak
+(line 19372) testing cbreak ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+configure:19370: checking for define_key
+(line 19372) testing define_key ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: define_key undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef define_key
+long foo = (long)(&define_key);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for delscreen
+(line 19372) testing delscreen ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: delscreen undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef delscreen
+long foo = (long)(&delscreen);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for getattrs
+(line 19372) testing getattrs ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: getattrs undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef getattrs
+long foo = (long)(&getattrs);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for getbegx
+(line 19372) testing getbegx ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: getbegx undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef getbegx
+long foo = (long)(&getbegx);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for getbegy
+(line 19372) testing getbegy ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: getbegy undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef getbegy
+long foo = (long)(&getbegy);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for keypad
+(line 19372) testing keypad ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+configure:19370: checking for napms
+(line 19372) testing napms ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: napms undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef napms
+long foo = (long)(&napms);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for newpad
+(line 19372) testing newpad ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: newpad undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef newpad
+long foo = (long)(&newpad);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for newterm
+(line 19372) testing newterm ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: newterm undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef newterm
+long foo = (long)(&newterm);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for pnoutrefresh
+(line 19372) testing pnoutrefresh ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: pnoutrefresh undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef pnoutrefresh
+long foo = (long)(&pnoutrefresh);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for resizeterm
+(line 19372) testing resizeterm ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: resizeterm undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef resizeterm
+long foo = (long)(&resizeterm);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for touchline
+(line 19372) testing touchline ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: touchline undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef touchline
+long foo = (long)(&touchline);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for touchwin
+(line 19372) testing touchwin ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+configure:19370: checking for use_default_colors
+(line 19372) testing use_default_colors ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: use_default_colors undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef use_default_colors
+long foo = (long)(&use_default_colors);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for wattr_get
+(line 19372) testing wattr_get ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: wattr_get undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef wattr_get
+long foo = (long)(&wattr_get);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for wborder
+(line 19372) testing wborder ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: wborder undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef wborder
+long foo = (long)(&wborder);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for wredrawln
+(line 19372) testing wredrawln ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: wredrawln undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef wredrawln
+long foo = (long)(&wredrawln);
+exit(foo == 0);
+#endif
+			
+; return 0; }
+configure:19370: checking for wresize
+(line 19372) testing wresize ...
+configure:19410: cc -o conftest -wa -wo -D_MINIX -D_POSIX_SOURCE  -I/usr/local/include -I/usr/include -I. -D_XOPEN_SOURCE=500 -D_POSIX_C_SOURCE -i -stack 1m conftest.c -L/usr/local/lib -lz -lcurses   1>&5
+"configure", line 19403: wresize undefined
+configure: failed program was:
+#line 19381 "configure"
+#include "confdefs.h"
+
+#ifdef HAVE_XCURSES
+#include <xcurses.h>
+char * XCursesProgramName = "test";
+#else
+#include <curses.h>
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSESW_TERM_H)
+#include <ncursesw/term.h>
+#else
+#if defined(NCURSES_VERSION) && defined(HAVE_NCURSES_TERM_H)
+#include <ncurses/term.h>
+#else
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
+#endif
+#endif
+#endif
+int main() {
+
+#ifndef wresize
+long foo = (long)(&wresize);
+exit(foo == 0);
+#endif
+			
+; return 0; }

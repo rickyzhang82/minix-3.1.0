@@ -1,0 +1,76 @@
+#!/usr/bin/sh
+#
+# Patch Minix libraries to enable dynamic memory allocation in Pascal programs.
+# (C) 2005 Michael Kennett
+
+e=/usr/src/lib/i386/em
+o=/usr/src/lib/other
+
+if grep -s em_strhp $e/Makefile
+then
+  echo "*** fix-pascal-support : patch already applied"
+  exit 0
+fi
+
+# File paths are relative to the script directory
+d=`dirname $0`
+
+cp $d/__brk.s $d/em_strhp.s $d/msg_size.c $e
+cp $d/_brk.s $o
+
+# Create backup (if not already existing)
+[ -f $/Makefile.pas ] || cp $e/Makefile $e/Makefile.pas
+
+ed - $e/Makefile << EOF
+/em_xor/a
+	\$(LIBRARY)(em_strhp.o) \\
+	\$(LIBRARY)(__brk.o) \\
+.
+\$a
+
+\$(LIBRARY)(em_strhp.o):	em_strhp.s
+	\$(CC1) em_strhp.s
+
+msg_size: msg_size.c
+	\$(CC) -o msg_size msg_size.c
+
+\$(LIBRARY)(__brk.o): msg_size __brk.s
+	\$(CC1) -DMSG_SIZE=\`./msg_size\` __brk.s
+
+.
+w
+q
+EOF
+
+ed - $o/Makefile << EOF
+1,\$s/_brk.c/_brk.s/g
+w
+q
+EOF
+
+echo "*** rebuilding system libraries (this may take a while)"
+sleep 2
+c=`pwd`
+cd /usr/src
+ok=
+make libraries || ok=FALSE
+cd $c
+
+if [ x$ok = x ]
+then
+    echo "*** fix-pascal-support : patch succesfully applied"
+else
+    echo "*** fix-pascal-support : ERROR applying patch"
+    echo "*** Please report this error to mike@laurasia.com.au"
+    echo "***  -- provide as much information as possible"
+    echo "***  -- include the files:"
+    echo "***        $e/Makefile.err"
+    echo "***        $e/Makefile"
+    echo
+    echo "[Restoring original Makefile]"
+    mv $e/Makefile $e/Makefile.err
+    mv $e/Makefile.pas $e/Makefile
+fi
+
+exit 0
+

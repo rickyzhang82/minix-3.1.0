@@ -1,0 +1,296 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+e = etc
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+# NOTCOMPACT is req'd for -O2 (optimisation) to work correctly
+CFLAGS = -DNDEBUG -DNOTCOMPACT
+CC1 = $(CC) -c $(CFLAGS)
+
+default : $l/ego/bo $l/ego/ca $l/ego/cf $l/ego/cs $l/ego/ic $l/ego/il \
+	$l/ego/lv $l/ego/ra $l/ego/sp $l/ego/sr $l/ego/ud $l/em_ego
+
+## ego (shared routines)
+
+$o/ego/mkclassdef : $u/ego/share/makecldef.c
+	$(CC) -o $@ $u/ego/share/makecldef.c
+
+# classdefs is a prerequisite of the common sources
+$o/ego/classdefs.h : $o/ego/mkclassdef
+	$o/ego/mkclassdef $h/em_mnem.h $u/ego/share/cldefs.src > $@
+
+CEGOSHARE = -I$o/ego -I$h -I$m
+
+$o/ego/shared/alloc.o : $u/ego/share/alloc.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/alloc.c
+$o/ego/shared/auxil.o : $u/ego/share/auxil.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/auxil.c
+$o/ego/shared/cset.o : $u/ego/share/cset.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/cset.c
+$o/ego/shared/debug.o : $u/ego/share/debug.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/debug.c
+$o/ego/shared/files.o : $u/ego/share/files.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/files.c
+$o/ego/shared/get.o : $u/ego/share/get.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/get.c
+$o/ego/shared/global.o : $u/ego/share/global.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/global.c
+$o/ego/shared/go.o : $u/ego/share/go.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/go.c
+$o/ego/shared/init_glob.o : $u/ego/share/init_glob.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/init_glob.c
+$o/ego/shared/locals.o : $u/ego/share/locals.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/locals.c
+$o/ego/shared/lset.o : $u/ego/share/lset.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/lset.c
+$o/ego/shared/map.o : $u/ego/share/map.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/map.c
+$o/ego/shared/parser.o : $u/ego/share/parser.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/parser.c
+$o/ego/shared/put.o : $u/ego/share/put.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/put.c
+$o/ego/shared/stack_chg.o : $u/ego/share/stack_chg.c $o/ego/classdefs.h
+	$(CC1) -o $@ $(CEGOSHARE) $u/ego/share/stack_chg.c
+
+EGO_SHARE_OBJS = $o/ego/shared/alloc.o $o/ego/shared/auxil.o $o/ego/shared/cset.o \
+			$o/ego/shared/debug.o $o/ego/shared/files.o $o/ego/shared/get.o \
+			$o/ego/shared/global.o $o/ego/shared/go.o $o/ego/shared/init_glob.o \
+			$o/ego/shared/locals.o $o/ego/shared/lset.o $o/ego/shared/map.o \
+			$o/ego/shared/parser.o $o/ego/shared/put.o $o/ego/shared/stack_chg.o
+
+$o/libego.a : $(EGO_SHARE_OBJS)
+	ar cr $@ $(EGO_SHARE_OBJS)
+	touch $@
+
+## ego (bo)
+
+$l/ego/bo : $u/ego/bo/bo.c $o/libego.a $o/libem_data.a
+	$(CC) $(CFLAGS) -o $@ -I$h $u/ego/bo/bo.c -L$o -lego -lem_data
+
+## ego (ca)
+
+$o/ego/ca/ca.o : $u/ego/ca/ca.c
+	$(CC1) -o $@ -I$h $u/ego/ca/ca.c
+$o/ego/ca/ca_put.o : $u/ego/ca/ca_put.c
+	$(CC1) -o $@ -I$h $u/ego/ca/ca_put.c
+
+EGO_CA_OBJS = $o/ego/ca/ca.o $o/ego/ca/ca_put.o
+
+$l/ego/ca : $(EGO_CA_OBJS) $o/libego.a $o/libem_data.a
+	$(CC) -o $@ $(EGO_CA_OBJS) -L$o -lego -lem_data
+
+## ego (cf)
+
+$o/ego/cf/cf.o : $u/ego/cf/cf.c
+	$(CC1) -o $@ -I$h $u/ego/cf/cf.c
+$o/ego/cf/cf_idom.o : $u/ego/cf/cf_idom.c
+	$(CC1) -o $@ -I$h $u/ego/cf/cf_idom.c
+$o/ego/cf/cf_loop.o : $u/ego/cf/cf_loop.c
+	$(CC1) -o $@ -I$h $u/ego/cf/cf_loop.c
+$o/ego/cf/cf_succ.o : $u/ego/cf/cf_succ.c
+	$(CC1) -o $@ -I$h $u/ego/cf/cf_succ.c
+
+EGO_CF_OBJS = $o/ego/cf/cf.o $o/ego/cf/cf_idom.o \
+		$o/ego/cf/cf_loop.o $o/ego/cf/cf_succ.o
+
+$l/ego/cf : $(EGO_CF_OBJS) $o/libego.a $o/libem_data.a
+	$(CC) -o $@ $(EGO_CF_OBJS) -L$o -lego -lem_data
+
+## ego (cj)
+
+$l/ego/cj : $u/ego/cj/cj.c $o/libego.a $o/libem_data.a
+	$(CC) $(CFLAGS) -o $@ -I$h $u/ego/cj/cj.c -L$o -lego -lem_data
+
+## ego (cs)
+
+$o/ego/cs/cs.o : $u/ego/cs/cs.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs.c
+$o/ego/cs/cs_alloc.o : $u/ego/cs/cs_alloc.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_alloc.c
+$o/ego/cs/cs_aux.o : $u/ego/cs/cs_aux.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_aux.c
+$o/ego/cs/cs_avail.o : $u/ego/cs/cs_avail.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_avail.c
+$o/ego/cs/cs_debug.o : $u/ego/cs/cs_debug.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_debug.c
+$o/ego/cs/cs_elim.o : $u/ego/cs/cs_elim.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_elim.c
+$o/ego/cs/cs_entity.o : $u/ego/cs/cs_entity.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_entity.c
+$o/ego/cs/cs_getent.o : $u/ego/cs/cs_getent.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_getent.c
+$o/ego/cs/cs_kill.o : $u/ego/cs/cs_kill.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_kill.c
+$o/ego/cs/cs_partit.o : $u/ego/cs/cs_partit.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_partit.c
+$o/ego/cs/cs_profit.o : $u/ego/cs/cs_profit.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_profit.c
+$o/ego/cs/cs_stack.o : $u/ego/cs/cs_stack.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_stack.c
+$o/ego/cs/cs_vnm.o : $u/ego/cs/cs_vnm.c
+	$(CC1) -o $@ -I$h $u/ego/cs/cs_vnm.c
+
+EGO_CS_OBJS = $o/ego/cs/cs.o $o/ego/cs/cs_alloc.o $o/ego/cs/cs_aux.o \
+		$o/ego/cs/cs_avail.o $o/ego/cs/cs_debug.o $o/ego/cs/cs_elim.o \
+		$o/ego/cs/cs_entity.o $o/ego/cs/cs_getent.o $o/ego/cs/cs_kill.o \
+		$o/ego/cs/cs_partit.o $o/ego/cs/cs_profit.o $o/ego/cs/cs_stack.o \
+		$o/ego/cs/cs_vnm.o
+
+$l/ego/cs : $(EGO_CS_OBJS) $o/libego.a $o/libem_data.a
+	$(CC) -o $@ $(EGO_CS_OBJS) -L$o -lego -lem_data
+
+## ego (ic)
+
+$o/ego/ic/ic.o : $u/ego/ic/ic.c
+	$(CC1) -o $@ -I$h $u/ego/ic/ic.c
+$o/ego/ic/ic_aux.o : $u/ego/ic/ic_aux.c
+	$(CC1) -o $@ -I$h $u/ego/ic/ic_aux.c
+$o/ego/ic/ic_io.o : $u/ego/ic/ic_io.c
+	$(CC1) -o $@ -I$h $u/ego/ic/ic_io.c
+$o/ego/ic/ic_lib.o : $u/ego/ic/ic_lib.c
+	$(CC1) -o $@ -I$h $u/ego/ic/ic_lib.c
+$o/ego/ic/ic_lookup.o : $u/ego/ic/ic_lookup.c
+	$(CC1) -o $@ -I$h $u/ego/ic/ic_lookup.c
+
+EGO_IC_OBJS = $o/ego/ic/ic.o $o/ego/ic/ic_aux.o $o/ego/ic/ic_io.o \
+		$o/ego/ic/ic_lib.o $o/ego/ic/ic_lookup.o
+
+$l/ego/ic : $(EGO_IC_OBJS) $o/libego.a $o/libem_data.a
+	$(CC) -o $@ $(EGO_IC_OBJS) -L$o -lego -lem_data
+
+## ego (il)
+
+$o/ego/il/il.o : $u/ego/il/il.c
+	$(CC1) -D_MINIX -o $@ -I$h -I$m -I$s/system $u/ego/il/il.c
+$o/ego/il/il1_anal.o : $u/ego/il/il1_anal.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il1_anal.c
+$o/ego/il/il1_aux.o : $u/ego/il/il1_aux.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il1_aux.c
+$o/ego/il/il1_cal.o : $u/ego/il/il1_cal.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il1_cal.c
+$o/ego/il/il1_formal.o : $u/ego/il/il1_formal.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il1_formal.c
+$o/ego/il/il2_aux.o : $u/ego/il/il2_aux.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il2_aux.c
+$o/ego/il/il3_aux.o : $u/ego/il/il3_aux.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il3_aux.c
+$o/ego/il/il3_change.o : $u/ego/il/il3_change.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il3_change.c
+$o/ego/il/il3_subst.o : $u/ego/il/il3_subst.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il3_subst.c
+$o/ego/il/il_aux.o : $u/ego/il/il_aux.c
+	$(CC1) -o $@ -I$h -I$m -I$s/system $u/ego/il/il_aux.c
+
+EGO_IL_OBJS = $o/ego/il/il.o $o/ego/il/il1_anal.o $o/ego/il/il1_aux.o \
+		$o/ego/il/il1_cal.o $o/ego/il/il1_formal.o $o/ego/il/il2_aux.o \
+		$o/ego/il/il3_aux.o $o/ego/il/il3_change.o $o/ego/il/il3_subst.o \
+		$o/ego/il/il_aux.o
+
+$l/ego/il : $(EGO_IL_OBJS) $o/libego.a $o/libem_data.a $o/libmodule.a
+	$(CC) -o $@ $(EGO_IL_OBJS) -L$o -lego -lem_data -lmodule
+
+## ego (lv)
+
+$l/ego/lv : $u/ego/lv/lv.c $o/libego.a $o/libem_data.a
+	$(CC) $(CFLAGS) -o $@ -I$h $u/ego/lv/lv.c -L$o -lego -lem_data
+
+## ego (ra)
+
+$o/ego/ra/makeitems : $u/ego/ra/makeitems.c $o/ego/ra
+	$(CC) -o $@ $u/ego/ra/makeitems.c
+
+$o/ego/ra/itemtab.h : $o/ego/ra/makeitems
+	$o/ego/ra/makeitems $h/em_mnem.h $u/ego/ra/itemtab.src > $@
+
+$o/ego/ra/ra.o : $u/ego/ra/ra.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra.c
+$o/ego/ra/ra_allocl.o : $u/ego/ra/ra_allocl.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra_allocl.c
+$o/ego/ra/ra_aux.o : $u/ego/ra/ra_aux.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra_aux.c
+$o/ego/ra/ra_interv.o : $u/ego/ra/ra_interv.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra_interv.c
+$o/ego/ra/ra_items.o : $u/ego/ra/ra_items.c $o/ego/ra/itemtab.h
+	$(CC1) -o $@ -I$h -I$m -I$o/ego -I$o/ego/ra $u/ego/ra/ra_items.c
+$o/ego/ra/ra_lifet.o : $u/ego/ra/ra_lifet.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra_lifet.c
+$o/ego/ra/ra_pack.o : $u/ego/ra/ra_pack.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra_pack.c
+$o/ego/ra/ra_profits.o : $u/ego/ra/ra_profits.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra_profits.c
+$o/ego/ra/ra_xform.o : $u/ego/ra/ra_xform.c
+	$(CC1) -o $@ -I$h -I$m -I$o/ego $u/ego/ra/ra_xform.c
+
+EGO_RA_OBJS = $o/ego/ra/ra.o $o/ego/ra/ra_allocl.o $o/ego/ra/ra_aux.o \
+		$o/ego/ra/ra_interv.o $o/ego/ra/ra_items.o $o/ego/ra/ra_lifet.o \
+		$o/ego/ra/ra_pack.o $o/ego/ra/ra_profits.o $o/ego/ra/ra_xform.o
+
+$l/ego/ra : $(EGO_RA_OBJS) $o/libego.a $o/libem_data.a
+	$(CC) -o $@ $(EGO_RA_OBJS) -L$o -lego -lem_data
+
+## ego (sp)
+
+$l/ego/sp : $u/ego/sp/sp.c $o/libego.a $o/libem_data.a
+	$(CC) $(CFLAGS) -o $@ -I$h $u/ego/sp/sp.c -L$o -lego -lem_data
+
+## ego (sr)
+
+$o/ego/sr/sr.o : $u/ego/sr/sr.c
+	$(CC1) -o $@ -I$h $u/ego/sr/sr.c
+$o/ego/sr/sr_aux.o : $u/ego/sr/sr_aux.c
+	$(CC1) -o $@ -I$h $u/ego/sr/sr_aux.c
+$o/ego/sr/sr_cand.o : $u/ego/sr/sr_cand.c
+	$(CC1) -o $@ -I$h $u/ego/sr/sr_cand.c
+$o/ego/sr/sr_expr.o : $u/ego/sr/sr_expr.c
+	$(CC1) -o $@ -I$h $u/ego/sr/sr_expr.c
+$o/ego/sr/sr_iv.o : $u/ego/sr/sr_iv.c
+	$(CC1) -o $@ -I$h $u/ego/sr/sr_iv.c
+$o/ego/sr/sr_reduce.o : $u/ego/sr/sr_reduce.c
+	$(CC1) -o $@ -I$h $u/ego/sr/sr_reduce.c
+$o/ego/sr/sr_xform.o : $u/ego/sr/sr_xform.c
+	$(CC1) -o $@ -I$h $u/ego/sr/sr_xform.c
+
+EGO_SR_OBJS = $o/ego/sr/sr.o $o/ego/sr/sr_aux.o $o/ego/sr/sr_cand.o \
+		$o/ego/sr/sr_expr.o $o/ego/sr/sr_iv.o $o/ego/sr/sr_reduce.o \
+		$o/ego/sr/sr_xform.o
+
+$l/ego/sr : $(EGO_SR_OBJS) $o/libego.a $o/libem_data.a
+	$(CC) -o $@ $(EGO_SR_OBJS) -L$o -lego -lem_data
+
+## ego (ud)
+
+$o/ego/ud/ud.o : $u/ego/ud/ud.c
+	$(CC1) -o $@ -I$h $u/ego/ud/ud.c
+$o/ego/ud/ud_aux.o : $u/ego/ud/ud_aux.c
+	$(CC1) -o $@ -I$h $u/ego/ud/ud_aux.c
+$o/ego/ud/ud_const.o : $u/ego/ud/ud_const.c
+	$(CC1) -o $@ -I$h $u/ego/ud/ud_const.c
+$o/ego/ud/ud_copy.o : $u/ego/ud/ud_copy.c
+	$(CC1) -o $@ -I$h $u/ego/ud/ud_copy.c
+$o/ego/ud/ud_defs.o : $u/ego/ud/ud_defs.c
+	$(CC1) -o $@ -I$h $u/ego/ud/ud_defs.c
+
+EGO_UD_OBJS = $o/ego/ud/ud.o $o/ego/ud/ud_aux.o $o/ego/ud/ud_const.o \
+		$o/ego/ud/ud_copy.o $o/ego/ud/ud_defs.o
+
+$l/ego/ud : $(EGO_UD_OBJS) $o/libego.a $o/libem_data.a
+	$(CC) -o $@ $(EGO_UD_OBJS) -L$o -lego -lem_data
+
+## ego (driver)
+
+$l/em_ego : $u/ego/em_ego/em_ego.c $o/libmodule.a
+	$(CC) -o $@ -DHAVE_FORK -D_MINIX -I$h -I$m -I$s/string -I$s/system $u/ego/em_ego/em_ego.c -L$o -lmodule
+

@@ -1,0 +1,102 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+h = h
+
+# Build directories
+l = image
+o = obj
+
+default : $l/i386/libbas.a
+
+BASCFLAGS = $(CFLAGS) -I$h
+
+$o/libbas/abs.o : lang/basic/lib/abs.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/abs.c
+$o/libbas/asc.o : lang/basic/lib/asc.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/asc.c
+$o/libbas/asrt.o : lang/basic/lib/asrt.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/asrt.c
+$o/libbas/atn.o : lang/basic/lib/atn.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/atn.c
+$o/libbas/chr.o : lang/basic/lib/chr.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/chr.c
+$o/libbas/conversion.o : lang/basic/lib/conversion.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/conversion.c
+$o/libbas/hlt.o : lang/basic/lib/hlt.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/hlt.c
+$o/libbas/mki.o : lang/basic/lib/mki.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/mki.c
+$o/libbas/oct.o : lang/basic/lib/oct.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/oct.c
+$o/libbas/peek.o : lang/basic/lib/peek.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/peek.c
+$o/libbas/power.o : lang/basic/lib/power.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/power.c
+#$o/libbas/exp.o : lang/basic/lib/exp.c
+#	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/exp.c
+#$o/libbas/log.o : lang/basic/lib/log.c
+#	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/log.c
+$o/libbas/print.o : lang/basic/lib/print.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/print.c
+$o/libbas/io.o : lang/basic/lib/io.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/io.c
+$o/libbas/random.o : lang/basic/lib/random.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/random.c
+$o/libbas/read.o : lang/basic/lib/read.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/read.c
+$o/libbas/return.o : lang/basic/lib/return.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/return.c
+$o/libbas/sgn.o : lang/basic/lib/sgn.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/sgn.c
+$o/libbas/sin.o : lang/basic/lib/sin.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/sin.c
+$o/libbas/sqt.o : lang/basic/lib/sqt.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/sqt.c
+$o/libbas/stop.o : lang/basic/lib/stop.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/stop.c
+$o/libbas/string.o : lang/basic/lib/string.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/string.c
+$o/libbas/salloc.o : lang/basic/lib/salloc.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/salloc.c
+$o/libbas/setjmp.o : lang/basic/lib/setjmp.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/setjmp.c
+$o/libbas/swap.o : lang/basic/lib/swap.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/swap.c
+$o/libbas/trace.o : lang/basic/lib/trace.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/trace.c
+$o/libbas/write.o : lang/basic/lib/write.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/write.c
+$o/libbas/file.o : lang/basic/lib/file.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/file.c
+$o/libbas/error.o : lang/basic/lib/error.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/error.c
+$o/libbas/trap.o : lang/basic/lib/trap.c
+	$(CC) -c $(BASCFLAGS) -o $@ lang/basic/lib/trap.c
+
+# Minix hides the EM_* symbols with a leading '_'
+EM_DEFINES = -DEM_WSIZE=_EM_WSIZE -DEM_PSIZE=_EM_PSIZE -DEM_DSIZE=_EM_DSIZE
+
+$o/libbas/fif.o : lang/basic/lib/fif.e
+	$(CC) -c $(EM_DEFINES) -o $@ lang/basic/lib/fif.e
+$o/libbas/fef.o : lang/basic/lib/fef.e
+	$(CC) -c $(EM_DEFINES) -o $@ lang/basic/lib/fef.e
+$o/libbas/setline.o : lang/basic/lib/setline.e
+	$(CC) -c $(EM_DEFINES) -o $@ lang/basic/lib/setline.e
+
+LIBBAS_OBJS = $o/libbas/abs.o $o/libbas/asc.o $o/libbas/asrt.o \
+	$o/libbas/atn.o $o/libbas/chr.o $o/libbas/conversion.o \
+	$o/libbas/hlt.o $o/libbas/mki.o $o/libbas/oct.o $o/libbas/peek.o \
+	$o/libbas/power.o $o/libbas/print.o \
+	$o/libbas/io.o $o/libbas/random.o $o/libbas/read.o $o/libbas/return.o \
+	$o/libbas/sgn.o $o/libbas/sin.o $o/libbas/sqt.o $o/libbas/stop.o \
+	$o/libbas/string.o $o/libbas/salloc.o $o/libbas/setjmp.o \
+	$o/libbas/swap.o $o/libbas/trace.o $o/libbas/write.o \
+	$o/libbas/file.o $o/libbas/error.o $o/libbas/trap.o \
+	$o/libbas/fif.o $o/libbas/fef.o $o/libbas/setline.o
+
+$l/i386/libbas.a : $(LIBBAS_OBJS)
+	ar cr $@ $(LIBBAS_OBJS)
+

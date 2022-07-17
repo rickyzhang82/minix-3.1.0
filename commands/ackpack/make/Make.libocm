@@ -1,0 +1,56 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+h = h
+
+# Build directories
+l = image
+o = obj
+
+default : $l/i386/libocm.a
+
+OCMCFLAGS = $(CFLAGS) -I$h
+
+$o/libocm/builtin.o : lang/occam/lib/builtin.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/builtin.c
+$o/libocm/chan_strct.o : lang/occam/lib/chan_strct.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/chan_strct.c
+$o/libocm/channel.o : lang/occam/lib/channel.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/channel.c
+$o/libocm/co.o : lang/occam/lib/co.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/co.c
+$o/libocm/now.o : lang/occam/lib/now.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/now.c
+$o/libocm/par.o : lang/occam/lib/par.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/par.c
+$o/libocm/parco.o : lang/occam/lib/parco.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/parco.c
+$o/libocm/ocrt.o : lang/occam/lib/ocrt.c
+	$(CC) -c $(OCMCFLAGS) -o $@ lang/occam/lib/ocrt.c
+
+# Minix hides the EM_* symbols with a leading '_'.
+EM_DEFINES = -DEM_WSIZE=_EM_WSIZE -DEM_PSIZE=_EM_PSIZE
+
+$o/libocm/misc.o : lang/occam/lib/misc.e
+	$(CC) -c $(EM_DEFINES) -o $@ lang/occam/lib/misc.e
+
+# Work around error in standard Minix version of em_encode, which
+# cannot parse '- 4' (the space is disallowed). This construct is the
+# result of expanding the macro '-EM_PSIZE'.
+$o/libocm/par_misc.i : lang/occam/lib/par_misc.e
+	cc -P -E $(EM_DEFINES) -o $@ lang/occam/lib/par_misc.e
+$o/libocm/par_misc.k : $o/libocm/par_misc.i
+	$l/em_encode $o/libocm/par_misc.i > $@
+$o/libocm/par_misc.o : $o/libocm/par_misc.k
+	$(CC) -c $(EM_DEFINES) -o $@ $o/libocm/par_misc.k
+
+LIBOCM_OBJS = $o/libocm/builtin.o $o/libocm/chan_strct.o \
+		$o/libocm/channel.o $o/libocm/co.o $o/libocm/now.o \
+		$o/libocm/par.o $o/libocm/parco.o $o/libocm/misc.o \
+		$o/libocm/ocrt.o $o/libocm/par_misc.o
+
+$l/i386/libocm.a : $(LIBOCM_OBJS)
+	ar cr $@ $(LIBOCM_OBJS)
+

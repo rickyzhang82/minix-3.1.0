@@ -1,0 +1,19 @@
+FTP SECURITY WARNING
+
+If you are running an FTP server on a Minix system please be aware that
+a security vulnerability was discovered in ftpd version 1.00.  It has
+been determined that the vulnerability was present in all earlier
+versions of ftpd, including those released with all versions of Minix
+2.0.x through 2.0.4.  The vulnerability was fixed with the release of
+ftpd 1.01 in early February 2005, at the same time that existence of
+the problem with earlier versions was announced on comp.os.minix and
+the minix-l mailing list.  If you are running version 1.01 you are
+probably safe, but upgrading to version 2.00 is recommended.  Version
+1.01 was the result of a quick effort to fix the vulnerability, version
+2.00 reimplements critical parts of the code.
+
+There should be no problems with compilation of ftpd 2.00 on any 2.0.x
+version of Minix, but I haven't tested this. Please let me know of
+any problems by e-mail to awoodhull@hampshire.edu. 
+
+asw 2005-03-25

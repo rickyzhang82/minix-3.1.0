@@ -1,0 +1,7 @@
+#!/bin/sh
+binsizes big
+./configure
+make
+make install
+make clean 
+binsizes normal

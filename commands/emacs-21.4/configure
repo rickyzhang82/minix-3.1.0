@@ -1,0 +1,136 @@
+#!/usr/bin/sh
+
+CHMEM_EMACS=16000000
+INSTALL_INFO=echo
+PREFIX=/usr/local
+
+while [ $# -gt 0 ]; do
+	OPTION=$1
+	ARG=
+	case "$1" in
+	--*=*) ARG=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+	*) ;;
+	esac
+
+	case "$OPTION" in
+	--chmem-size=*)		CHMEM_EMACS=$ARG	;;
+	--install-info=*)	INSTALL_INFO=$ARG	;;
+	--prefix=*)		PREFIX=$ARG		;;
+	--exec-prefix=*)	EPREFIX=$ARG		;;
+	--bindir=*)		BINDIR=$ARG		;;
+	--datadir=*)		DATADIR=$ARG		;;
+	--libexecdir=*)		LIBEXECDIR=$ARG		;;
+	--mandir=*)		MANDIR=$ARG		;;
+	--infodir=*)		INFODIR=$ARG		;;
+	*)
+cat <<END
+Usage: configure [options]
+Options: See README.MINIX before using these
+  --chmem-size=CHMEM     assign emacs CHMEM bytes of memory [16000000]
+  --install-info=IINFO   use IINFO to install info files [echo]
+Directories:
+  --prefix=PREFIX        install architecture-independent files in PREFIX 
+                         [/usr/local]
+  --exec-prefix=EPREFIX  install architecture-dependent files in EPREFIX
+                         [same as prefix]
+  --bindir=DIR           user executables in DIR [EPREFIX/bin]
+  --datadir=DIR          read-only architecture-independent data in DIR
+                         [PREFIX/share]
+  --libexecdir=DIR       program executables in DIR [EPREFIX/libexec]
+  --mandir=DIR           man documentation in DIR [PREFIX/man]
+  --infodir=DIR          info documentation in DIR [PREFIX/info]
+END
+	exit
+	;;
+	esac
+
+	shift 1
+done
+
+#
+# Default variable values
+#
+if [ -z "$EPREFIX" ]; 	then EPREFIX=$PREFIX; 			fi
+if [ -z "$BINDIR" ]; 	then BINDIR=$EPREFIX/bin; 		fi
+if [ -z "$DATADIR" ]; 	then DATADIR=$PREFIX/share; 		fi
+if [ -z "$LIBEXECDIR" ];then LIBEXECDIR=$EPREFIX/libexec; 	fi
+if [ -z "$INFODIR" ]; 	then INFODIR=$PREFIX/info; 		fi
+if [ -z "$MANDIR" ]; 	then MANDIR=$PREFIX/man;	 	fi
+
+#
+# Generate Makefile
+#
+echo Creating Makefile
+
+cat >Makefile << END
+SRCDIR         = `pwd`
+CHMEM_EMACS    = $CHMEM_EMACS
+INSTALL_INFO   = $INSTALL_INFO
+PREFIX         = $PREFIX
+EPREFIX        = $EPREFIX
+BINDIR         = $BINDIR
+DATADIR        = $DATADIR
+LIBEXECDIR     = $LIBEXECDIR
+MANDIR         = $MANDIR
+INFODIR        = $INFODIR
+MAKEFILE       = Makefile.minix
+
+MAKEARG = \\
+	prefix=\$(PREFIX) \\
+	exec_prefix=\$(EPREFIX) \\
+	srcdir=\$(SRCDIR) \\
+	VPATH=\$(srcdir) \\
+	bindir=\$(BINDIR) \\
+	datadir=\$(DATADIR) \\
+	libexecdir=\$(LIBEXECDIR) \\
+	mandir=\$(MANDIR) \\
+	infodir=\$(INFODIR) \\
+	CHMEM_EMACS=\$(CHMEM_EMACS) \\
+	INSTALL_INFO=\$(INSTALL_INFO)
+
+all: touchfiles
+	make -f \$(MAKEFILE) \$(MAKEARG)
+
+touchfiles:
+	touch src/configure
+	touch config.status
+	touch src/config.in
+	touch src/config.stamp
+	touch src/Makefile
+	touch lib-src/Makefile
+	touch man/Makefile
+	touch oldXMenu/Makefile
+	touch lwlib/Makefile
+	touch leim/Makefile
+
+install: all
+	make -f \$(MAKEFILE) \$(MAKEARG) install
+
+clean:
+	make -f \$(MAKEFILE) \$(MAKEARG) clean
+END
+
+#
+# Generate src/epaths.h
+#
+echo Creating src/epaths.h
+
+cat >src/epaths.h <<END
+#define PATH_LOADSEARCH "$DATADIR/emacs/21.4/site-lisp:$DATADIR/emacs/site-lisp:$DATADIR/emacs/21.4/leim:$DATADIR/emacs/21.4/lisp"
+#define PATH_DUMPLOADSEARCH "../lisp"
+#define PATH_EXEC "$LIBEXECDIR/emacs/21.4/i686-pc-minix"
+#define PATH_DATA "$DATADIR/emacs/21.4/etc"
+#define PATH_BITMAPS ""
+#define PATH_DOC "$DATADIR/emacs/21.4/etc"
+#define PATH_INFO "$INFODIR"
+#define PATH_X_DEFAULTS ""
+END
+
+# 
+# Finish with some advice
+#
+echo
+echo "Now run: "
+echo "make             to compile the source files"
+echo "make install     to install the program files"
+

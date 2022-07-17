@@ -1,0 +1,170 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+default : $l/grind
+
+GRIND_NEXT = $u/grind/file.hh \
+		$u/grind/type.hh \
+		$u/grind/symbol.hh \
+		$u/grind/tree.hh \
+		$u/grind/avl.cc \
+		$u/grind/scope.cc \
+		$u/grind/itemlist.cc \
+		$u/grind/langdep.cc
+
+$o/grind/file.h : $u/grind/file.hh
+	sed -f $u/grind/allocd.sed < $u/grind/file.hh > $@
+$o/grind/symbol.h : $u/grind/symbol.hh
+	sed -f $u/grind/allocd.sed < $u/grind/symbol.hh > $@
+$o/grind/tree.h : $u/grind/tree.hh
+	sed -f $u/grind/allocd.sed < $u/grind/tree.hh > $@
+$o/grind/type.h : $u/grind/type.hh
+	sed -f $u/grind/allocd.sed < $u/grind/type.hh > $@
+
+$o/grind/avl.c : $u/grind/avl.cc
+	sed -f $u/grind/allocd.sed < $u/grind/avl.cc > $@
+$o/grind/itemlist.c : $u/grind/itemlist.cc
+	sed -f $u/grind/allocd.sed < $u/grind/itemlist.cc > $@
+$o/grind/langdep.c : $u/grind/langdep.cc
+	sed -f $u/grind/allocd.sed < $u/grind/langdep.cc > $@
+$o/grind/scope.c : $u/grind/scope.cc
+	sed -f $u/grind/allocd.sed < $u/grind/scope.cc > $@
+
+$o/grind/next.c : $(GRIND_NEXT)
+	awk -f$u/grind/next.awk $(GRIND_NEXT) > $@
+
+$o/grind/chtab.c : $u/grind/char.ct $x/tabgen
+	$x/tabgen -f$u/grind/char.ct > $@
+
+$o/grind/ops.h : $u/grind/operators.ot
+	awk -f$u/grind/opsh.awk $u/grind/operators.ot > $@
+
+$o/grind/ops.c : $u/grind/operators.ot
+	awk -f$u/grind/opsc.awk $u/grind/operators.ot > $@
+
+$o/grind/sym2str.c : $u/grind/tokenname.c
+	awk -f$u/grind/tokcase.awk $u/grind/tokenname.c > $@
+
+# LLgen gets invoked twice, and care has been taken (in db_symtab.g)
+# to define a %prefix to differentiate the generated infrastructure
+# files (typically Lpars.c, Lpars.h).
+
+$o/grind/tokenfile.g : $u/grind/tokenname.c
+	sed -f $u/grind/tokenfile.sed < $u/grind/tokenname.c > $@
+$o/grind/commands.g : $u/grind/commands.g
+	cp $u/grind/commands.g $@
+$o/grind/db_symtab.g : $u/grind/db_symtab.g
+	cp $u/grind/db_symtab.g $@
+
+GRIND_LLGEN1_C = $o/grind/tokenfile.c $o/grind/commands.c
+GRIND_LLGEN1_G = $o/grind/tokenfile.g $o/grind/commands.g
+GRIND_LLGEN1_G2 = tokenfile.g commands.g
+
+$o/grind/Lpars.c : $(GRIND_LLGEN1_G) $x/LLgen
+	cd $o/grind && ../../$x/LLgen -a -v -P../../$u/LLgen/lib $(GRIND_LLGEN1_G2)
+
+GRIND_LLGEN2_C = $o/grind/db_symtab.c
+GRIND_LLGEN2_G = $o/grind/db_symtab.g
+GRIND_LLGEN2_G2 = db_symtab.g
+
+$o/grind/DBSpars.c : $(GRIND_LLGEN2_G) $x/LLgen
+	cd $o/grind && ../../$x/LLgen -a -v -P../../$u/LLgen/lib $(GRIND_LLGEN2_G2)
+
+GEN_G = $o/grind/tokenfile.g
+GEN_H = $o/grind/file.h $o/grind/symbol.h $o/grind/tree.h $o/grind/type.h \
+	$o/grind/ops.h
+GEN_C = $o/grind/avl.c $o/grind/itemlist.c $o/grind/langdep.c \
+	$o/grind/scope.c $o/grind/next.c $o/grind/chtab.c $o/grind/ops.c \
+	$o/grind/sym2str.c
+
+# Choose representatives Lpars.c, DBSpars.c for LLgen generated files
+
+GEN_FILES = $(GEN_G) $(GEN_H) $(GEN_C) $o/grind/Lpars.c $o/grind/DBSpars.c
+
+INCLUDES = -I$h -I$m -I$s/alloc -I$s/idf -I$s/string -I$s/system -I$o -I$o/grind -I$u/grind
+CGRIND = $(CFLAGS) -D_POSIX_SOURCE -DNDEBUG $(INCLUDES)
+
+$o/grind/main.o : $u/grind/main.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/main.c
+$o/grind/list.o : $u/grind/list.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/list.c
+$o/grind/tree.o : $u/grind/tree.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/tree.c
+$o/grind/expr.o : $u/grind/expr.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/expr.c
+$o/grind/position.o : $u/grind/position.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/position.c
+$o/grind/tokenname.o : $u/grind/tokenname.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/tokenname.c
+$o/grind/idf.o : $u/grind/idf.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/idf.c
+$o/grind/run.o : $u/grind/run.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/run.c
+$o/grind/symbol.o : $u/grind/symbol.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/symbol.c
+$o/grind/print.o : $u/grind/print.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/print.c
+$o/grind/type.o : $u/grind/type.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/type.c
+$o/grind/rd.o : $u/grind/rd.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/rd.c
+$o/grind/do_comm.o : $u/grind/do_comm.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/do_comm.c
+$o/grind/modula-2.o : $u/grind/modula-2.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/modula-2.c
+$o/grind/pascal.o : $u/grind/pascal.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/pascal.c
+$o/grind/c.o : $u/grind/c.c
+	$(CC) -c -o $@ $(CGRIND) $u/grind/c.c
+$o/grind/db_symtab.o : $o/grind/db_symtab.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/db_symtab.c
+$o/grind/commands.o : $o/grind/commands.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/commands.c
+$o/grind/Lpars.o : $o/grind/Lpars.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/Lpars.c
+$o/grind/DBSpars.o : $o/grind/DBSpars.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/DBSpars.c
+$o/grind/avl.o : $o/grind/avl.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/avl.c
+$o/grind/scope.o : $o/grind/scope.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/scope.c
+$o/grind/itemlist.o : $o/grind/itemlist.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/itemlist.c
+$o/grind/langdep.o : $o/grind/langdep.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/langdep.c
+$o/grind/ops.o : $o/grind/ops.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/ops.c
+$o/grind/chtab.o : $o/grind/chtab.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/chtab.c
+$o/grind/sym2str.o : $o/grind/sym2str.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/sym2str.c
+$o/grind/next.o : $o/grind/next.c
+	$(CC) -c -o $@ $(CGRIND) $o/grind/next.c
+
+GRIND_OBJS =  $o/grind/main.o $o/grind/list.o $o/grind/tree.o \
+	$o/grind/expr.o $o/grind/position.o $o/grind/tokenname.o \
+	$o/grind/idf.o $o/grind/run.o $o/grind/symbol.o $o/grind/print.o \
+	$o/grind/type.o $o/grind/rd.o $o/grind/do_comm.o \
+	$o/grind/modula-2.o $o/grind/pascal.o $o/grind/c.o \
+	$o/grind/db_symtab.o $o/grind/commands.o $o/grind/Lpars.o \
+	$o/grind/DBSpars.o $o/grind/avl.o $o/grind/scope.o \
+	$o/grind/itemlist.o $o/grind/langdep.o $o/grind/ops.o \
+	$o/grind/chtab.o $o/grind/sym2str.o $o/grind/next.o
+
+$l/grind : $(GEN_FILES) $(GRIND_OBJS) $o/libmodule.a
+	$(CC) -o $@ $(GRIND_OBJS) -L$o -lmodule
+

@@ -1,0 +1,5 @@
+#!/bin/sh
+binsizes big
+make distclean
+make install
+binsizes normal

@@ -1,0 +1,1012 @@
+AHEAD	./regex/regcomp.c	/^#define	AHEAD(pos)		dofwd(p, pos, HERE()-(pos))$/
+ARSIZE	./common/msg.c	/^#define	ARSIZE(a)	sizeof(a) \/ sizeof (*a)$/
+ASSIGN	./regex/regexec.c	/^#define	ASSIGN(d, s)	((d) = (s))$/
+ASTERN	./regex/regcomp.c	/^#define	ASTERN(sop, pos)	EMIT(sop, HERE()-pos)$/
+AT	./regex/engine.c	/^#define	AT(t, p1, p2, s1, s2)	at(m, t, p1, p2, s1,/
+BACK	./regex/regexec.c	/^#define	BACK(dst, src, n)	((dst) |= ((unsigned)(sr/
+BUILD	./ex/ex_subst.c	/^#define	BUILD(sp, l, len) {						\\$/
+CHLEN	./vi/vs_relative.c	/^#define	CHLEN(val) (ch = *(u_char *)p++) == '\\t' &/
+CLEAR	./regex/regexec.c	/^#define	CLEAR(v)	((v) = 0)$/
+DROP	./regex/regcomp.c	/^#define	DROP(n)	(p->slen -= (n))$/
+EAT	./regex/regcomp.c	/^#define	EAT(c)	((SEE(c)) ? (NEXT(), 1) : 0)$/
+EATTWO	./regex/regcomp.c	/^#define	EATTWO(a, b)	((SEETWO(a, b)) ? (NEXT2(), 1/
+EMIT	./regex/regcomp.c	/^#define	EMIT(op, sopnd)	doemit(p, (sop)(op), (size/
+EQ	./regex/regexec.c	/^#define	EQ(a, b)	((a) == (b))$/
+FWD	./regex/regexec.c	/^#define	FWD(dst, src, n)	((dst) |= ((unsigned)(src/
+GETNEXT	./regex/regcomp.c	/^#define	GETNEXT()	(*p->next++)$/
+GOODFLAGS	./regex/regcomp.c	/^#	define	GOODFLAGS(f)	(f)$/
+HANDLE_WEIRDNESS	./vi/vs_smap.c	/^#define	HANDLE_WEIRDNESS(cnt) {						\\$/
+HERE	./regex/regcomp.c	/^#define	HERE()		(p->slen)$/
+INC	./regex/regexec.c	/^#define	INC(o)	((o) <<= 1)$/
+INIT	./regex/regexec.c	/^#define	INIT(o, n)	((o) = (unsigned)1 << (n))$/
+INSERT	./regex/regcomp.c	/^#define	INSERT(op, pos)	doinsert(p, (sop)(op), HER/
+ISSET	./regex/regexec.c	/^#define	ISSET(v, n)	((v) & (1 << (n)))$/
+ISSETBACK	./regex/regexec.c	/^#define	ISSETBACK(v, n)	((v) & ((unsigned)here >> /
+ISSTATEIN	./regex/regexec.c	/^#define	ISSTATEIN(v, o)	((v) & (o))$/
+KEY	./vi/vi.c	/^#define	KEY(key, ec_flags) {						\\$/
+MAP	./regex/regcomp.c	/^#	define	MAP(n)	(((n) <= 1) ? (n) : ((n) == INFINI/
+MORE	./regex/regcomp.c	/^#define	MORE()	(p->next < p->end)$/
+MORE2	./regex/regcomp.c	/^#define	MORE2()	(p->next+1 < p->end)$/
+MOVEC	./catalog/dump.c	/^#define	MOVEC(t) {							\\$/
+MUSTEAT	./regex/regcomp.c	/^#define	MUSTEAT(c, e)	(REQUIRE(MORE() && GETNEXT()/
+MUSTNOTSEE	./regex/regcomp.c	/^#define	MUSTNOTSEE(c, e)	(REQUIRE(!MORE() || PEEK(/
+MUSTSEE	./regex/regcomp.c	/^#define	MUSTSEE(c, e)	(REQUIRE(MORE() && PEEK() ==/
+Mcl_main	./cl/cl_main.c	/^main(argc, argv)$/
+Mdump	./catalog/dump.c	/^main(argc, argv)$/
+Mip_cl	./ip_cl/ip_cl.c	/^main(argc, argv)$/
+Mtk_main	./tk/tk_main.c	/^main(argc, argv)$/
+NEEDNEWLINE	./ex/ex_subst.c	/^#define	NEEDNEWLINE(sp) {						\\$/
+NEEDSP	./ex/ex_subst.c	/^#define	NEEDSP(sp, len, pnt) {						\\$/
+NEXT	./regex/regcomp.c	/^#define	NEXT()	(p->next++)$/
+NEXT2	./regex/regcomp.c	/^#define	NEXT2()	(p->next += 2)$/
+NEXTn	./regex/regcomp.c	/^#define	NEXTn(n)	(p->next += (n))$/
+NIL	./perl_api/perlsfio.c	/^#define NIL(type)       ((type)0)$/
+NONCHAR	./regex/engine.c	/^#define	NONCHAR(c)	((c) > CHAR_MAX)$/
+NOTE	./regex/engine.c	/^#define	NOTE(str)	{ if (m->eflags&REG_TRACE) print/
+OI	./common/options.c	/^#define	OI(indx, str) {							\\$/
+OUTCH	./ex/ex_subst.c	/^#define	OUTCH(ch, nltrans) {						\\$/
+PEEK	./regex/regcomp.c	/^#define	PEEK()	(*p->next)$/
+PEEK2	./regex/regcomp.c	/^#define	PEEK2()	(*(p->next+1))$/
+QREM	./common/key.c	/^#define	QREM(len) {							\\$/
+REP	./regex/regcomp.c	/^#	define	REP(f, t)	((f)*8 + (t))$/
+REQUIRE	./regex/regcomp.c	/^#define	REQUIRE(co, e)	((co) || SETERROR(e))$/
+SEE	./regex/regcomp.c	/^#define	SEE(c)	(MORE() && PEEK() == (c))$/
+SEETWO	./regex/regcomp.c	/^#define	SEETWO(a, b)	(MORE() && MORE2() && PEEK() /
+SET0	./regex/regexec.c	/^#define	SET0(v, n)	((v) &= ~(1 << (n)))$/
+SET1	./regex/regexec.c	/^#define	SET1(v, n)	((v) |= 1 << (n))$/
+SETERROR	./regex/regcomp.c	/^#define	SETERROR(e)	seterr(p, (e))$/
+SETSIG	./tk/tk_main.c	/^#define	SETSIG(signal, handler, off) {					\\$/
+SETUP	./regex/regexec.c	/^#define	SETUP(v)	((v) = 0)$/
+SKIP_PAST_NEWLINE	./ex/ex_tag.c	/^#define	SKIP_PAST_NEWLINE(p, back)	while (p < back/
+SP	./regex/engine.c	/^#define	SP(t, s, c)	print(m, t, s, c, stdout)$/
+STATESETUP	./regex/regexec.c	/^#define	STATESETUP(m, n)	\/* nothing *\/$/
+STATETEARDOWN	./regex/regexec.c	/^#define	STATETEARDOWN(m)	\/* nothing *\/$/
+TCC	./tcl_api/tcl.c	/^#define	TCC(name, function) {						\\$/
+TESTD	./catalog/dump.c	/^#define	TESTD(s) {							\\$/
+THERE	./regex/regcomp.c	/^#define	THERE()		(p->slen - 1)$/
+THERETHERE	./regex/regcomp.c	/^#define	THERETHERE()	(p->slen - 2)$/
+TLOOP	./clib/memmove.c	/^#define	TLOOP(s) if (t) TLOOP1(s)$/
+TLOOP1	./clib/memmove.c	/^#define	TLOOP1(s) do { s; } while (--t)$/
+TRACE	./common/util.c	/^TRACE(SCR *sp, const char *fmt, ...)$/
+UPDATE_POSITION	./vi/v_txt.c	/^#define	UPDATE_POSITION(sp, tp) {					\\$/
+X	./db/btree/bt_debug.c	/^#define	X(flag, name) \\$/
+__CTRACE	./curses/ctrace.c	/^__CTRACE(const char *fmt, ...)$/
+__bt_bdelete	./db/btree/bt_delete.c	/^__bt_bdelete(t, key)$/
+__bt_close	./db/btree/bt_close.c	/^__bt_close(dbp)$/
+__bt_cmp	./db/btree/bt_utils.c	/^__bt_cmp(t, k1, e)$/
+__bt_curdel	./db/btree/bt_delete.c	/^__bt_curdel(t, key, h, index)$/
+__bt_defcmp	./db/btree/bt_utils.c	/^__bt_defcmp(a, b)$/
+__bt_defpfx	./db/btree/bt_utils.c	/^__bt_defpfx(a, b)$/
+__bt_delete	./db/btree/bt_delete.c	/^__bt_delete(dbp, key, flags)$/
+__bt_dleaf	./db/btree/bt_delete.c	/^__bt_dleaf(t, key, h, index)$/
+__bt_dmpage	./db/btree/bt_debug.c	/^__bt_dmpage(h)$/
+__bt_dnpage	./db/btree/bt_debug.c	/^__bt_dnpage(dbp, pgno)$/
+__bt_dpage	./db/btree/bt_debug.c	/^__bt_dpage(h)$/
+__bt_dump	./db/btree/bt_debug.c	/^__bt_dump(dbp)$/
+__bt_fd	./db/btree/bt_open.c	/^__bt_fd(dbp)$/
+__bt_first	./db/btree/bt_seq.c	/^__bt_first(t, key, erval, exactp)$/
+__bt_free	./db/btree/bt_page.c	/^__bt_free(t, h)$/
+__bt_get	./db/btree/bt_get.c	/^__bt_get(dbp, key, data, flags)$/
+__bt_new	./db/btree/bt_page.c	/^__bt_new(t, npg)$/
+__bt_open	./db/btree/bt_open.c	/^__bt_open(fname, flags, mode, openinfo, dflags)$/
+__bt_pdelete	./db/btree/bt_delete.c	/^__bt_pdelete(t, h)$/
+__bt_pgin	./db/btree/bt_conv.c	/^__bt_pgin(t, pg, pp)$/
+__bt_pgout	./db/btree/bt_conv.c	/^__bt_pgout(t, pg, pp)$/
+__bt_put	./db/btree/bt_put.c	/^__bt_put(dbp, key, data, flags)$/
+__bt_relink	./db/btree/bt_delete.c	/^__bt_relink(t, h)$/
+__bt_ret	./db/btree/bt_utils.c	/^__bt_ret(t, e, key, rkey, data, rdata, copy)$/
+__bt_search	./db/btree/bt_search.c	/^__bt_search(t, key, exactp)$/
+__bt_seq	./db/btree/bt_seq.c	/^__bt_seq(dbp, key, data, flags)$/
+__bt_seqadv	./db/btree/bt_seq.c	/^__bt_seqadv(t, ep, flags)$/
+__bt_seqset	./db/btree/bt_seq.c	/^__bt_seqset(t, ep, key, flags)$/
+__bt_setcur	./db/btree/bt_seq.c	/^__bt_setcur(t, pgno, index)$/
+__bt_snext	./db/btree/bt_search.c	/^__bt_snext(t, h, key, exactp)$/
+__bt_split	./db/btree/bt_split.c	/^__bt_split(t, sp, key, data, flags, ilen, argskip)/
+__bt_sprev	./db/btree/bt_search.c	/^__bt_sprev(t, h, key, exactp)$/
+__bt_stat	./db/btree/bt_debug.c	/^__bt_stat(dbp)$/
+__bt_stkacq	./db/btree/bt_delete.c	/^__bt_stkacq(t, hp, c)$/
+__bt_sync	./db/btree/bt_close.c	/^__bt_sync(dbp, flags)$/
+__cputchar	./curses/putchar.c	/^__cputchar(ch)$/
+__dberr	./db/db/db.c	/^__dberr()$/
+__dbpanic	./db/db/db.c	/^__dbpanic(dbp)$/
+__findenv	./clib/env.c	/^__findenv(name, offset)$/
+__hash	./curses/cur_hash.c	/^__hash(s, len)$/
+__id_subwins	./curses/id_subwins.c	/^__id_subwins(orig)$/
+__makenew	./curses/newwin.c	/^__makenew(nl, nc, by, bx, sub)$/
+__mvcur	./curses/cr_put.c	/^__mvcur(ly, lx, y, x, in_refresh)$/
+__ovfl_delete	./db/btree/bt_overflow.c	/^__ovfl_delete(t, p)$/
+__ovfl_get	./db/btree/bt_overflow.c	/^__ovfl_get(t, p, ssz, buf, bufsz)$/
+__ovfl_put	./db/btree/bt_overflow.c	/^__ovfl_put(t, dbt, pg)$/
+__rec_close	./db/recno/rec_close.c	/^__rec_close(dbp)$/
+__rec_delete	./db/recno/rec_delete.c	/^__rec_delete(dbp, key, flags)$/
+__rec_dleaf	./db/recno/rec_delete.c	/^__rec_dleaf(t, h, index)$/
+__rec_fd	./db/recno/rec_open.c	/^__rec_fd(dbp)$/
+__rec_fmap	./db/recno/rec_get.c	/^__rec_fmap(t, top)$/
+__rec_fpipe	./db/recno/rec_get.c	/^__rec_fpipe(t, top)$/
+__rec_get	./db/recno/rec_get.c	/^__rec_get(dbp, key, data, flags)$/
+__rec_iput	./db/recno/rec_put.c	/^__rec_iput(t, nrec, data, flags)$/
+__rec_open	./db/recno/rec_open.c	/^__rec_open(fname, flags, mode, openinfo, dflags)$/
+__rec_put	./db/recno/rec_put.c	/^__rec_put(dbp, key, data, flags)$/
+__rec_ret	./db/recno/rec_utils.c	/^__rec_ret(t, e, nrec, key, data)$/
+__rec_search	./db/recno/rec_search.c	/^__rec_search(t, recno, op)$/
+__rec_seq	./db/recno/rec_seq.c	/^__rec_seq(dbp, key, data, flags)$/
+__rec_sync	./db/recno/rec_close.c	/^__rec_sync(dbp, flags)$/
+__rec_vmap	./db/recno/rec_get.c	/^__rec_vmap(t, top)$/
+__rec_vpipe	./db/recno/rec_get.c	/^__rec_vpipe(t, top)$/
+__restore_stophandler	./curses/tstp.c	/^__restore_stophandler()$/
+__set_stophandler	./curses/tstp.c	/^__set_stophandler()$/
+__set_subwin	./curses/newwin.c	/^__set_subwin(orig, win)$/
+__startwin	./curses/tty.c	/^__startwin()$/
+__stop_signal_handler	./curses/tstp.c	/^__stop_signal_handler(signo)$/
+__swflags	./curses/newwin.c	/^__swflags(win)$/
+__touchline	./curses/touchwin.c	/^__touchline(win, y, sx, ex, force)$/
+__touchwin	./curses/touchwin.c	/^__touchwin(win)$/
+__tscroll	./curses/tscroll.c	/^__tscroll(cap, n1, n2)$/
+__waddbytes	./curses/addbytes.c	/^__waddbytes(win, bytes, count, so)$/
+__waddch	./curses/addch.c	/^__waddch(win, dp)$/
+_gettemp	./clib/mkstemp.c	/^_gettemp(path, doopen)$/
+addnstr	./cl/cl_bsd.c	/^addnstr(s, n)$/
+allocset	./regex/regcomp.c	/^allocset(p)$/
+api_aline	./common/api.c	/^api_aline(sp, lno, line, len)$/
+api_dline	./common/api.c	/^api_dline(sp, lno)$/
+api_edit	./common/api.c	/^api_edit(sp, file, spp, newscreen)$/
+api_emessage	./common/api.c	/^api_emessage(sp, text)$/
+api_escreen	./common/api.c	/^api_escreen(sp)$/
+api_fscreen	./common/api.c	/^api_fscreen(id, name)$/
+api_getcursor	./common/api.c	/^api_getcursor(sp, mp)$/
+api_getmark	./common/api.c	/^api_getmark(sp, markname, mp)$/
+api_gline	./common/api.c	/^api_gline(sp, lno, linepp, lenp)$/
+api_iline	./common/api.c	/^api_iline(sp, lno, line, len)$/
+api_imessage	./common/api.c	/^api_imessage(sp, text)$/
+api_lline	./common/api.c	/^api_lline(sp, lnop)$/
+api_map	./common/api.c	/^api_map(sp, name, map, len)$/
+api_nextmark	./common/api.c	/^api_nextmark(sp, next, namep)$/
+api_opts_get	./common/api.c	/^api_opts_get(sp, name, value, boolvalue)$/
+api_opts_set	./common/api.c	/^api_opts_set(sp, name, str_value, num_value, bool_/
+api_run_str	./common/api.c	/^api_run_str(sp, cmd)$/
+api_setcursor	./common/api.c	/^api_setcursor(sp, mp)$/
+api_setmark	./common/api.c	/^api_setmark(sp, markname, mp)$/
+api_sline	./common/api.c	/^api_sline(sp, lno, line, len)$/
+api_swscreen	./common/api.c	/^api_swscreen(sp, new)$/
+api_unmap	./common/api.c	/^api_unmap(sp, name)$/
+arg_format	./ip_cl/ip_cl.c	/^arg_format(argcp, argvp, i_fd, o_fd)$/
+argv_alloc	./ex/ex_argv.c	/^argv_alloc(sp, len)$/
+argv_comp	./ex/ex_argv.c	/^argv_comp(a, b)$/
+argv_exp0	./ex/ex_argv.c	/^argv_exp0(sp, excp, cmd, cmdlen)$/
+argv_exp1	./ex/ex_argv.c	/^argv_exp1(sp, excp, cmd, cmdlen, is_bang)$/
+argv_exp2	./ex/ex_argv.c	/^argv_exp2(sp, excp, cmd, cmdlen)$/
+argv_exp3	./ex/ex_argv.c	/^argv_exp3(sp, excp, cmd, cmdlen)$/
+argv_fexp	./ex/ex_argv.c	/^argv_fexp(sp, excp, cmd, cmdlen, p, lenp, bpp, ble/
+argv_free	./ex/ex_argv.c	/^argv_free(sp)$/
+argv_init	./ex/ex_argv.c	/^argv_init(sp, excp)$/
+argv_lexp	./ex/ex_argv.c	/^argv_lexp(sp, excp, path)$/
+argv_sexp	./ex/ex_argv.c	/^argv_sexp(sp, bpp, blenp, lenp)$/
+at	./regex/engine.c	/^at(m, title, start, stop, startst, stopst)$/
+attach	./common/main.c	/^attach(gp)$/
+b_search	./common/search.c	/^b_search(sp, fm, rm, ptrn, plen, eptrn, flags)$/
+backref	./regex/engine.c	/^backref(m, start, stop, startst, stopst, lev)$/
+bdisplay	./ex/ex_display.c	/^bdisplay(sp)$/
+beep	./cl/cl_bsd.c	/^beep()$/
+binary_search	./ex/ex_tag.c	/^binary_search(string, front, back)$/
+binc	./common/util.c	/^binc(sp, bp, bsizep, min)$/
+bothcases	./regex/regcomp.c	/^bothcases(p, ch)$/
+box	./curses/box.c	/^box(win, vert, hor)$/
+bsearch	./clib/bsearch.c	/^bsearch(key, base0, nmemb, size, compar)$/
+bt_broot	./db/btree/bt_split.c	/^bt_broot(t, h, l, r)$/
+bt_fast	./db/btree/bt_put.c	/^bt_fast(t, key, data, exactp)$/
+bt_meta	./db/btree/bt_close.c	/^bt_meta(t)$/
+bt_page	./db/btree/bt_split.c	/^bt_page(t, h, lp, rp, skip, ilen)$/
+bt_preserve	./db/btree/bt_split.c	/^bt_preserve(t, pg)$/
+bt_psplit	./db/btree/bt_split.c	/^bt_psplit(t, h, l, r, pskip, ilen)$/
+bt_root	./db/btree/bt_split.c	/^bt_root(t, h, lp, rp, skip, ilen)$/
+bt_rroot	./db/btree/bt_split.c	/^bt_rroot(t, h, l, r)$/
+bword	./vi/v_word.c	/^bword(sp, vp, type)$/
+byteorder	./db/btree/bt_open.c	/^byteorder()$/
+bzero	./clib/memset.c	/^bzero(dst0, length)$/
+categorize	./regex/regcomp.c	/^categorize(p, g)$/
+cb_rotate	./common/cut.c	/^cb_rotate(sp)$/
+cbreak	./curses/tty.c	/^cbreak()$/
+cl_addstr	./cl/cl_funcs.c	/^cl_addstr(sp, str, len)$/
+cl_attr	./cl/cl_funcs.c	/^cl_attr(sp, attribute, on)$/
+cl_baud	./cl/cl_funcs.c	/^cl_baud(sp, ratep)$/
+cl_bell	./cl/cl_funcs.c	/^cl_bell(sp)$/
+cl_clrtoeol	./cl/cl_funcs.c	/^cl_clrtoeol(sp)$/
+cl_cursor	./cl/cl_funcs.c	/^cl_cursor(sp, yp, xp)$/
+cl_deleteln	./cl/cl_funcs.c	/^cl_deleteln(sp)$/
+cl_event	./cl/cl_read.c	/^cl_event(sp, evp, flags, ms)$/
+cl_ex_adjust	./cl/cl_funcs.c	/^cl_ex_adjust(sp, action)$/
+cl_ex_end	./cl/cl_screen.c	/^cl_ex_end(gp)$/
+cl_ex_init	./cl/cl_screen.c	/^cl_ex_init(sp)$/
+cl_fmap	./cl/cl_term.c	/^cl_fmap(sp, stype, from, flen, to, tlen)$/
+cl_freecap	./cl/cl_screen.c	/^cl_freecap(clp)$/
+cl_func_std	./cl/cl_main.c	/^cl_func_std(gp)$/
+cl_getcap	./cl/cl_screen.c	/^cl_getcap(sp, name, elementp)$/
+cl_init	./cl/cl_main.c	/^cl_init(gp)$/
+cl_insertln	./cl/cl_funcs.c	/^cl_insertln(sp)$/
+cl_keyval	./cl/cl_funcs.c	/^cl_keyval(sp, val, chp, dnep)$/
+cl_move	./cl/cl_funcs.c	/^cl_move(sp, lno, cno)$/
+cl_omesg	./cl/cl_term.c	/^cl_omesg(sp, clp, on)$/
+cl_optchange	./cl/cl_term.c	/^cl_optchange(sp, opt, str, valp)$/
+cl_pfmap	./cl/cl_term.c	/^cl_pfmap(sp, stype, from, flen, to, tlen)$/
+cl_putchar	./cl/cl_term.c	/^cl_putchar(ch)$/
+cl_putenv	./cl/cl_screen.c	/^cl_putenv(name, str, value)$/
+cl_quit	./cl/cl_screen.c	/^cl_quit(gp)$/
+cl_read	./cl/cl_read.c	/^cl_read(sp, flags, bp, blen, nrp, tp)$/
+cl_refresh	./cl/cl_funcs.c	/^cl_refresh(sp, repaint)$/
+cl_rename	./cl/cl_funcs.c	/^cl_rename(sp, name, on)$/
+cl_resize	./cl/cl_read.c	/^cl_resize(sp, lines, columns)$/
+cl_screen	./cl/cl_screen.c	/^cl_screen(sp, flags)$/
+cl_ssize	./cl/cl_term.c	/^cl_ssize(sp, sigwinch, rowp, colp, changedp)$/
+cl_suspend	./cl/cl_funcs.c	/^cl_suspend(sp, allowedp)$/
+cl_term_end	./cl/cl_term.c	/^cl_term_end(gp)$/
+cl_term_init	./cl/cl_term.c	/^cl_term_init(sp)$/
+cl_usage	./cl/cl_funcs.c	/^cl_usage()$/
+cl_vi_end	./cl/cl_screen.c	/^cl_vi_end(gp)$/
+cl_vi_init	./cl/cl_screen.c	/^cl_vi_init(sp)$/
+compare	./ex/ex_tag.c	/^compare(s1, s2, back)$/
+create_cs_cmd	./ex/ex_cscope.c	/^create_cs_cmd(sp, pattern, searchp)$/
+cs_bblank	./vi/getc.c	/^cs_bblank(sp, csp)$/
+cs_fblank	./vi/getc.c	/^cs_fblank(sp, csp)$/
+cs_fspace	./vi/getc.c	/^cs_fspace(sp, csp)$/
+cs_init	./vi/getc.c	/^cs_init(sp, csp)$/
+cs_next	./vi/getc.c	/^cs_next(sp, csp)$/
+cs_prev	./vi/getc.c	/^cs_prev(sp, csp)$/
+csc_file	./ex/ex_cscope.c	/^csc_file(sp, csc, name, dirp, dlenp, isolderp)$/
+csc_help	./ex/ex_cscope.c	/^csc_help(sp, cmd)$/
+cscope_add	./ex/ex_cscope.c	/^cscope_add(sp, cmdp, dname)$/
+cscope_display	./ex/ex_cscope.c	/^cscope_display(sp)$/
+cscope_find	./ex/ex_cscope.c	/^cscope_find(sp, cmdp, pattern)$/
+cscope_help	./ex/ex_cscope.c	/^cscope_help(sp, cmdp, subcmd)$/
+cscope_kill	./ex/ex_cscope.c	/^cscope_kill(sp, cmdp, cn)$/
+cscope_reset	./ex/ex_cscope.c	/^cscope_reset(sp, cmdp, notusedp)$/
+cscope_search	./ex/ex_cscope.c	/^cscope_search(sp, tqp, tp)$/
+ctag_file	./ex/ex_tag.c	/^ctag_file(sp, tfp, name, dirp, dlenp)$/
+ctag_search	./ex/ex_tag.c	/^ctag_search(sp, search, slen, tag)$/
+ctag_sfile	./ex/ex_tag.c	/^ctag_sfile(sp, tfp, tqp, tname)$/
+ctag_slist	./ex/ex_tag.c	/^ctag_slist(sp, tag)$/
+cut	./common/cut.c	/^cut(sp, namep, fm, tm, flags)$/
+cut_close	./common/cut.c	/^cut_close(gp)$/
+cut_line	./common/cut.c	/^cut_line(sp, lno, fcno, clen, cbp)$/
+db	./ex/ex_display.c	/^db(sp, cbp, name)$/
+db_append	./common/line.c	/^db_append(sp, update, lno, p, len)$/
+db_delete	./common/line.c	/^db_delete(sp, lno)$/
+db_eget	./common/line.c	/^db_eget(sp, lno, pp, lenp, isemptyp)$/
+db_err	./common/line.c	/^db_err(sp, lno)$/
+db_exist	./common/line.c	/^db_exist(sp, lno)$/
+db_get	./common/line.c	/^db_get(sp, lno, flags, pp, lenp)$/
+db_insert	./common/line.c	/^db_insert(sp, lno, p, len)$/
+db_last	./common/line.c	/^db_last(sp, lnop)$/
+db_set	./common/line.c	/^db_set(sp, lno, p, len)$/
+dbopen	./db/db/db.c	/^dbopen(fname, flags, mode, type, openinfo)$/
+del	./common/delete.c	/^del(sp, fm, tm, lmode)$/
+delwin	./curses/delwin.c	/^delwin(win)$/
+dissect	./regex/engine.c	/^dissect(m, start, stop, startst, stopst)$/
+doemit	./regex/regcomp.c	/^doemit(p, op, opnd)$/
+dofwd	./regex/regcomp.c	/^dofwd(p, pos, value)$/
+doinsert	./regex/regcomp.c	/^doinsert(p, op, opnd, pos)$/
+domvcur	./curses/refresh.c	/^domvcur(oy, ox, ny, nx)$/
+dupl	./regex/regcomp.c	/^dupl(p, start, finish)$/
+e_memcmp	./common/seq.c	/^e_memcmp(p1, ep, n)$/
+echo	./curses/tty.c	/^echo()$/
+editor	./common/main.c	/^editor(gp, argc, argv)$/
+endwin	./curses/tty.c	/^endwin()$/
+enlarge	./regex/regcomp.c	/^enlarge(p, size)$/
+eword	./vi/v_word.c	/^eword(sp, vp, type)$/
+ex	./ex/ex.c	/^ex(spp)$/
+ex_N_edit	./ex/ex_edit.c	/^ex_N_edit(sp, cmdp, frp, attach)$/
+ex_N_next	./ex/ex_args.c	/^ex_N_next(sp, cmdp)$/
+ex_abbr	./ex/ex_abbrev.c	/^ex_abbr(sp, cmdp)$/
+ex_aci	./ex/ex_append.c	/^ex_aci(sp, cmdp, cmd)$/
+ex_append	./ex/ex_append.c	/^ex_append(sp, cmdp)$/
+ex_args	./ex/ex_args.c	/^ex_args(sp, cmdp)$/
+ex_at	./ex/ex_at.c	/^ex_at(sp, cmdp)$/
+ex_badaddr	./ex/ex.c	/^ex_badaddr(sp, cp, ba, nret)$/
+ex_bang	./ex/ex_bang.c	/^ex_bang(sp, cmdp)$/
+ex_bg	./ex/ex_screen.c	/^ex_bg(sp, cmdp)$/
+ex_buildargv	./ex/ex_args.c	/^ex_buildargv(sp, cmdp, name)$/
+ex_cadd	./ex/ex_util.c	/^ex_cadd(cmdp, ap, arg, len)$/
+ex_cd	./ex/ex_cd.c	/^ex_cd(sp, cmdp)$/
+ex_change	./ex/ex_append.c	/^ex_change(sp, cmdp)$/
+ex_cinit	./ex/ex_util.c	/^ex_cinit(cmdp, cmd_id, naddr, lno1, lno2, force, a/
+ex_cmd	./ex/ex.c	/^ex_cmd(sp)$/
+ex_comlog	./ex/ex.c	/^ex_comlog(sp, ecp)$/
+ex_comm_search	./ex/ex.c	/^ex_comm_search(name, len)$/
+ex_copy	./ex/ex_move.c	/^ex_copy(sp, cmdp)$/
+ex_cscope	./ex/ex_cscope.c	/^ex_cscope(sp, cmdp)$/
+ex_delete	./ex/ex_delete.c	/^ex_delete(sp, cmdp)$/
+ex_discard	./ex/ex.c	/^ex_discard(sp)$/
+ex_display	./ex/ex_display.c	/^ex_display(sp, cmdp)$/
+ex_edit	./ex/ex_edit.c	/^ex_edit(sp, cmdp)$/
+ex_emsg	./ex/ex_util.c	/^ex_emsg(sp, p, which)$/
+ex_equal	./ex/ex_equal.c	/^ex_equal(sp, cmdp)$/
+ex_exec_proc	./ex/ex_shell.c	/^ex_exec_proc(sp, cmdp, cmd, msg, need_newline)$/
+ex_exrc	./ex/ex_init.c	/^ex_exrc(sp)$/
+ex_fflush	./ex/ex_print.c	/^ex_fflush(sp)$/
+ex_fg	./ex/ex_screen.c	/^ex_fg(sp, cmdp)$/
+ex_file	./ex/ex_file.c	/^ex_file(sp, cmdp)$/
+ex_filter	./ex/ex_filter.c	/^ex_filter(sp, cmdp, fm, tm, rp, cmd, ftype)$/
+ex_g_insdel	./ex/ex_global.c	/^ex_g_insdel(sp, op, lno)$/
+ex_g_setup	./ex/ex_global.c	/^ex_g_setup(sp, cmdp, cmd)$/
+ex_getline	./ex/ex_util.c	/^ex_getline(sp, fp, lenp)$/
+ex_global	./ex/ex_global.c	/^ex_global(sp, cmdp)$/
+ex_help	./ex/ex_usage.c	/^ex_help(sp, cmdp)$/
+ex_init	./ex/ex_util.c	/^ex_init(sp)$/
+ex_insert	./ex/ex_append.c	/^ex_insert(sp, cmdp)$/
+ex_is_abbrev	./ex/ex.c	/^ex_is_abbrev(name, len)$/
+ex_is_unmap	./ex/ex.c	/^ex_is_unmap(name, len)$/
+ex_join	./ex/ex_join.c	/^ex_join(sp, cmdp)$/
+ex_ldisplay	./ex/ex_print.c	/^ex_ldisplay(sp, p, len, col, flags)$/
+ex_line	./ex/ex.c	/^ex_line(sp, ecp, mp, isaddrp, errp)$/
+ex_list	./ex/ex_print.c	/^ex_list(sp, cmdp)$/
+ex_load	./ex/ex.c	/^ex_load(sp)$/
+ex_map	./ex/ex_map.c	/^ex_map(sp, cmdp)$/
+ex_mark	./ex/ex_mark.c	/^ex_mark(sp, cmdp)$/
+ex_mkexrc	./ex/ex_mkexrc.c	/^ex_mkexrc(sp, cmdp)$/
+ex_move	./ex/ex_move.c	/^ex_move(sp, cmdp)$/
+ex_ncheck	./ex/ex_util.c	/^ex_ncheck(sp, force)$/
+ex_next	./ex/ex_args.c	/^ex_next(sp, cmdp)$/
+ex_number	./ex/ex_print.c	/^ex_number(sp, cmdp)$/
+ex_open	./ex/ex_open.c	/^ex_open(sp, cmdp)$/
+ex_optchange	./ex/ex_init.c	/^ex_optchange(sp, offset, str, valp)$/
+ex_perl	./ex/ex_perl.c	/^ex_perl(sp, cmdp)$/
+ex_pr	./ex/ex_print.c	/^ex_pr(sp, cmdp)$/
+ex_prchars	./ex/ex_print.c	/^ex_prchars(sp, p, colp, len, flags, repeatc)$/
+ex_preserve	./ex/ex_preserve.c	/^ex_preserve(sp, cmdp)$/
+ex_prev	./ex/ex_args.c	/^ex_prev(sp, cmdp)$/
+ex_print	./ex/ex_print.c	/^ex_print(sp, cmdp, fp, tp, flags)$/
+ex_printf	./ex/ex_print.c	/^ex_printf(SCR *sp, const char *fmt, ...)$/
+ex_put	./ex/ex_put.c	/^ex_put(sp, cmdp)$/
+ex_puts	./ex/ex_print.c	/^ex_puts(sp, str)$/
+ex_quit	./ex/ex_quit.c	/^ex_quit(sp, cmdp)$/
+ex_range	./ex/ex.c	/^ex_range(sp, ecp, errp)$/
+ex_read	./ex/ex_read.c	/^ex_read(sp, cmdp)$/
+ex_readfp	./ex/ex_read.c	/^ex_readfp(sp, name, fp, fm, nlinesp, silent)$/
+ex_recover	./ex/ex_preserve.c	/^ex_recover(sp, cmdp)$/
+ex_resize	./ex/ex_screen.c	/^ex_resize(sp, cmdp)$/
+ex_rew	./ex/ex_args.c	/^ex_rew(sp, cmdp)$/
+ex_run_file	./ex/ex_init.c	/^ex_run_file(sp, name)$/
+ex_run_str	./ex/ex_init.c	/^ex_run_str(sp, name, str, len, ex_flags, nocopy)$/
+ex_s	./ex/ex_subst.c	/^ex_s(sp, cmdp)$/
+ex_scprint	./ex/ex_print.c	/^ex_scprint(sp, fp, tp)$/
+ex_screen_copy	./ex/ex_init.c	/^ex_screen_copy(orig, sp)$/
+ex_screen_end	./ex/ex_init.c	/^ex_screen_end(sp)$/
+ex_script	./ex/ex_script.c	/^ex_script(sp, cmdp)$/
+ex_sdisplay	./ex/ex_screen.c	/^ex_sdisplay(sp)$/
+ex_set	./ex/ex_set.c	/^ex_set(sp, cmdp)$/
+ex_shell	./ex/ex_shell.c	/^ex_shell(sp, cmdp)$/
+ex_shiftl	./ex/ex_shift.c	/^ex_shiftl(sp, cmdp)$/
+ex_shiftr	./ex/ex_shift.c	/^ex_shiftr(sp, cmdp)$/
+ex_source	./ex/ex_source.c	/^ex_source(sp, cmdp)$/
+ex_stop	./ex/ex_stop.c	/^ex_stop(sp, cmdp)$/
+ex_subagain	./ex/ex_subst.c	/^ex_subagain(sp, cmdp)$/
+ex_subtilde	./ex/ex_subst.c	/^ex_subtilde(sp, cmdp)$/
+ex_tag_Nswitch	./ex/ex_tag.c	/^ex_tag_Nswitch(sp, tp, force)$/
+ex_tag_copy	./ex/ex_tag.c	/^ex_tag_copy(orig, sp)$/
+ex_tag_display	./ex/ex_tag.c	/^ex_tag_display(sp)$/
+ex_tag_first	./ex/ex_tag.c	/^ex_tag_first(sp, tagarg)$/
+ex_tag_free	./ex/ex_tag.c	/^ex_tag_free(sp)$/
+ex_tag_next	./ex/ex_tag.c	/^ex_tag_next(sp, cmdp)$/
+ex_tag_nswitch	./ex/ex_tag.c	/^ex_tag_nswitch(sp, tp, force)$/
+ex_tag_pop	./ex/ex_tag.c	/^ex_tag_pop(sp, cmdp)$/
+ex_tag_prev	./ex/ex_tag.c	/^ex_tag_prev(sp, cmdp)$/
+ex_tag_push	./ex/ex_tag.c	/^ex_tag_push(sp, cmdp)$/
+ex_tag_top	./ex/ex_tag.c	/^ex_tag_top(sp, cmdp)$/
+ex_tagf_alloc	./ex/ex_tag.c	/^ex_tagf_alloc(sp, str)$/
+ex_tcl	./ex/ex_tcl.c	/^ex_tcl(sp, cmdp)$/
+ex_txt	./ex/ex_txt.c	/^ex_txt(sp, tiqh, prompt, flags)$/
+ex_unabbr	./ex/ex_abbrev.c	/^ex_unabbr(sp, cmdp)$/
+ex_undo	./ex/ex_undo.c	/^ex_undo(sp, cmdp)$/
+ex_unknown	./ex/ex.c	/^ex_unknown(sp, cmd, len)$/
+ex_unmap	./ex/ex_map.c	/^ex_unmap(sp, cmdp)$/
+ex_usage	./ex/ex_usage.c	/^ex_usage(sp, cmdp)$/
+ex_v	./ex/ex_global.c	/^ex_v(sp, cmdp)$/
+ex_version	./ex/ex_version.c	/^ex_version(sp, cmdp)$/
+ex_visual	./ex/ex_visual.c	/^ex_visual(sp, cmdp)$/
+ex_viusage	./ex/ex_usage.c	/^ex_viusage(sp, cmdp)$/
+ex_wn	./ex/ex_write.c	/^ex_wn(sp, cmdp)$/
+ex_wq	./ex/ex_write.c	/^ex_wq(sp, cmdp)$/
+ex_write	./ex/ex_write.c	/^ex_write(sp, cmdp)$/
+ex_writefp	./ex/ex_write.c	/^ex_writefp(sp, name, fp, fm, tm, nlno, nch, silent/
+ex_xit	./ex/ex_write.c	/^ex_xit(sp, cmdp)$/
+ex_yank	./ex/ex_yank.c	/^ex_yank(sp, cmdp)$/
+ex_z	./ex/ex_z.c	/^ex_z(sp, cmdp)$/
+exrc_isok	./ex/ex_init.c	/^exrc_isok(sp, sbp, path, rootown, rootid)$/
+exwr	./ex/ex_write.c	/^exwr(sp, cmdp, cmd)$/
+f_altwerase	./common/options_f.c	/^f_altwerase(sp, op, str, valp)$/
+f_columns	./common/options_f.c	/^f_columns(sp, op, str, valp)$/
+f_lines	./common/options_f.c	/^f_lines(sp, op, str, valp)$/
+f_lisp	./common/options_f.c	/^f_lisp(sp, op, str, valp)$/
+f_msgcat	./common/options_f.c	/^f_msgcat(sp, op, str, valp)$/
+f_paragraph	./common/options_f.c	/^f_paragraph(sp, op, str, valp)$/
+f_print	./common/options_f.c	/^f_print(sp, op, str, valp)$/
+f_readonly	./common/options_f.c	/^f_readonly(sp, op, str, valp)$/
+f_recompile	./common/options_f.c	/^f_recompile(sp, op, str, valp)$/
+f_reformat	./common/options_f.c	/^f_reformat(sp, op, str, valp)$/
+f_search	./common/search.c	/^f_search(sp, fm, rm, ptrn, plen, eptrn, flags)$/
+f_section	./common/options_f.c	/^f_section(sp, op, str, valp)$/
+f_ttywerase	./common/options_f.c	/^f_ttywerase(sp, op, str, valp)$/
+f_w1200	./common/options_f.c	/^f_w1200(sp, op, str, valp)$/
+f_w300	./common/options_f.c	/^f_w300(sp, op, str, valp)$/
+f_w9600	./common/options_f.c	/^f_w9600(sp, op, str, valp)$/
+f_window	./common/options_f.c	/^f_window(sp, op, str, valp)$/
+fast	./regex/engine.c	/^fast(m, start, stop, startst, stopst)$/
+fgoto	./curses/cr_put.c	/^fgoto(in_refresh)$/
+file_add	./common/exf.c	/^file_add(sp, name)$/
+file_aw	./common/exf.c	/^file_aw(sp, flags)$/
+file_backup	./common/exf.c	/^file_backup(sp, name, bname)$/
+file_cinit	./common/exf.c	/^file_cinit(sp)$/
+file_comment	./common/exf.c	/^file_comment(sp)$/
+file_end	./common/exf.c	/^file_end(sp, ep, force)$/
+file_init	./common/exf.c	/^file_init(sp, frp, rcv_name, flags)$/
+file_lock	./common/exf.c	/^file_lock(sp, name, fdp, fd, iswrite)$/
+file_m1	./common/exf.c	/^file_m1(sp, force, flags)$/
+file_m2	./common/exf.c	/^file_m2(sp, force)$/
+file_m3	./common/exf.c	/^file_m3(sp, force)$/
+file_spath	./common/exf.c	/^file_spath(sp, frp, sbp, existsp)$/
+file_write	./common/exf.c	/^file_write(sp, fm, tm, name, flags)$/
+filter_ldisplay	./ex/ex_filter.c	/^filter_ldisplay(sp, fp)$/
+findmust	./regex/regcomp.c	/^findmust(p, g)$/
+firstch	./regex/regcomp.c	/^firstch(p, cs)$/
+flash	./cl/cl_bsd.c	/^flash()$/
+freeset	./regex/regcomp.c	/^freeset(p, cs)$/
+freezeset	./regex/regcomp.c	/^freezeset(p, cs)$/
+fullname	./curses/fullname.c	/^fullname(bp, def)$/
+fword	./vi/v_word.c	/^fword(sp, vp, type)$/
+gdbrefresh	./cl/cl_funcs.c	/^gdbrefresh()$/
+get_paths	./ex/ex_cscope.c	/^get_paths(sp, csc)$/
+getcap	./curses/setterm.c	/^getcap(name)$/
+gethostname	./clib/gethostname.c	/^gethostname(host, len)$/
+getint	./tcl_api/tcl.c	/^getint(interp, msg, s, intp)$/
+getopt	./clib/getopt.c	/^getopt(nargc, nargv, ostr)$/
+getscreenid	./tcl_api/tcl.c	/^getscreenid(interp, spp, id, name)$/
+gettmode	./curses/tty.c	/^gettmode()$/
+goto_adjust	./vi/v_scroll.c	/^goto_adjust(vp)$/
+gs_init	./cl/cl_main.c	/^gs_init(name)$/
+h_hup	./cl/cl_main.c	/^h_hup(signo)$/
+h_int	./cl/cl_main.c	/^h_int(signo)$/
+h_term	./cl/cl_main.c	/^h_term(signo)$/
+h_winch	./cl/cl_main.c	/^h_winch(signo)$/
+idlok	./cl/cl_bsd.c	/^idlok(win, bf)$/
+inc_buf	./vi/v_put.c	/^inc_buf(sp, vp)$/
+inc_err	./vi/v_increment.c	/^inc_err(sp, nret)$/
+initscr	./curses/initscr.c	/^initscr()$/
+io	./vi/v_itxt.c	/^io(sp, vp, cmd)$/
+ip_addstr	./ip/ip_funcs.c	/^ip_addstr(sp, str, len)$/
+ip_attr	./ip/ip_funcs.c	/^ip_attr(sp, attribute, on)$/
+ip_baud	./ip/ip_funcs.c	/^ip_baud(sp, ratep)$/
+ip_bell	./ip/ip_funcs.c	/^ip_bell(sp)$/
+ip_busy	./ip/ip_funcs.c	/^ip_busy(sp, str, bval)$/
+ip_clrtoeol	./ip/ip_funcs.c	/^ip_clrtoeol(sp)$/
+ip_cur_end	./ip_cl/ip_cl.c	/^ip_cur_end()$/
+ip_cur_init	./ip_cl/ip_cl.c	/^ip_cur_init()$/
+ip_cursor	./ip/ip_funcs.c	/^ip_cursor(sp, yp, xp)$/
+ip_deleteln	./ip/ip_funcs.c	/^ip_deleteln(sp)$/
+ip_event	./ip/ip_read.c	/^ip_event(sp, evp, flags, ms)$/
+ip_ex_adjust	./ip/ip_funcs.c	/^ip_ex_adjust(sp, action)$/
+ip_fmap	./ip/ip_term.c	/^ip_fmap(sp, stype, from, flen, to, tlen)$/
+ip_func_std	./ip/ip_main.c	/^ip_func_std(gp)$/
+ip_init	./ip/ip_main.c	/^ip_init(gp, ip_arg)$/
+ip_insertln	./ip/ip_funcs.c	/^ip_insertln(sp)$/
+ip_keyval	./ip/ip_funcs.c	/^ip_keyval(sp, val, chp, dnep)$/
+ip_main	./ip/ip_main.c	/^ip_main(argc, argv, gp, ip_arg)$/
+ip_move	./ip/ip_funcs.c	/^ip_move(sp, lno, cno)$/
+ip_optchange	./ip/ip_term.c	/^ip_optchange(sp, opt, str, valp)$/
+ip_quit	./ip/ip_screen.c	/^ip_quit(gp)$/
+ip_read	./ip/ip_read.c	/^ip_read(sp, ipp, tp)$/
+ip_refresh	./ip/ip_funcs.c	/^ip_refresh(sp, repaint)$/
+ip_rename	./ip/ip_funcs.c	/^ip_rename(sp)$/
+ip_resize	./ip/ip_read.c	/^ip_resize(sp, lines, columns)$/
+ip_screen	./ip/ip_screen.c	/^ip_screen(sp, flags)$/
+ip_send	./ip/ip_funcs.c	/^ip_send(sp, fmt, ipbp)$/
+ip_siginit	./ip_cl/ip_cl.c	/^ip_siginit()$/
+ip_suspend	./ip/ip_funcs.c	/^ip_suspend(sp, allowedp)$/
+ip_term_end	./ip/ip_term.c	/^ip_term_end(gp)$/
+ip_term_init	./ip/ip_term.c	/^ip_term_init(sp)$/
+ip_trans	./ip/ip_read.c	/^ip_trans(sp, ipp, evp)$/
+ip_usage	./ip/ip_funcs.c	/^ip_usage()$/
+ishex	./vi/v_increment.c	/^#define	ishex(c)	(isdigit(c) || strchr("abcdefABCD/
+isinsets	./regex/regcomp.c	/^isinsets(g, c)$/
+isoctal	./vi/v_increment.c	/^#define	isoctal(c)	(isdigit(c) && (c) != '8' && (c/
+keypad	./cl/cl_bsd.c	/^keypad(a, on)$/
+lcmp	./cl/cl_bsd.c	/^lcmp(a, b)$/
+linear_search	./ex/ex_tag.c	/^linear_search(string, front, back)$/
+log_backward	./common/log.c	/^log_backward(sp, rp)$/
+log_cursor	./common/log.c	/^log_cursor(sp)$/
+log_cursor1	./common/log.c	/^log_cursor1(sp, type)$/
+log_end	./common/log.c	/^log_end(sp, ep)$/
+log_err	./common/log.c	/^log_err(sp, file, line)$/
+log_forward	./common/log.c	/^log_forward(sp, rp)$/
+log_init	./common/log.c	/^log_init(sp, ep)$/
+log_line	./common/log.c	/^log_line(sp, lno, action)$/
+log_mark	./common/log.c	/^log_mark(sp, lmp)$/
+log_setline	./common/log.c	/^log_setline(sp)$/
+log_trace	./common/log.c	/^log_trace(sp, msg, rno, p)$/
+longname	./curses/longname.c	/^longname(bp, def)$/
+lookup_ccmd	./ex/ex_cscope.c	/^lookup_ccmd(name)$/
+makech	./curses/refresh.c	/^makech(win, wy)$/
+mark	./vi/v_mark.c	/^mark(sp, vp, cmd)$/
+mark_end	./common/mark.c	/^mark_end(sp, ep)$/
+mark_find	./common/mark.c	/^mark_find(sp, key)$/
+mark_get	./common/mark.c	/^mark_get(sp, key, mp, mtype)$/
+mark_init	./common/mark.c	/^mark_init(sp, ep)$/
+mark_insdel	./common/mark.c	/^mark_insdel(sp, op, lno)$/
+mark_set	./common/mark.c	/^mark_set(sp, key, value, userset)$/
+matcher	./regex/engine.c	/^matcher(g, string, nmatch, pmatch, eflags)$/
+mcadd	./regex/regcomp.c	/^mcadd(p, cs, cp)$/
+mccase	./regex/regcomp.c	/^mccase(p, cs)$/
+mcfind	./regex/regcomp.c	/^mcfind(cs, cp)$/
+mcin	./regex/regcomp.c	/^mcin(cs, cp)$/
+mcinvert	./regex/regcomp.c	/^mcinvert(p, cs)$/
+mcsub	./regex/regcomp.c	/^mcsub(cs, cp)$/
+memchr	./clib/memchr.c	/^memchr(s, c, n)$/
+memcpy	./clib/memmove.c	/^memcpy(dst0, src0, length)$/
+mkstemp	./clib/mkstemp.c	/^mkstemp(path)$/
+mktemp	./clib/mkstemp.c	/^mktemp(path)$/
+mmap	./clib/mmap.c	/^mmap(addr, len, prot, flags, fd, off)$/
+mod_rpt	./common/msg.c	/^mod_rpt(sp)$/
+mpool_bkt	./db/mpool/mpool.c	/^mpool_bkt(mp)$/
+mpool_close	./db/mpool/mpool.c	/^mpool_close(mp)$/
+mpool_filter	./db/mpool/mpool.c	/^mpool_filter(mp, pgin, pgout, pgcookie)$/
+mpool_get	./db/mpool/mpool.c	/^mpool_get(mp, pgno, flags)$/
+mpool_look	./db/mpool/mpool.c	/^mpool_look(mp, pgno)$/
+mpool_new	./db/mpool/mpool.c	/^mpool_new(mp, pgnoaddr)$/
+mpool_open	./db/mpool/mpool.c	/^mpool_open(key, fd, pagesize, maxcache)$/
+mpool_put	./db/mpool/mpool.c	/^mpool_put(mp, page, flags)$/
+mpool_stat	./db/mpool/mpool.c	/^mpool_stat(mp)$/
+mpool_sync	./db/mpool/mpool.c	/^mpool_sync(mp)$/
+mpool_write	./db/mpool/mpool.c	/^mpool_write(mp, bp)$/
+msg_cat	./common/msg.c	/^msg_cat(sp, str, lenp)$/
+msg_close	./common/msg.c	/^msg_close(gp)$/
+msg_cmsg	./common/msg.c	/^msg_cmsg(sp, which, lenp)$/
+msg_open	./common/msg.c	/^msg_open(sp, file)$/
+msg_print	./common/msg.c	/^msg_print(sp, s, needfree)$/
+msghandler	./tcl_api/tcl.c	/^msghandler(sp, mtype, msg, len)$/
+msgq	./common/msg.c	/^msgq(SCR *sp, mtype_t mt, const char *fmt, ...)$/
+msgq_status	./common/msg.c	/^msgq_status(sp, lno, flags)$/
+msgq_str	./common/msg.c	/^msgq_str(sp, mtype, str, fmt)$/
+mswap	./db/btree/bt_conv.c	/^mswap(pg)$/
+munmap	./clib/mmap.c	/^munmap(addr, len)$/
+mvcur	./curses/cr_put.c	/^mvcur(ly, lx, y, x)$/
+mvwin	./curses/mvwin.c	/^mvwin(win, by, bx)$/
+nch	./regex/regcomp.c	/^nch(p, cs)$/
+newterm	./cl/cl_bsd.c	/^newterm(a, b, c)$/
+newwin	./curses/newwin.c	/^newwin(nl, nc, by, bx)$/
+nget_slong	./common/util.c	/^nget_slong(valp, p, endp, base)$/
+nget_uslong	./common/util.c	/^nget_uslong(valp, p, endp, base)$/
+nl	./curses/tty.c	/^nl()$/
+nocbreak	./curses/tty.c	/^nocbreak()$/
+noecho	./curses/tty.c	/^noecho()$/
+nomem	./ip_cl/ip_cl.c	/^nomem()$/
+nonblank	./common/util.c	/^nonblank(sp, lno, cnop)$/
+nonl	./curses/tty.c	/^nonl()$/
+nonnewline	./regex/regcomp.c	/^nonnewline(p)$/
+noprev	./vi/v_ch.c	/^noprev(sp)$/
+noraw	./curses/tty.c	/^noraw()$/
+notfound	./vi/v_ch.c	/^notfound(sp, ch)$/
+nroot	./db/btree/bt_open.c	/^nroot(t)$/
+o_set	./common/options.c	/^o_set(sp, opt, flags, str, val)$/
+onchld	./ip_cl/ip_cl.c	/^onchld(signo)$/
+onintr	./ip_cl/ip_cl.c	/^onintr(signo)$/
+onwinch	./ip_cl/ip_cl.c	/^onwinch(signo)$/
+opts_abbcmp	./common/options.c	/^opts_abbcmp(a, b)$/
+opts_cmp	./common/options.c	/^opts_cmp(a, b)$/
+opts_copy	./common/options.c	/^opts_copy(orig, sp)$/
+opts_dump	./common/options.c	/^opts_dump(sp, type)$/
+opts_empty	./common/options.c	/^opts_empty(sp, off, silent)$/
+opts_free	./common/options.c	/^opts_free(sp)$/
+opts_init	./common/options.c	/^opts_init(sp, oargs)$/
+opts_nomatch	./common/options.c	/^opts_nomatch(sp, name)$/
+opts_print	./common/options.c	/^opts_print(sp, op)$/
+opts_save	./common/options.c	/^opts_save(sp, fp)$/
+opts_search	./common/options.c	/^opts_search(name)$/
+opts_set	./common/options.c	/^opts_set(sp, argv, usage)$/
+ordinary	./regex/regcomp.c	/^ordinary(p, ch)$/
+othercase	./regex/regcomp.c	/^othercase(ch)$/
+overlay	./curses/overlay.c	/^overlay(win1, win2)$/
+overwrite	./curses/overwrite.c	/^overwrite(win1, win2)$/
+p_b_cclass	./regex/regcomp.c	/^p_b_cclass(p, cs)$/
+p_b_coll_elem	./regex/regcomp.c	/^p_b_coll_elem(p, endc)$/
+p_b_eclass	./regex/regcomp.c	/^p_b_eclass(p, cs)$/
+p_b_symbol	./regex/regcomp.c	/^p_b_symbol(p)$/
+p_b_term	./regex/regcomp.c	/^p_b_term(p, cs)$/
+p_bracket	./regex/regcomp.c	/^p_bracket(p)$/
+p_bre	./regex/regcomp.c	/^p_bre(p, end1, end2)$/
+p_count	./regex/regcomp.c	/^p_count(p)$/
+p_ere	./regex/regcomp.c	/^p_ere(p, stop)$/
+p_ere_exp	./regex/regcomp.c	/^p_ere_exp(p)$/
+p_simp_re	./regex/regcomp.c	/^p_simp_re(p, starordinary)$/
+p_str	./regex/regcomp.c	/^p_str(p)$/
+parse	./ex/ex_cscope.c	/^parse(sp, csc, tqp, matchesp)$/
+pchar	./regex/engine.c	/^pchar(ch)$/
+perr	./cl/cl_main.c	/^perr(name, msg)$/
+plod	./curses/cr_put.c	/^plod(cnt, in_refresh)$/
+plodput	./curses/cr_put.c	/^plodput(c)$/
+pluscount	./regex/regcomp.c	/^pluscount(p, g)$/
+print	./regex/engine.c	/^print(m, caption, st, ch, d)$/
+proc_wait	./ex/ex_shell.c	/^proc_wait(sp, pid, cmd, silent, okpipe)$/
+ptym_open	./ex/ex_script.c	/^ptym_open(pts_name)$/
+ptys_open	./ex/ex_script.c	/^ptys_open(fdm, pts_name)$/
+put	./common/put.c	/^put(sp, cbp, namep, cp, rp, append)$/
+quickch	./curses/refresh.c	/^quickch(win)$/
+raw	./curses/tty.c	/^raw()$/
+rcv_copy	./common/recover.c	/^rcv_copy(sp, wfd, fname)$/
+rcv_email	./common/recover.c	/^rcv_email(sp, fname)$/
+rcv_gets	./common/recover.c	/^rcv_gets(buf, len, fd)$/
+rcv_init	./common/recover.c	/^rcv_init(sp)$/
+rcv_list	./common/recover.c	/^rcv_list(sp)$/
+rcv_mailfile	./common/recover.c	/^rcv_mailfile(sp, issync, cp_path)$/
+rcv_mktemp	./common/recover.c	/^rcv_mktemp(sp, path, dname, perms)$/
+rcv_read	./common/recover.c	/^rcv_read(sp, frp)$/
+rcv_sync	./common/recover.c	/^rcv_sync(sp, flags)$/
+rcv_tmp	./common/recover.c	/^rcv_tmp(sp, ep, name)$/
+re_compile	./ex/ex_subst.c	/^re_compile(sp, ptrn, plen, ptrnp, lenp, rep, flags/
+re_conv	./ex/ex_subst.c	/^re_conv(sp, ptrnp, plenp, replacedp)$/
+re_cscope_conv	./ex/ex_subst.c	/^re_cscope_conv(sp, ptrnp, plenp, replacedp)$/
+re_error	./ex/ex_subst.c	/^re_error(sp, errcode, preg)$/
+re_sub	./ex/ex_subst.c	/^re_sub(sp, ip, lbp, lbclenp, lblenp, match)$/
+re_tag_conv	./ex/ex_subst.c	/^re_tag_conv(sp, ptrnp, plenp, replacedp)$/
+read_prompt	./ex/ex_cscope.c	/^read_prompt(sp, csc)$/
+rec_rdelete	./db/recno/rec_delete.c	/^rec_rdelete(t, nrec)$/
+rec_total	./db/btree/bt_split.c	/^rec_total(h)$/
+regatoi	./regex/regerror.c	/^regatoi(preg, localbuf)$/
+regcomp	./regex/regcomp.c	/^regcomp(preg, pattern, cflags)$/
+regerror	./regex/regerror.c	/^regerror(errcode, preg, errbuf, errbuf_size)$/
+regexec	./regex/regexec.c	/^regexec(preg, string, nmatch, pmatch, eflags)$/
+regfree	./regex/regfree.c	/^regfree(preg)$/
+repeat	./regex/regcomp.c	/^repeat(p, start, from, to)$/
+resetty	./curses/tty.c	/^resetty()$/
+run_cscope	./ex/ex_cscope.c	/^run_cscope(sp, csc, dbname)$/
+s	./ex/ex_subst.c	/^s(sp, cmdp, s, re, flags)$/
+samesets	./regex/regcomp.c	/^samesets(g, c1, c2)$/
+savetty	./curses/tty.c	/^savetty()$/
+scr_update	./common/line.c	/^scr_update(sp, lno, op, current)$/
+screen_end	./common/screen.c	/^screen_end(sp)$/
+screen_init	./common/screen.c	/^screen_init(gp, orig, spp)$/
+screen_next	./common/screen.c	/^screen_next(sp)$/
+scroll	./curses/scroll.c	/^scroll(win)$/
+scrolln	./curses/refresh.c	/^scrolln(win, starts, startw, curs, bot, top)$/
+search_busy	./common/search.c	/^search_busy(sp, btype)$/
+search_init	./common/search.c	/^search_init(sp, dir, ptrn, plen, epp, flags)$/
+search_msg	./common/search.c	/^search_msg(sp, msg)$/
+seq_close	./common/seq.c	/^seq_close(gp)$/
+seq_delete	./common/seq.c	/^seq_delete(sp, input, ilen, stype)$/
+seq_dump	./common/seq.c	/^seq_dump(sp, stype, isname)$/
+seq_find	./common/seq.c	/^seq_find(sp, lastqp, e_input, c_input, ilen, stype/
+seq_mdel	./common/seq.c	/^seq_mdel(qp)$/
+seq_save	./common/seq.c	/^seq_save(sp, fp, prefix, stype)$/
+seq_set	./common/seq.c	/^seq_set(sp, name, nlen, input, ilen, output, olen,/
+set_alt_name	./common/exf.c	/^set_alt_name(sp, name)$/
+set_txt_std	./vi/v_itxt.c	/^set_txt_std(sp, vp, flags)$/
+setenv	./clib/env.c	/^setenv(name, value, rewrite)$/
+seterr	./regex/regcomp.c	/^seterr(p, e)$/
+setsig	./cl/cl_main.c	/^setsig(signo, oactp, handler)$/
+setterm	./curses/setterm.c	/^setterm(type)$/
+setupterm	./cl/cl_bsd.c	/^setupterm(ttype, fno, errp)$/
+sfdcnewnvi	./perl_api/perlsfio.c	/^sfdcnewnvi(scrp)$/
+sfnviwrite	./perl_api/perlsfio.c	/^sfnviwrite(f, buf, n, disc)$/
+shift	./ex/ex_shift.c	/^shift(sp, cmdp, rl)$/
+sig_end	./cl/cl_main.c	/^sig_end(gp)$/
+sig_init	./cl/cl_main.c	/^sig_init(gp, sp)$/
+sigmsg	./ex/ex_shell.c	/^sigmsg(signo)$/
+slow	./regex/engine.c	/^slow(m, start, stop, startst, stopst)$/
+snprintf	./clib/snprintf.c	/^snprintf(char *str, size_t n, const char *fmt, .../
+sscr_check	./ex/ex_script.c	/^sscr_check(sp)$/
+sscr_end	./ex/ex_script.c	/^sscr_end(sp)$/
+sscr_exec	./ex/ex_script.c	/^sscr_exec(sp, lno)$/
+sscr_getprompt	./ex/ex_script.c	/^sscr_getprompt(sp)$/
+sscr_init	./ex/ex_script.c	/^sscr_init(sp)$/
+sscr_input	./ex/ex_script.c	/^sscr_input(sp)$/
+sscr_insert	./ex/ex_script.c	/^sscr_insert(sp)$/
+sscr_matchprompt	./ex/ex_script.c	/^sscr_matchprompt(sp, lp, line_len, lenp)$/
+sscr_pty	./ex/ex_script.c	/^sscr_pty(amaster, aslave, name, termp, winp)$/
+sscr_setprompt	./ex/ex_script.c	/^sscr_setprompt(sp, buf, len)$/
+start_cscopes	./ex/ex_cscope.c	/^start_cscopes(sp, cmdp)$/
+step	./regex/engine.c	/^step(g, start, stop, bef, ch, aft)$/
+strdup	./clib/strdup.c	/^strdup(str)$/
+strerror	./clib/strerror.c	/^strerror(num)$/
+stripsnug	./regex/regcomp.c	/^stripsnug(p, g)$/
+strpbrk	./clib/strpbrk.c	/^strpbrk(s1, s2)$/
+strsep	./clib/strsep.c	/^strsep(stringp, delim)$/
+strtol	./clib/strtol.c	/^strtol(nptr, endptr, base)$/
+strtoul	./clib/strtoul.c	/^strtoul(nptr, endptr, base)$/
+subwin	./curses/newwin.c	/^subwin(orig, nl, nc, by, bx)$/
+tabcol	./curses/cr_put.c	/^tabcol(col, ts)$/
+tag_copy	./ex/ex_tag.c	/^tag_copy(sp, otp, tpp)$/
+tag_msg	./ex/ex_tag.c	/^tag_msg(sp, msg, tag)$/
+tag_pop	./ex/ex_tag.c	/^tag_pop(sp, dtqp, force)$/
+tagf_copy	./ex/ex_tag.c	/^tagf_copy(sp, otfp, tfpp)$/
+tagf_free	./ex/ex_tag.c	/^tagf_free(sp, tfp)$/
+tagq_copy	./ex/ex_tag.c	/^tagq_copy(sp, otqp, tqpp)$/
+tagq_free	./ex/ex_tag.c	/^tagq_free(sp, tqp)$/
+tail	./common/util.c	/^tail(path)$/
+tcl_aline	./tcl_api/tcl.c	/^tcl_aline(clientData, interp, argc, argv)$/
+tcl_dline	./tcl_api/tcl.c	/^tcl_dline(clientData, interp, argc, argv)$/
+tcl_err	./tk/tk_main.c	/^tcl_err(tkp)$/
+tcl_escreen	./tcl_api/tcl.c	/^tcl_escreen(clientData, interp, argc, argv)$/
+tcl_fscreen	./tcl_api/tcl.c	/^tcl_fscreen(clientData, interp, argc, argv)$/
+tcl_getcursor	./tcl_api/tcl.c	/^tcl_getcursor(clientData, interp, argc, argv)$/
+tcl_getmark	./tcl_api/tcl.c	/^tcl_getmark(clientData, interp, argc, argv)$/
+tcl_gline	./tcl_api/tcl.c	/^tcl_gline(clientData, interp, argc, argv)$/
+tcl_iline	./tcl_api/tcl.c	/^tcl_iline(clientData, interp, argc, argv)$/
+tcl_init	./tk/tk_main.c	/^tcl_init(gp)$/
+tcl_iscreen	./tcl_api/tcl.c	/^tcl_iscreen(clientData, interp, argc, argv)$/
+tcl_lline	./tcl_api/tcl.c	/^tcl_lline(clientData, interp, argc, argv)$/
+tcl_map	./tcl_api/tcl.c	/^tcl_map(clientData, interp, argc, argv)$/
+tcl_msg	./tcl_api/tcl.c	/^tcl_msg(clientData, interp, argc, argv)$/
+tcl_opts_get	./tcl_api/tcl.c	/^tcl_opts_get(clientData, interp, argc, argv)$/
+tcl_opts_set	./tcl_api/tcl.c	/^tcl_opts_set(clientData, interp, argc, argv)$/
+tcl_setcursor	./tcl_api/tcl.c	/^tcl_setcursor(clientData, interp, argc, argv)$/
+tcl_setmark	./tcl_api/tcl.c	/^tcl_setmark(clientData, interp, argc, argv)$/
+tcl_sline	./tcl_api/tcl.c	/^tcl_sline(clientData, interp, argc, argv)$/
+tcl_swscreen	./tcl_api/tcl.c	/^tcl_swscreen(clientData, interp, argc, argv)$/
+tcl_unmap	./tcl_api/tcl.c	/^tcl_unmap(clientData, interp, argc, argv)$/
+term_init	./cl/cl_main.c	/^term_init(name, ttype)$/
+terminate	./ex/ex_cscope.c	/^terminate(sp, csc, n)$/
+text_free	./common/cut.c	/^text_free(tp)$/
+text_init	./common/cut.c	/^text_init(sp, p, len, total_len)$/
+text_lfree	./common/cut.c	/^text_lfree(headp)$/
+tigetnum	./cl/cl_bsd.c	/^tigetnum(name)$/
+tigetstr	./cl/cl_bsd.c	/^tigetstr(name)$/
+tk_addstr	./tk/tk_funcs.c	/^tk_addstr(sp, str, len)$/
+tk_attr	./tk/tk_funcs.c	/^tk_attr(sp, attribute, on)$/
+tk_baud	./tk/tk_funcs.c	/^tk_baud(sp, ratep)$/
+tk_bell	./tk/tk_funcs.c	/^tk_bell(sp)$/
+tk_clrtoeol	./tk/tk_funcs.c	/^tk_clrtoeol(sp)$/
+tk_cursor	./tk/tk_funcs.c	/^tk_cursor(sp, yp, xp)$/
+tk_deleteln	./tk/tk_funcs.c	/^tk_deleteln(sp)$/
+tk_event	./tk/tk_read.c	/^tk_event(sp, evp, flags, timeout)$/
+tk_ex_adjust	./tk/tk_funcs.c	/^tk_ex_adjust(sp, action)$/
+tk_fmap	./tk/tk_term.c	/^tk_fmap(sp, stype, from, flen, to, tlen)$/
+tk_insertln	./tk/tk_funcs.c	/^tk_insertln(sp)$/
+tk_key	./tk/tk_read.c	/^tk_key(clientData, interp, argc, argv)$/
+tk_keyval	./tk/tk_funcs.c	/^tk_keyval(sp, val, chp, dnep)$/
+tk_move	./tk/tk_funcs.c	/^tk_move(sp, lno, cno)$/
+tk_msg	./tk/tk_util.c	/^tk_msg(sp, mtype, line, rlen)$/
+tk_op	./tk/tk_util.c	/^tk_op(clientData, interp, argc, argv)$/
+tk_op_push	./tk/tk_util.c	/^tk_op_push(sp, tkp, et)$/
+tk_opt_init	./tk/tk_util.c	/^tk_opt_init(clientData, interp, argc, argv)$/
+tk_opt_set	./tk/tk_util.c	/^tk_opt_set(clientData, interp, argc, argv)$/
+tk_optchange	./tk/tk_term.c	/^tk_optchange(sp, opt, str, valp)$/
+tk_quit	./tk/tk_screen.c	/^tk_quit(gp)$/
+tk_read	./tk/tk_read.c	/^tk_read(sp, timeout)$/
+tk_refresh	./tk/tk_funcs.c	/^tk_refresh(sp, repaint)$/
+tk_rename	./tk/tk_funcs.c	/^tk_rename(sp)$/
+tk_resize	./tk/tk_read.c	/^tk_resize(sp, lines, columns)$/
+tk_screen	./tk/tk_screen.c	/^tk_screen(sp, flags)$/
+tk_ssize	./tk/tk_term.c	/^tk_ssize(sp, sigwinch, rowp, colp, changedp)$/
+tk_suspend	./tk/tk_funcs.c	/^tk_suspend(sp, allowedp)$/
+tk_term_end	./tk/tk_term.c	/^tk_term_end(gp)$/
+tk_term_init	./tk/tk_term.c	/^tk_term_init(sp)$/
+tk_usage	./tk/tk_funcs.c	/^tk_usage()$/
+tk_version	./tk/tk_util.c	/^tk_version(clientData, interp, argc, argv)$/
+tmp	./db/btree/bt_open.c	/^tmp()$/
+touchline	./curses/touchwin.c	/^touchline(win, y, sx, ex)$/
+touchoverlap	./curses/toucholap.c	/^touchoverlap(win1, win2)$/
+touchwin	./curses/touchwin.c	/^touchwin(win)$/
+trace	./ip_cl/ip_cl.c	/^trace(const char *fmt, ...)$/
+txt_Rresolve	./vi/v_txt.c	/^txt_Rresolve(sp, tiqh, tp, orig_len)$/
+txt_abbrev	./vi/v_txt.c	/^txt_abbrev(sp, tp, pushcp, isinfoline, didsubp, tu/
+txt_ai_resolve	./vi/v_txt.c	/^txt_ai_resolve(sp, tp, changedp)$/
+txt_backup	./vi/v_txt.c	/^txt_backup(sp, tiqh, tp, flagsp)$/
+txt_dent	./ex/ex_txt.c	/^txt_dent(sp, tp)$/
+txt_emark	./vi/v_txt.c	/^txt_emark(sp, tp, cno)$/
+txt_err	./vi/v_txt.c	/^txt_err(sp, tiqh)$/
+txt_fc	./vi/v_txt.c	/^txt_fc(sp, tp, redrawp)$/
+txt_fc_col	./vi/v_txt.c	/^txt_fc_col(sp, argc, argv)$/
+txt_hex	./vi/v_txt.c	/^txt_hex(sp, tp)$/
+txt_insch	./vi/v_txt.c	/^txt_insch(sp, tp, chp, flags)$/
+txt_isrch	./vi/v_txt.c	/^txt_isrch(sp, vp, tp, is_flagsp)$/
+txt_map_end	./vi/v_txt.c	/^txt_map_end(sp)$/
+txt_map_init	./vi/v_txt.c	/^txt_map_init(sp)$/
+txt_margin	./vi/v_txt.c	/^txt_margin(sp, tp, wmtp, didbreak, flags)$/
+txt_nomorech	./vi/v_txt.c	/^txt_nomorech(sp)$/
+txt_prompt	./ex/ex_txt.c	/^txt_prompt(sp, tp, prompt, flags)$/
+txt_resolve	./vi/v_txt.c	/^txt_resolve(sp, tiqh, flags)$/
+txt_showmatch	./vi/v_txt.c	/^txt_showmatch(sp, tp)$/
+txt_unmap	./vi/v_txt.c	/^txt_unmap(sp, tp, ec_flagsp)$/
+ulcase	./vi/v_ulcase.c	/^ulcase(sp, lno, lp, len, scno, ecno)$/
+unsetenv	./clib/env.c	/^unsetenv(name)$/
+usage	./ip_cl/ip_cl.c	/^usage()$/
+v_Put	./vi/v_put.c	/^v_Put(sp, vp)$/
+v_Replace	./vi/v_itxt.c	/^v_Replace(sp, vp)$/
+v_Undo	./vi/v_undo.c	/^v_Undo(sp, vp)$/
+v_Xchar	./vi/v_xchar.c	/^v_Xchar(sp, vp)$/
+v_again	./vi/v_ex.c	/^v_again(sp, vp)$/
+v_alias	./vi/vi.c	/^v_alias(sp, vp, kp)$/
+v_at	./vi/v_at.c	/^v_at(sp, vp)$/
+v_bmark	./vi/v_mark.c	/^v_bmark(sp, vp)$/
+v_bottom	./vi/v_scroll.c	/^v_bottom(sp, vp)$/
+v_buildps	./vi/v_paragraph.c	/^v_buildps(sp, p_p, s_p)$/
+v_cfirst	./vi/v_left.c	/^v_cfirst(sp, vp)$/
+v_chF	./vi/v_ch.c	/^v_chF(sp, vp)$/
+v_chT	./vi/v_ch.c	/^v_chT(sp, vp)$/
+v_change	./vi/v_itxt.c	/^v_change(sp, vp)$/
+v_chf	./vi/v_ch.c	/^v_chf(sp, vp)$/
+v_chrepeat	./vi/v_ch.c	/^v_chrepeat(sp, vp)$/
+v_chrrepeat	./vi/v_ch.c	/^v_chrrepeat(sp, vp)$/
+v_cht	./vi/v_ch.c	/^v_cht(sp, vp)$/
+v_cmd	./vi/vi.c	/^v_cmd(sp, dp, vp, ismotion, comcountp, mappedp)$/
+v_comlog	./vi/vi.c	/^v_comlog(sp, vp)$/
+v_correct	./vi/v_search.c	/^v_correct(sp, vp, isdelta)$/
+v_count	./vi/vi.c	/^v_count(sp, fkey, countp)$/
+v_cr	./vi/v_scroll.c	/^v_cr(sp, vp)$/
+v_delete	./vi/v_delete.c	/^v_delete(sp, vp)$/
+v_dollar	./vi/v_right.c	/^v_dollar(sp, vp)$/
+v_down	./vi/v_scroll.c	/^v_down(sp, vp)$/
+v_dtoh	./vi/vi.c	/^v_dtoh(sp)$/
+v_ecl	./vi/v_ex.c	/^v_ecl(sp)$/
+v_ecl_exec	./vi/v_ex.c	/^v_ecl_exec(sp)$/
+v_ecl_init	./vi/v_ex.c	/^v_ecl_init(sp)$/
+v_ecl_log	./vi/v_ex.c	/^v_ecl_log(sp, tp)$/
+v_emsg	./vi/v_util.c	/^v_emsg(sp, p, which)$/
+v_end	./common/main.c	/^v_end(gp)$/
+v_eof	./vi/v_util.c	/^v_eof(sp, mp)$/
+v_eol	./vi/v_util.c	/^v_eol(sp, mp)$/
+v_estr	./common/main.c	/^v_estr(name, eno, msg)$/
+v_event_append	./common/key.c	/^v_event_append(sp, argp)$/
+v_event_err	./common/key.c	/^v_event_err(sp, evp)$/
+v_event_exec	./vi/v_ex.c	/^v_event_exec(sp, vp)$/
+v_event_flush	./common/key.c	/^v_event_flush(sp, flags)$/
+v_event_get	./common/key.c	/^v_event_get(sp, argp, timeout, flags)$/
+v_event_grow	./common/key.c	/^v_event_grow(sp, add)$/
+v_event_push	./common/key.c	/^v_event_push(sp, p_evp, p_s, nitems, flags)$/
+v_ex	./vi/v_ex.c	/^v_ex(sp, vp)$/
+v_ex_done	./vi/v_ex.c	/^v_ex_done(sp, vp)$/
+v_exaddr	./vi/v_search.c	/^v_exaddr(sp, vp, dir)$/
+v_exec_ex	./vi/v_ex.c	/^v_exec_ex(sp, vp, exp)$/
+v_exmode	./vi/v_ex.c	/^v_exmode(sp, vp)$/
+v_filter	./vi/v_ex.c	/^v_filter(sp, vp)$/
+v_first	./vi/v_left.c	/^v_first(sp, vp)$/
+v_fmark	./vi/v_mark.c	/^v_fmark(sp, vp)$/
+v_home	./vi/v_scroll.c	/^v_home(sp, vp)$/
+v_hpagedown	./vi/v_scroll.c	/^v_hpagedown(sp, vp)$/
+v_hpageup	./vi/v_scroll.c	/^v_hpageup(sp, vp)$/
+v_iA	./vi/v_itxt.c	/^v_iA(sp, vp)$/
+v_iI	./vi/v_itxt.c	/^v_iI(sp, vp)$/
+v_iO	./vi/v_itxt.c	/^v_iO(sp, vp)$/
+v_ia	./vi/v_itxt.c	/^v_ia(sp, vp)$/
+v_ii	./vi/v_itxt.c	/^v_ii(sp, vp)$/
+v_increment	./vi/v_increment.c	/^v_increment(sp, vp)$/
+v_init	./vi/vi.c	/^v_init(sp)$/
+v_io	./vi/v_itxt.c	/^v_io(sp, vp)$/
+v_isempty	./vi/v_util.c	/^v_isempty(p, len)$/
+v_join	./vi/v_ex.c	/^v_join(sp, vp)$/
+v_key	./vi/vi.c	/^v_key(sp, command_events, evp, ec_flags)$/
+v_key_cmp	./common/key.c	/^v_key_cmp(ap, bp)$/
+v_key_ilookup	./common/key.c	/^v_key_ilookup(sp)$/
+v_key_init	./common/key.c	/^v_key_init(sp)$/
+v_key_len	./common/key.c	/^v_key_len(sp, ch)$/
+v_key_name	./common/key.c	/^v_key_name(sp, ach)$/
+v_key_val	./common/key.c	/^v_key_val(sp, ch)$/
+v_keyval	./common/key.c	/^v_keyval(sp, val, name)$/
+v_keyword	./vi/vi.c	/^v_keyword(sp)$/
+v_left	./vi/v_left.c	/^v_left(sp, vp)$/
+v_lgoto	./vi/v_scroll.c	/^v_lgoto(sp, vp)$/
+v_linedown	./vi/v_scroll.c	/^v_linedown(sp, vp)$/
+v_lineup	./vi/v_scroll.c	/^v_lineup(sp, vp)$/
+v_mark	./vi/v_mark.c	/^v_mark(sp, vp)$/
+v_match	./vi/v_match.c	/^v_match(sp, vp)$/
+v_middle	./vi/v_scroll.c	/^v_middle(sp, vp)$/
+v_motion	./vi/vi.c	/^v_motion(sp, dm, vp, mappedp)$/
+v_mulcase	./vi/v_ulcase.c	/^v_mulcase(sp, vp)$/
+v_ncol	./vi/v_left.c	/^v_ncol(sp, vp)$/
+v_nomove	./vi/v_util.c	/^v_nomove(sp)$/
+v_obsolete	./common/main.c	/^v_obsolete(name, argv)$/
+v_optchange	./vi/v_init.c	/^v_optchange(sp, offset, str, valp)$/
+v_pagedown	./vi/v_scroll.c	/^v_pagedown(sp, vp)$/
+v_pageup	./vi/v_scroll.c	/^v_pageup(sp, vp)$/
+v_paragraphb	./vi/v_paragraph.c	/^v_paragraphb(sp, vp)$/
+v_paragraphf	./vi/v_paragraph.c	/^v_paragraphf(sp, vp)$/
+v_put	./vi/v_put.c	/^v_put(sp, vp)$/
+v_redraw	./vi/v_redraw.c	/^v_redraw(sp, vp)$/
+v_replace	./vi/v_replace.c	/^v_replace(sp, vp)$/
+v_right	./vi/v_right.c	/^v_right(sp, vp)$/
+v_screen	./vi/v_screen.c	/^v_screen(sp, vp)$/
+v_screen_copy	./vi/v_init.c	/^v_screen_copy(orig, sp)$/
+v_screen_end	./vi/v_init.c	/^v_screen_end(sp)$/
+v_search	./vi/v_search.c	/^v_search(sp, vp, ptrn, plen, flags, dir)$/
+v_searchN	./vi/v_search.c	/^v_searchN(sp, vp)$/
+v_searchb	./vi/v_search.c	/^v_searchb(sp, vp)$/
+v_searchf	./vi/v_search.c	/^v_searchf(sp, vp)$/
+v_searchn	./vi/v_search.c	/^v_searchn(sp, vp)$/
+v_searchw	./vi/v_search.c	/^v_searchw(sp, vp)$/
+v_sectionb	./vi/v_section.c	/^v_sectionb(sp, vp)$/
+v_sectionf	./vi/v_section.c	/^v_sectionf(sp, vp)$/
+v_sentenceb	./vi/v_sentence.c	/^v_sentenceb(sp, vp)$/
+v_sentencef	./vi/v_sentence.c	/^v_sentencef(sp, vp)$/
+v_shiftl	./vi/v_ex.c	/^v_shiftl(sp, vp)$/
+v_shiftr	./vi/v_ex.c	/^v_shiftr(sp, vp)$/
+v_sof	./vi/v_util.c	/^v_sof(sp, mp)$/
+v_sol	./vi/v_util.c	/^v_sol(sp)$/
+v_status	./vi/v_status.c	/^v_status(sp, vp)$/
+v_strdup	./common/util.c	/^v_strdup(sp, str, len)$/
+v_subst	./vi/v_itxt.c	/^v_subst(sp, vp)$/
+v_suspend	./vi/v_ex.c	/^v_suspend(sp, vp)$/
+v_switch	./vi/v_ex.c	/^v_switch(sp, vp)$/
+v_sync	./common/key.c	/^v_sync(sp, flags)$/
+v_tagpop	./vi/v_ex.c	/^v_tagpop(sp, vp)$/
+v_tagpush	./vi/v_ex.c	/^v_tagpush(sp, vp)$/
+v_tcmd	./vi/v_txt.c	/^v_tcmd(sp, vp, prompt, flags)$/
+v_txt	./vi/v_txt.c	/^v_txt(sp, vp, tm, lp, len, prompt, ai_line, rcount/
+v_txt_auto	./vi/v_txt.c	/^v_txt_auto(sp, lno, aitp, len, tp)$/
+v_ulcase	./vi/v_ulcase.c	/^v_ulcase(sp, vp)$/
+v_undo	./vi/v_undo.c	/^v_undo(sp, vp)$/
+v_up	./vi/v_scroll.c	/^v_up(sp, vp)$/
+v_wordB	./vi/v_word.c	/^v_wordB(sp, vp)$/
+v_wordE	./vi/v_word.c	/^v_wordE(sp, vp)$/
+v_wordW	./vi/v_word.c	/^v_wordW(sp, vp)$/
+v_wordb	./vi/v_word.c	/^v_wordb(sp, vp)$/
+v_worde	./vi/v_word.c	/^v_worde(sp, vp)$/
+v_wordw	./vi/v_word.c	/^v_wordw(sp, vp)$/
+v_xchar	./vi/v_xchar.c	/^v_xchar(sp, vp)$/
+v_yank	./vi/v_yank.c	/^v_yank(sp, vp)$/
+v_z	./vi/v_z.c	/^v_z(sp, vp)$/
+v_zero	./vi/v_left.c	/^v_zero(sp, vp)$/
+v_zexit	./vi/v_zexit.c	/^v_zexit(sp, vp)$/
+vi	./vi/vi.c	/^vi(spp)$/
+vs_bg	./vi/vs_split.c	/^vs_bg(sp)$/
+vs_busy	./vi/vs_msg.c	/^vs_busy(sp, msg, btype)$/
+vs_change	./vi/vs_smap.c	/^vs_change(sp, lno, op)$/
+vs_colpos	./vi/vs_relative.c	/^vs_colpos(sp, lno, cno)$/
+vs_column	./vi/vs_relative.c	/^vs_column(sp, colp)$/
+vs_columns	./vi/vs_relative.c	/^vs_columns(sp, lp, lno, cnop, diffp)$/
+vs_crel	./vi/v_z.c	/^vs_crel(sp, count)$/
+vs_deleteln	./vi/vs_smap.c	/^vs_deleteln(sp, cnt)$/
+vs_discard	./vi/vs_split.c	/^vs_discard(sp, spp)$/
+vs_divider	./vi/vs_msg.c	/^vs_divider(sp)$/
+vs_ex_resolve	./vi/vs_msg.c	/^vs_ex_resolve(sp, continuep)$/
+vs_fg	./vi/vs_split.c	/^vs_fg(sp, nspp, name, newscreen)$/
+vs_getbg	./vi/vs_split.c	/^vs_getbg(sp, name)$/
+vs_home	./vi/vs_msg.c	/^vs_home(sp)$/
+vs_insertln	./vi/vs_smap.c	/^vs_insertln(sp, cnt)$/
+vs_line	./vi/vs_line.c	/^vs_line(sp, smp, yp, xp)$/
+vs_modeline	./vi/vs_refresh.c	/^vs_modeline(sp)$/
+vs_msg	./vi/vs_msg.c	/^vs_msg(sp, mtype, line, len)$/
+vs_msgsave	./vi/vs_msg.c	/^vs_msgsave(sp, mt, p, len)$/
+vs_number	./vi/vs_line.c	/^vs_number(sp)$/
+vs_output	./vi/vs_msg.c	/^vs_output(sp, mtype, line, llen)$/
+vs_paint	./vi/vs_refresh.c	/^vs_paint(sp, flags)$/
+vs_rcm	./vi/vs_relative.c	/^vs_rcm(sp, lno, islast)$/
+vs_refresh	./vi/vs_refresh.c	/^vs_refresh(sp, forcepaint)$/
+vs_repaint	./vi/vs_refresh.c	/^vs_repaint(sp, evp)$/
+vs_resize	./vi/vs_split.c	/^vs_resize(sp, count, adj)$/
+vs_resolve	./vi/vs_msg.c	/^vs_resolve(sp, csp, forcewait)$/
+vs_screens	./vi/vs_relative.c	/^vs_screens(sp, lno, cnop)$/
+vs_scroll	./vi/vs_msg.c	/^vs_scroll(sp, continuep, wtype)$/
+vs_sm_1down	./vi/vs_smap.c	/^vs_sm_1down(sp)$/
+vs_sm_1up	./vi/vs_smap.c	/^vs_sm_1up(sp)$/
+vs_sm_cursor	./vi/vs_smap.c	/^vs_sm_cursor(sp, smpp)$/
+vs_sm_delete	./vi/vs_smap.c	/^vs_sm_delete(sp, lno)$/
+vs_sm_down	./vi/vs_smap.c	/^vs_sm_down(sp, rp, count, scmd, smp)$/
+vs_sm_erase	./vi/vs_smap.c	/^vs_sm_erase(sp)$/
+vs_sm_fill	./vi/vs_smap.c	/^vs_sm_fill(sp, lno, pos)$/
+vs_sm_insert	./vi/vs_smap.c	/^vs_sm_insert(sp, lno)$/
+vs_sm_next	./vi/vs_smap.c	/^vs_sm_next(sp, p, t)$/
+vs_sm_nlines	./vi/vs_smap.c	/^vs_sm_nlines(sp, from_sp, to_lno, max)$/
+vs_sm_position	./vi/vs_smap.c	/^vs_sm_position(sp, rp, cnt, pos)$/
+vs_sm_prev	./vi/vs_smap.c	/^vs_sm_prev(sp, p, t)$/
+vs_sm_reset	./vi/vs_smap.c	/^vs_sm_reset(sp, lno)$/
+vs_sm_scroll	./vi/vs_smap.c	/^vs_sm_scroll(sp, rp, count, scmd)$/
+vs_sm_up	./vi/vs_smap.c	/^vs_sm_up(sp, rp, count, scmd, smp)$/
+vs_split	./vi/vs_split.c	/^vs_split(sp, new, ccl)$/
+vs_swap	./vi/vs_split.c	/^vs_swap(sp, nspp, name)$/
+vs_update	./vi/vs_msg.c	/^vs_update(sp, m1, m2)$/
+vs_wait	./vi/vs_msg.c	/^vs_wait(sp, continuep, wtype)$/
+vsnprintf	./clib/vsnprintf.c	/^vsnprintf(str, n, fmt, ap)$/
+waddch	./curses/addch.c	/^waddch(win, ch)$/
+waddnstr	./curses/waddnstr.c	/^waddnstr(win, s, n)$/
+wclear	./curses/clear.c	/^wclear(win)$/
+wclrtobot	./curses/clrtobot.c	/^wclrtobot(win)$/
+wclrtoeol	./curses/clrtoeol.c	/^wclrtoeol(win)$/
+wdelch	./curses/delch.c	/^wdelch(win)$/
+wdeleteln	./curses/deleteln.c	/^wdeleteln(win)$/
+werase	./curses/erase.c	/^werase(win)$/
+wgetch	./curses/getch.c	/^wgetch(win)$/
+wgetstr	./curses/getstr.c	/^wgetstr(win, str)$/
+winsch	./curses/insch.c	/^winsch(win, ch)$/
+winsertln	./curses/insertln.c	/^winsertln(win)$/
+wmove	./curses/move.c	/^wmove(win, y, x)$/
+wrefresh	./curses/refresh.c	/^wrefresh(win)$/
+wstandend	./curses/standout.c	/^wstandend(win)$/
+wstandout	./curses/standout.c	/^wstandout(win)$/
+zap	./curses/setterm.c	/^zap()$/

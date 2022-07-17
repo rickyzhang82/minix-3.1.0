@@ -1,0 +1,17 @@
+/* $Id: C_ms_src.c,v 1.3 2005/09/01 12:13:25 beng Exp $ */
+/*
+ * (c) copyright 1987 by the Vrije Universiteit, Amsterdam, The Netherlands.
+ * See the copyright notice in the ACK home directory, in the file "Copyright".
+ */
+#include <string.h>
+#include <em.h>
+#include <em_mes.h>
+
+void
+C_ms_src(int nlines,const char *filnam)
+{
+	C_mes_begin(ms_src);
+	C_cst((arith)nlines);
+	C_scon(filnam, (arith)(strlen(filnam) + 1));
+	C_mes_end();
+}

@@ -1,0 +1,116 @@
+#!/usr/bin/sh
+#
+# Patch acd(1) pass description file to enable extra ACK languages
+# (C) 2005 Michael Kennett
+
+action=
+c=/usr/src/commands/i386
+
+if [ ! -d $c -o ! -f $c/Makefile ]
+then
+    echo "*** ERROR: '$c/Makefile' does not exist"
+    exit 1
+fi
+
+# Patch makefile to increase memory allocated to acd
+stack=`grep "install -S" $c/Makefile | awk '{print $3}' | sed 's/kw//'`
+if [ $stack -ne 30 ]
+then
+    action=done
+    ed - $c/Makefile << EOF
+/install -S ${stack}kw/s/${stack}/30/
+w
+q
+EOF
+fi
+
+# Patch existing acd(1) binary
+chmod u+w /usr/bin/acd
+mem=`chmem +0 /usr/bin/acd | sed -e 's/.*to \([0-9]*\).*/\1/'`
+
+if [ $mem -lt 110592 ]
+then
+    action=done
+    echo "*** Increasing memory allocated to /usr/bin/acd"
+    chmem =110592 /usr/bin/acd
+fi
+chmod u-w /usr/bin/acd
+
+d=/usr/lib/descr
+if [ ! -f $d ]
+then
+    echo "*** ERROR: '$d' does not exist"
+    exit 1
+fi
+
+# ACK_BEM is used by fixgrind, so use libbas instead
+if grep libbas $d > /dev/null
+then
+    : already patched
+else
+    action=done
+    echo Patching $d to support basic...
+    ed - $d > /dev/null << EOF
+/ACK_CPP/i
+ACK_BEM =	\$A/em_basic -Vw\${W}p\${P}f8
+.
+/arg -.c/i
+arg -.b
+if \$PROGRAM = basic
+	ifndef RTSO
+		RTSO = -.b
+	LIBS = \$LIBS + -.b
+
+.
+/arg -n/
+/ACK_M2/i
+	ACK_BEM = \$ACK_BEM -L
+.
+/arg -Wack-R\$pass-\$flag/
+/if \$pass = cpp/i
+	if \$pass = basic
+		ACK_BEM = \$ACK_BEM -\$flag
+.
+/# Compile C source to EM-code./i
+# Compile Basic source to EM-code.
+transform .b .k
+	ifhash \$*
+		apply .c .i
+	\$ACK_BEM \$* \$> \$<
+	ifndef RTSO
+		RTSO = -.b
+	LIBS = \$LIBS + -.b
+
+.
+/combine (.o .a) .out/
+/if \$RTSO = -.c/i
+	if \$RTSO = -.b
+		rtso = \$A/\$ARCH/crtso.o
+.
+/if (-.c - \$LIBS)/i
+	if (-.b - \$LIBS) = ()
+		libbas = \$A/\$ARCH/libbas.a
+		libc = \$A/\$ARCH/libc.a
+		libd = \$A/\$ARCH/libd.a
+.
+/libs =/s/libp/libp \$libbas/
+w
+q
+EOF
+fi
+
+if [ ! -f /usr/bin/basic ]
+then
+    action=done
+    ln /usr/bin/acd /usr/bin/basic
+fi
+
+if [ x$action = xdone ]
+then
+    echo "*** fix-basic-support : patch succesfully applied"
+else
+    echo "*** fix-basic-support : nothing done (patch previously applied)"
+fi
+
+exit 0
+

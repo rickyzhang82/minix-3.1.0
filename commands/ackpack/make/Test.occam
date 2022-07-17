@@ -1,0 +1,173 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+l = image
+s = lang/occam/test
+t = obj/test/occam
+u = /usr/lib/i386
+
+DEFINES = -D__minix -D__i386 -D_EM_WSIZE=4 -D_EM_PSIZE=4 -D_EM_SSIZE=2 \
+	-D_EM_LSIZE=4 -D_EM_FSIZE=4 -D_EMDSIZE=8 -D__ACK__ -D_ACK \
+	-Ilang/occam/include
+
+CPP = $l/cpp.ansi $(DEFINES)
+OC = $l/em_occam -Vw4l4p4
+OPT = $l/em_opt
+CG = $l/i386/cg -F__fp_hook
+AS = $l/i386/as
+LED = $l/em_led -a0:4 -a1:4 -a2:4 -a3:4 -b0:0 -b1:0
+CV = $l/cv -x -mi386
+
+HEAD = $u/crtso.o
+TAIL = $l/i386/libocm.a $u/libd.a $u/libc.a $u/libfp.a $u/libe.a $u/end.a
+
+# Building K_OBJECTS just tests the front-end
+K_OBJECTS = $t/Huffman.k $t/aatob.k $t/copy.k $t/key.k $t/lifegame.k \
+	$t/matmul.k $t/sort.k $t/use_prnt.k $t/xxtoy.k
+
+# Testing the EM processing pipeline
+M_OBJECTS = $t/Huffman.m $t/aatob.m $t/copy.m $t/key.m $t/lifegame.m \
+	$t/matmul.m $t/sort.m $t/use_prnt.m $t/xxtoy.m
+S_OBJECTS = $t/Huffman.s $t/aatob.s $t/copy.s $t/key.s $t/lifegame.s \
+	$t/matmul.s $t/sort.s $t/use_prnt.s $t/xxtoy.s
+O_OBJECTS = $t/Huffman.o $t/aatob.o $t/copy.o $t/key.o $t/lifegame.o \
+	$t/matmul.o $t/sort.o $t/use_prnt.o $t/xxtoy.o
+
+# Due to library limitations, not all programs can currently be linked
+# into an executable.
+PROGRAMS = $t/Huffman $t/aatob $t/copy $t/key $t/lifegame \
+	$t/matmul $t/sort $t/use_prnt $t/xxtoy
+
+default : x-compiler $(O_OBJECTS) $(PROGRAMS)
+
+x-compiler :
+	@if [ ! -x $l/em_basic ] ; then \
+		echo "Error: Basic front-end not built" ; exit 1 ; fi
+
+$t/Huffman.k : $s/Huffman.ocm
+	$(OC) < $< > $@
+$t/Huffman.m : $t/Huffman.k
+	$(OPT) $< > $@
+$t/Huffman.s : $t/Huffman.m
+	$(CG) $< > $@
+$t/Huffman.o : $t/Huffman.s
+	$(AS) - -o $@ $<
+$t/Huffman.img : $t/Huffman.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/Huffman : $t/Huffman.img
+	$(CV) $< $@
+
+$t/aatob.k : $s/aatob.ocm
+	$(OC) < $< > $@
+$t/aatob.m : $t/aatob.k
+	$(OPT) $< > $@
+$t/aatob.s : $t/aatob.m
+	$(CG) $< > $@
+$t/aatob.o : $t/aatob.s
+	$(AS) - -o $@ $<
+$t/aatob.img : $t/aatob.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/aatob : $t/aatob.img
+	$(CV) $< $@
+
+$t/copy.k : $s/copy.ocm
+	$(OC) < $< > $@
+$t/copy.m : $t/copy.k
+	$(OPT) $< > $@
+$t/copy.s : $t/copy.m
+	$(CG) $< > $@
+$t/copy.o : $t/copy.s
+	$(AS) - -o $@ $<
+$t/copy.img : $t/copy.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/copy : $t/copy.img
+	$(CV) $< $@
+
+$t/key.i : $s/key.ocm
+	$(CPP) $< > $@
+$t/key.k : $t/key.i
+	$(OC) < $< > $@
+$t/key.m : $t/key.k
+	$(OPT) $< > $@
+$t/key.s : $t/key.m
+	$(CG) $< > $@
+$t/key.o : $t/key.s
+	$(AS) - -o $@ $<
+$t/key.img : $t/key.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/key : $t/key.img
+	$(CV) $< $@
+
+$t/lifegame.k : $s/lifegame.ocm
+	$(OC) < $< > $@
+$t/lifegame.m : $t/lifegame.k
+	$(OPT) $< > $@
+$t/lifegame.s : $t/lifegame.m
+	$(CG) $< > $@
+$t/lifegame.o : $t/lifegame.s
+	$(AS) - -o $@ $<
+$t/lifegame.img : $t/lifegame.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/lifegame : $t/lifegame.img
+	$(CV) $< $@
+
+$t/matmul.i : $s/matmul.ocm
+	$(CPP) $< > $@
+$t/matmul.k : $t/matmul.i
+	$(OC) < $< > $@
+$t/matmul.m : $t/matmul.k
+	$(OPT) $< > $@
+$t/matmul.s : $t/matmul.m
+	$(CG) $< > $@
+$t/matmul.o : $t/matmul.s
+	$(AS) - -o $@ $<
+$t/matmul.img : $t/matmul.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/matmul : $t/matmul.img
+	$(CV) $< $@
+
+$t/sort.i : $s/sort.ocm
+	$(CPP) $< > $@
+$t/sort.k : $t/sort.i
+	$(OC) < $< > $@
+$t/sort.m : $t/sort.k
+	$(OPT) $< > $@
+$t/sort.s : $t/sort.m
+	$(CG) $< > $@
+$t/sort.o : $t/sort.s
+	$(AS) - -o $@ $<
+$t/sort.img : $t/sort.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/sort : $t/sort.img
+	$(CV) $< $@
+
+$t/use_prnt.i : $s/use_prnt.ocm
+	$(CPP) $< > $@
+$t/use_prnt.k : $t/use_prnt.i
+	$(OC) < $< > $@
+$t/use_prnt.m : $t/use_prnt.k
+	$(OPT) $< > $@
+$t/use_prnt.s : $t/use_prnt.m
+	$(CG) $< > $@
+$t/use_prnt.o : $t/use_prnt.s
+	$(AS) - -o $@ $<
+$t/use_prnt.img : $t/use_prnt.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/use_prnt : $t/use_prnt.img
+	$(CV) $< $@
+
+$t/xxtoy.k : $s/xxtoy.ocm
+	$(OC) < $< > $@
+$t/xxtoy.m : $t/xxtoy.k
+	$(OPT) $< > $@
+$t/xxtoy.s : $t/xxtoy.m
+	$(CG) $< > $@
+$t/xxtoy.o : $t/xxtoy.s
+	$(AS) - -o $@ $<
+$t/xxtoy.img : $t/xxtoy.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/xxtoy : $t/xxtoy.img
+	$(CV) $< $@
+

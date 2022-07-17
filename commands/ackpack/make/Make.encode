@@ -1,0 +1,21 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+default : $l/em_decode $l/em_encode
+
+$l/em_decode : $u/misc/convert.c $o/libeme.a $o/libmodule.a $o/libread_emkV.a $o/libem_data.a
+	$(CC) -o $@ -I$o -I$h -I$m -I$s/read_em -I$s/system $u/misc/convert.c -L$o -leme -lread_emkV -lem_data -lmodule
+
+$l/em_encode : $u/misc/convert.c $o/libemk.a $o/libmodule.a $o/libread_emeV.a $o/libem_data.a
+	$(CC) -o $@ -I$o -I$h -I$m -I$s/read_em -I$s/system $u/misc/convert.c -L$o -lemk -lread_emeV -lem_data -lmodule

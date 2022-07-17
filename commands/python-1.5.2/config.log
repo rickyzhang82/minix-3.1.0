@@ -1,0 +1,204 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:608: checking MACHDEP
+configure:653: checking CCC
+configure:669: checking for --without-gcc
+configure:746: checking for gcc
+configure:859: checking whether the C compiler (cc  ) works
+configure:875: cc -o conftest    conftest.c  1>&5
+"configure", line 872: (warning) 'main' old-fashioned function definition
+configure:901: checking whether the C compiler (cc  ) is a cross-compiler
+configure:906: checking whether we are using GNU C
+configure:934: checking whether cc accepts -g
+configure:997: checking LINKCC
+configure:1014: checking LDLIBRARY
+configure:1043: checking for ranlib
+configure:1076: checking for ar
+configure:1150: checking how to run the C preprocessor
+configure:1230: checking for AIX
+configure:1255: checking for minix/config.h
+configure:1304: checking whether cc accepts -OPT:Olimit=0
+configure:1338: checking whether cc accepts -Olimit 1500
+configure:1375: checking for C preprocessor type
+configure:1388: cc -c   conftest.c 1>&5
+"configure", line 1383: (warning) 'main' old-fashioned function definition
+configure:1405: checking for ANSI C header files
+configure:1516: checking for dlfcn.h
+configure:1516: checking for fcntl.h
+configure:1516: checking for limits.h
+configure:1516: checking for locale.h
+configure:1516: checking for ncurses.h
+configure:1516: checking for pthread.h
+configure:1516: checking for signal.h
+configure:1516: checking for stdarg.h
+configure:1516: checking for stddef.h
+configure:1516: checking for stdlib.h
+configure:1516: checking for thread.h
+configure:1516: checking for unistd.h
+configure:1516: checking for utime.h
+configure:1516: checking for sys/audioio.h
+configure:1516: checking for sys/file.h
+configure:1516: checking for sys/lock.h
+configure:1516: checking for sys/param.h
+configure:1516: checking for sys/select.h
+configure:1516: checking for sys/time.h
+configure:1516: checking for sys/times.h
+configure:1516: checking for sys/un.h
+configure:1516: checking for sys/utsname.h
+configure:1516: checking for sys/wait.h
+configure:1557: checking for dirent.h that defines DIR
+configure:1595: checking for opendir in -ldir
+configure:1681: checking for clock_t in time.h
+configure:1710: checking for mode_t
+configure:1743: checking for off_t
+configure:1776: checking for pid_t
+configure:1809: checking return type of signal handlers
+configure:1850: checking for size_t
+configure:1883: checking for uid_t in sys/types.h
+configure:1918: checking size of int
+configure:1957: checking size of long
+configure:1996: checking size of void *
+configure:2036: checking for long long support
+configure:2046: cc -c   conftest.c 1>&5
+"configure", line 2041: (warning) 'main' old-fashioned function definition
+"configure", line 2042: repeated size specifier
+"configure", line 2042: repeated size specifier
+configure: failed program was:
+#line 2039 "configure"
+#include "confdefs.h"
+
+int main() {
+long long x; x = (long long)0;
+; return 0; }
+configure:2102: checking size of off_t
+configure:2144: checking whether to enable large file support
+configure:2170: checking for --with-next-framework
+configure:2187: checking for --with-dyld
+configure:2213: checking SO
+configure:2227: checking LDSHARED
+configure:2267: checking CCSHARED
+configure:2289: checking LINKFORSHARED
+configure:2324: checking for dlopen in -ldl
+configure:2371: checking for shl_load in -ldld
+configure:2424: checking for t_open in -lnsl
+configure:2464: checking for socket in -lsocket
+configure:2504: checking for socket in -lnet
+configure:2547: checking for --with-libs
+configure:2561: checking for --with(out)-readline
+configure:2576: checking for --with-dec-threads
+configure:2592: checking for --with-threads
+configure:2606: checking for --with-thread
+configure:3113: checking for --with-sgi-dl
+configure:3136: checking for --with-dl-dld
+configure:3169: checking for alarm
+configure:3169: checking for chown
+configure:3169: checking for clock
+configure:3169: checking for dlopen
+configure:3169: checking for execv
+configure:3169: checking for flock
+configure:3169: checking for fork
+configure:3169: checking for fsync
+configure:3169: checking for fdatasync
+configure:3169: checking for ftime
+configure:3169: checking for ftruncate
+configure:3169: checking for getpeername
+configure:3169: checking for getpgrp
+configure:3169: checking for getpid
+configure:3169: checking for getpwent
+configure:3169: checking for gettimeofday
+configure:3169: checking for getwd
+configure:3169: checking for kill
+configure:3169: checking for link
+configure:3169: checking for lstat
+configure:3169: checking for mkfifo
+configure:3169: checking for mktime
+configure:3169: checking for nice
+configure:3169: checking for pause
+configure:3169: checking for plock
+configure:3169: checking for pthread_init
+configure:3169: checking for putenv
+configure:3169: checking for readlink
+configure:3169: checking for select
+configure:3169: checking for setgid
+configure:3169: checking for setlocale
+configure:3169: checking for setuid
+configure:3169: checking for setsid
+configure:3169: checking for setpgid
+configure:3169: checking for setpgrp
+configure:3169: checking for setvbuf
+configure:3169: checking for sigaction
+configure:3169: checking for siginterrupt
+configure:3169: checking for sigrelse
+configure:3169: checking for strftime
+configure:3169: checking for strptime
+configure:3169: checking for symlink
+configure:3169: checking for tcgetpgrp
+configure:3169: checking for tcsetpgrp
+configure:3169: checking for timegm
+configure:3169: checking for times
+configure:3169: checking for truncate
+configure:3169: checking for uname
+configure:3169: checking for waitpid
+configure:3226: checking for fseek64
+configure:3226: checking for fseeko
+configure:3226: checking for fstatvfs
+configure:3226: checking for ftell64
+configure:3226: checking for ftello
+configure:3226: checking for statvfs
+configure:3282: checking for dup2
+configure:3282: checking for getcwd
+configure:3282: checking for strdup
+configure:3282: checking for strerror
+configure:3282: checking for memmove
+configure:3337: checking for getpgrp
+configure:3387: cc -c   conftest.c 1>&5
+"configure", line 3382: (warning) 'main' old-fashioned function definition
+"configure", line 3383: (strict) no parameters expected
+configure:3403: checking for setpgrp
+configure:3469: checking for gettimeofday
+configure:3519: cc -c   conftest.c 1>&5
+"configure", line 3514: (warning) 'main' old-fashioned function definition
+configure:3538: checking whether time.h and sys/time.h may both be included
+configure:3573: checking whether struct tm is in sys/time.h or time.h
+configure:3607: checking for tm_zone in struct tm
+configure:3640: checking for tzname
+configure:3678: checking for time.h that defines altzone
+configure:3712: checking whether sys/select.h and sys/time.h may both be included
+configure:3725: cc -c   conftest.c 1>&5
+"configure", line 3720: (warning) 'main' old-fashioned function definition
+configure:3741: checking whether char is unsigned
+configure:3805: checking for working const
+configure:3882: checking for working volatile
+configure:3891: cc -c   conftest.c 1>&5
+"configure", line 3886: (warning) 'main' old-fashioned function definition
+configure:3908: checking for working signed char
+configure:3917: cc -c   conftest.c 1>&5
+"configure", line 3912: (warning) 'main' old-fashioned function definition
+configure:3934: checking for prototypes
+configure:3943: cc -c   conftest.c 1>&5
+"configure", line 3938: (warning) 'main' old-fashioned function definition
+configure:3958: checking for variable length prototypes and stdarg.h
+configure:3977: cc -c   conftest.c 1>&5
+"configure", line 3972: (warning) 'main' old-fashioned function definition
+configure:3993: checking for bad exec* prototypes
+configure:4002: cc -c   conftest.c 1>&5
+"configure", line 3997: (warning) 'main' old-fashioned function definition
+configure:4019: checking for bad static forward
+configure:4040: cc -o conftest    conftest.c  1>&5
+"configure", line 4028: (warning) 'foobar' old-fashioned function definition
+"configure", line 4034: (warning) 'main' old-fashioned function definition
+"configure", line 4035: (warning) implicit declaration of function exit
+configure:4059: checking whether va_list is an array
+configure:4074: cc -c   conftest.c 1>&5
+"configure", line 4069: (warning) 'main' old-fashioned function definition
+configure:4090: checking for gethostbyname_r
+configure:4269: checking for gethostbyname
+configure:4333: checking for __fpu_control in -lieee
+configure:4382: checking for --with-fpectl
+configure:4405: checking for --with-libm=STRING
+configure:4426: checking for --with-libc=STRING
+configure:4450: checking for hypot
+configure:4505: checking for hypot
+configure:4563: checking for genuine getopt
+configure:4601: checking what malloc(0) returns

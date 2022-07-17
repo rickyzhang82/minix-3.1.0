@@ -1,0 +1,147 @@
+/* Definition of EM procedural interface: hand-written definitions
+
+  C_open	| char *:filename	| <hand-written>
+  C_busy	|	| <hand-written>
+  C_close	|	| <hand-written>
+  C_magic	|	| <hand-written>
+*/
+
+/* $Id: em.nogen,v 1.3 2005/09/01 12:13:25 beng Exp $ */
+
+#define C_df_dlb(l)	CC_dfdlb(l)
+#define C_df_dnam(s)	CC_dfdnam(s)
+#define C_df_ilb(l)	CC_dfilb(l)
+
+#define C_pro(s,l)	CC_pro(s, l)
+#define C_pro_narg(s)	CC_pronarg(s)
+#define C_end(l)	CC_end(l)
+#define C_end_narg()	CC_endnarg()
+
+#define C_exa_dnam(s)	CC_psdnam(ps_exa, s)
+#define C_exa_dlb(l)	CC_psdlb(ps_exa, l)
+#define C_ina_dnam(s)	CC_psdnam(ps_ina, s)
+#define C_ina_dlb(l)	CC_psdlb(ps_ina, l)
+#define C_exp(s)	CC_pspnam(ps_exp, s)
+#define C_inp(s)	CC_pspnam(ps_inp, s)
+
+#define C_bss_cst(n,w,i)	CC_bhcst(ps_bss, n, w, i)
+#define C_hol_cst(n,w,i)	CC_bhcst(ps_hol, n, w, i)
+#define C_bss_icon(n,s,sz,i)	CC_bhicon(ps_bss,n,s,sz,i)
+#define C_hol_icon(n,s,sz,i)	CC_bhicon(ps_hol,n,s,sz,i)
+#define C_bss_ucon(n,s,sz,i)	CC_bhucon(ps_bss,n,s,sz,i)
+#define C_hol_ucon(n,s,sz,i)	CC_bhucon(ps_hol,n,s,sz,i)
+#define C_bss_fcon(n,s,sz,i)	CC_bhfcon(ps_bss,n,s,sz,i)
+#define C_hol_fcon(n,s,sz,i)	CC_bhfcon(ps_hol,n,s,sz,i)
+#define C_bss_dnam(n,s,off,i)	CC_bhdnam(ps_bss,n,s,off,i)
+#define C_hol_dnam(n,s,off,i)	CC_bhdnam(ps_hol,n,s,off,i)
+#define C_bss_dlb(n,l,off,i)	CC_bhdlb(ps_bss,n,l,off,i)
+#define C_hol_dlb(n,l,off,i)	CC_bhdlb(ps_hol,n,l,off,i)
+#define C_bss_ilb(n,l,i)	CC_bhilb(ps_bss,n,l,i)
+#define C_hol_ilb(n,l,i)	CC_bhilb(ps_hol,n,l,i)
+#define C_bss_pnam(n,s,i)	CC_bhpnam(ps_bss,n,s,i)
+#define C_hol_pnam(n,s,i)	CC_bhpnam(ps_hol,n,s,i)
+
+#define C_con_cst(v)	CC_crcst(ps_con,v)
+#define C_con_icon(v,s)	CC_crxcon(ps_con,sp_icon,v,s)
+#define C_con_ucon(v,s)	CC_crxcon(ps_con,sp_ucon,v,s)
+#define C_con_fcon(v,s)	CC_crxcon(ps_con,sp_fcon,v,s)
+#define C_con_scon(v,s)	CC_crscon(ps_con,v,s)
+#define C_con_dnam(v,s)	CC_crdnam(ps_con,v,s)
+#define C_con_dlb(v,s)	CC_crdlb(ps_con,v,s)
+#define C_con_ilb(v)	CC_crilb(ps_con,v)
+#define C_con_pnam(v)	CC_crpnam(ps_con,v)
+
+#define C_rom_cst(v)	CC_crcst(ps_rom,v)
+#define C_rom_icon(v,s)	CC_crxcon(ps_rom,sp_icon,v,s)
+#define C_rom_ucon(v,s)	CC_crxcon(ps_rom,sp_ucon,v,s)
+#define C_rom_fcon(v,s)	CC_crxcon(ps_rom,sp_fcon,v,s)
+#define C_rom_scon(v,s)	CC_crscon(ps_rom,v,s)
+#define C_rom_dnam(v,s)	CC_crdnam(ps_rom,v,s)
+#define C_rom_dlb(v,s)	CC_crdlb(ps_rom,v,s)
+#define C_rom_ilb(v)	CC_crilb(ps_rom,v)
+#define C_rom_pnam(v)	CC_crpnam(ps_rom,v)
+
+#define C_cst(l)	CC_cst(l)
+#define C_icon(v,s)	CC_icon(v,s)
+#define C_ucon(v,s)	CC_ucon(v,s)
+#define C_fcon(v,s)	CC_fcon(v,s)
+#define C_scon(v,s)	CC_scon(v,s)
+#define C_dnam(v,s)	CC_dnam(v,s)
+#define C_dlb(v,s)	CC_dlb(v,s)
+#define C_ilb(l)	CC_ilb(l)
+#define C_pnam(s)	CC_pnam(s)
+
+#define C_mes_begin(ms)	CC_msstart(ms)
+#define C_mes_end()	CC_msend()
+
+#define C_exc(c1,c2)	CC_exc(c1,c2)
+
+#ifndef ps_rom
+#include <em_pseu.h>
+#endif
+
+#ifndef op_lol
+#include <em_mnem.h>
+#endif
+
+#ifndef sp_icon
+#include <em_spec.h>
+#endif
+
+/* prototypes, also hand written. */
+void CC_bhcst(int, arith, arith, int);
+void CC_bhdlb(int, arith, label, arith, int);
+void CC_bhdnam(int, arith, const char *, arith, int);
+void CC_bhfcon(int, arith, const char *, arith, int);
+void CC_bhicon(int, arith, const char *, arith, int);
+void CC_bhilb(int, arith, label, int);
+void CC_bhpnam(int, arith, const char *, int);
+void CC_bhucon(int, arith, const char *, arith, int);
+void CC_crcst(int, arith);
+void CC_crdlb(int, label, arith);
+void CC_crdnam(int, const char *, arith);
+void CC_crilb(int, label);
+void CC_crpnam(int, const char *);
+void CC_crscon(int, const char *, arith);
+void CC_crxcon(int, int, const char *, arith);
+void CC_cst(arith);
+void CC_dfdlb(label);
+void CC_dfdnam(const char *);
+void CC_dfilb(label);
+void CC_dlb(label, arith);
+void CC_dnam(const char *, arith);
+void CC_end(arith);
+void CC_endnarg(void);
+void CC_exc(arith, arith);
+void CC_fcon(const char *, arith);
+void CC_icon(const char *, arith);
+void CC_ilb(label);
+void CC_msend(void);
+void CC_msstart(int);
+void CC_op(int);
+void CC_opcst(int, arith);
+void CC_opdlb(int, label, arith);
+void CC_opdnam(int, const char *, arith);
+void CC_opilb(int, label);
+void CC_opnarg(int);
+void CC_oppnam(int, const char *);
+void CC_pnam(const char *);
+void CC_pro(const char *, arith);
+void CC_pronarg(const char *);
+void CC_psdlb(int, label);
+void CC_psdnam(int, const char *);
+void CC_pspnam(int, const char *);
+void CC_scon(const char *, arith);
+void CC_ucon(const char *, arith);
+
+void C_init(arith, arith);
+void C_failed(void);
+void C_internal_error(void);
+int C_open(const char *);
+void C_close(void);
+int C_busy(void);
+void C_magic(void);
+int C_getid(void);
+void C_insertpart(int);
+void C_beginpart(int);
+void C_endpart(int);

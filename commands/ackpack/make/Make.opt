@@ -1,0 +1,97 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+e = etc
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+default : $l/em_opt $l/em_opt2
+
+$o/opt/scan.c : $u/opt/scan.l
+	flex -st $u/opt/scan.l > scan.c
+	if test -f $@ && diff scan.c $@ > /dev/null 2>&1 ; then rm scan.c ; else mv scan.c $@ ; fi
+	touch $@
+
+$o/opt/mktab.c : $u/opt/mktab.y $o/opt/scan.c
+	yacc -l $u/opt/mktab.y
+	if test -f $@ && diff y.tab.c $@ > /dev/null 2>&1 ; then rm y.tab.c ; else mv y.tab.c $@ ; fi
+	touch $@
+
+$o/opt/mktab : $o/opt/mktab.c $o/libem_data.a
+	$(CC) -o $@ -D_MINIX -D_POSIX_SOURCE -I$h -I$m -I$u/opt $o/opt/mktab.c -L$o -lem_data
+
+# Assume current cpp is working
+$o/opt/pattern.c : $u/opt/patterns $l/cpp.ansi $o/opt/mktab
+	$(CC) -E $u/opt/patterns | $o/opt/mktab > $@
+
+$o/opt/pop_push.c : $e/em_table
+	awk -f $u/opt/pop_push.awk $e/em_table > $@
+
+$o/opt/regglob.c : $u/opt/reg.c
+	awk "BEGIN { print \"\#define GLOBAL_OPT\" }; { print }" $u/opt/reg.c > $@
+
+COPT = -I$h -I$m -I$s/system -I$o/opt -I$u/opt
+
+$o/opt/alloc.o : $u/opt/alloc.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/alloc.c
+$o/opt/backward.o : $u/opt/backward.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/backward.c
+$o/opt/cleanup.o : $u/opt/cleanup.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/cleanup.c
+$o/opt/flow.o : $u/opt/flow.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/flow.c
+$o/opt/getline.o : $u/opt/getline.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/getline.c
+$o/opt/lookup.o : $u/opt/lookup.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/lookup.c
+$o/opt/main.o : $u/opt/main.c
+	$(CC) -c -DNDEBUG -D_MINIX -o $@ $(COPT) $u/opt/main.c
+$o/opt/pattern.o : $o/opt/pattern.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $o/opt/pattern.c
+$o/opt/peephole.o : $u/opt/peephole.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/peephole.c
+$o/opt/pop_push.o : $o/opt/pop_push.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $o/opt/pop_push.c
+$o/opt/process.o : $u/opt/process.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/process.c
+$o/opt/putline.o : $u/opt/putline.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/putline.c
+$o/opt/reg.o : $u/opt/reg.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/reg.c
+$o/opt/regglob.o : $o/opt/regglob.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $o/opt/regglob.c
+$o/opt/tes.o : $u/opt/tes.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/tes.c
+$o/opt/util.o : $u/opt/util.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/util.c
+$o/opt/var.o : $u/opt/var.c
+	$(CC) -c -DNDEBUG -o $@ $(COPT) $u/opt/var.c
+
+OPT_OBJS = $o/opt/alloc.o $o/opt/backward.o $o/opt/cleanup.o \
+		$o/opt/flow.o $o/opt/getline.o $o/opt/lookup.o \
+		$o/opt/main.o $o/opt/pattern.o $o/opt/peephole.o \
+		$o/opt/pop_push.o $o/opt/process.o $o/opt/putline.o \
+		$o/opt/reg.o $o/opt/tes.o $o/opt/util.o $o/opt/var.o
+
+$l/em_opt : $(OPT_OBJS) $o/libmodule.a $o/libem_data.a
+	$(CC) -o $@ $(OPT_OBJS) -L$o -lem_data -lmodule
+
+OPT2_OBJS = $o/opt/alloc.o $o/opt/backward.o $o/opt/cleanup.o \
+		$o/opt/flow.o $o/opt/getline.o $o/opt/lookup.o \
+		$o/opt/main.o $o/opt/pattern.o $o/opt/peephole.o \
+		$o/opt/pop_push.o $o/opt/process.o $o/opt/putline.o \
+		$o/opt/regglob.o $o/opt/tes.o $o/opt/util.o $o/opt/var.o
+
+$l/em_opt2 : $(OPT2_OBJS) $o/libmodule.a $o/libem_data.a
+	$(CC) -o $@ $(OPT2_OBJS) -L$o -lem_data -lmodule

@@ -1,0 +1,5 @@
+#!/bin/sh
+binsizes big
+make clean
+make minix3 && make install
+binsizes normal

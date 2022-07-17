@@ -1,0 +1,61 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+default : $x/LLgen
+
+CLLGEN=-I$o -I$h -I$m -I$s/system -I$u/LLgen/src -DUSE_SYS -DNON_CORRECTING -D_MINIX
+
+$o/LLgen/alloc.o : $u/LLgen/src/alloc.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/alloc.c
+$o/LLgen/cclass.o : $u/LLgen/src/cclass.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/cclass.c
+$o/LLgen/check.o : $u/LLgen/src/check.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/check.c
+$o/LLgen/compute.o : $u/LLgen/src/compute.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/compute.c
+$o/LLgen/gencode.o : $u/LLgen/src/gencode.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/gencode.c
+$o/LLgen/global.o : $u/LLgen/src/global.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/global.c
+$o/LLgen/LLgen.o : $u/LLgen/src/LLgen.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/LLgen.c
+$o/LLgen/Lpars.o : $u/LLgen/src/Lpars.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/Lpars.c
+# LLgen not installed for general use
+$o/LLgen/machdep.o : $u/LLgen/src/machdep.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) -DLIBDIR=\"dummy\" $u/LLgen/src/machdep.c
+$o/LLgen/main.o : $u/LLgen/src/main.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/main.c
+$o/LLgen/name.o : $u/LLgen/src/name.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/name.c
+$o/LLgen/reach.o : $u/LLgen/src/reach.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/reach.c
+$o/LLgen/savegram.o : $u/LLgen/src/savegram.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/savegram.c
+$o/LLgen/sets.o : $u/LLgen/src/sets.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/sets.c
+$o/LLgen/tokens.o: $u/LLgen/src/tokens.c
+	$(CC) -c -DNDEBUG -o $@ $(CLLGEN) $u/LLgen/src/tokens.c
+
+LLGEN_OBJS = $o/LLgen/alloc.o $o/LLgen/cclass.o $o/LLgen/check.o \
+		$o/LLgen/compute.o $o/LLgen/gencode.o $o/LLgen/global.o \
+		$o/LLgen/LLgen.o $o/LLgen/Lpars.o $o/LLgen/machdep.o \
+		$o/LLgen/main.o $o/LLgen/name.o $o/LLgen/reach.o \
+		$o/LLgen/savegram.o $o/LLgen/sets.o $o/LLgen/tokens.o
+
+$x/LLgen : $(LLGEN_OBJS) $o/libmodule.a
+	$(CC) -o $@ $(LLGEN_OBJS) -L$o -lmodule

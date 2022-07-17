@@ -1,0 +1,60 @@
+The GNU coreutils 5.2.1 package for MINIX 3.
+
+
+To install utils to /usr/gnu/bin and manpages to /usr/gnu/man enter:
+
+(Note by beng@: Makefile hacked so minix-specific targets have become
+the defaults.)
+
+make clean            # optional
+bigmake all
+su
+make install
+
+
+Compilation should occur with the ACK compiler at the moment (not gcc).
+
+
+Major problems and missing functionalities
+program  cause              now used/dummy     how to switch if impl
+
+chgrp    fchdir() missing   lib/fchdir-stub.c  reconfigure and rebuild
+chmod    fchdir() missing   lib/fchdir-stub.c  reconfigure and rebuild
+chown    fchdir() missing   lib/fchdir-stub.c  reconfigure and rebuild
+df       fstatfs() limited  fstatfs()          fix lib/fsusage.c; rebuild
+du       fchdir() missing   lib/fchdir-stub.c  reconfigure and rebuild
+stat -f  fstatfs() limited  fstatfs()          fix src/stat.c; rebuild
+There is no support for symbolic links.
+
+
+Minor glitches and comments
+program  comment
+
+chroot   Argument syntax is slightly different from Minix' chroot.
+cksum    Sum equals GNU/Linix and SunOs 5.9 cksum; differs from Minix' cksum.
+date     I don't get the syntax, but date -s STRING works the same on GNU/Linux. 
+pathchk  Very forgiving if not in POSIX mode.
+printf   When printing floating pt locale can't be restored, see lib/c-strtod.c.
+sum      Block count differs from Minix' sum (Try -s for that).
+unlink   Don't unlink a dir (as root); it seems to leave an inconsistent dir.
+uptime   Prints uptime and number of logged in users only; no getloadavg().
+<all>    Supplied malloc/realloc/free routines used; Minix ones not GNU compat.
+
+
+Port modifications: (for details search 'MINIX' and 'Minix')
+- configure: disabled exiting on failure to detect way to list mounted fs.
+- config.hin: enable HAVE_SETHOSTNAME and HAVE_GETHOSTID.
+- config.h.minix: set HOST_OPERATING_SYSTEM to "Minix"; using config.hin fails.
+- Makefile: added minix and minixinstall targets.
+- lib/Makefile: add fsusage.c gethostid.c mountlist.c symlink.c/.h sethostname.c
+                Set AR = /usr/bin/ar (ACK ar) in case gcc is installed.
+- src/Makefile: compile/install: df hostid setuidgid.
+- impl of sethostname writing to /etc/hostname.file in lib/sethostname.c.
+- impl of gethostid in lib/gethostid.c reading the ip from the local tcp server.
+- dummy impl of readlink, symlink, lstat in lib/symlink.c.
+- patched sources:
+   lib/: c-strtod.c canon-host.c fsusage.c mountlist.c readutmp.c/.h
+   src/: dircolors.hin shred.c sort.c stat.c uptime.c
+
+
+Alexander van Amesfoort, asvamesf@cs.vu.nl, August 2k5.

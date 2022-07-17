@@ -1,0 +1,72 @@
+3.0.7 (Friday 12 August 2005)
+. basename(3)
+. getsockname and getsockopt.
+
+3.0.6 (Sunday 19 June 2005)
+. made mkfs a little smarter while reporting errors about empty
+  or not-large-enough devices
+. fixed a bug that would case FS to loop forever (can happen on 
+  writing nonexistant blocks)
+. fixes for select() test set
+. fix for broken parsing of memory variable in PM (caused setup to want to
+  make swap space, which was unnecessary)
+. ps connected to build
+. python 1.5.2 imported
+. changed how function key mappings work in anticipation of notify changes
+. added lock()-checking code that checks if interrupts are already disabled
+  (if this check is enabled)
+. fixed some gcc compiler warnings
+. workaround for strange fxp buffer bug
+. imported anm
+. added mkdep script for automatically generating dependencies
+. cleaned up process table structure
+. removed stop sequence
+. disable send mask check (to be replaced)
+. fixed shutdown -x bug
+. imported getopt(), libz
+. imported rev(1) from freebsd, wrote a printenv (fixes for sh*.sh tests)
+. unknown controllers no longer fatal in pci library
+. removed max-inode check from mkfs for V3 filesystems (are 32bit)
+. more stack for /bin/sh
+. use relative directories in makefiles.
+. new version inet
+. imported dpeth driver from Giovanni Falzoni
+. mkstemp function
+. fchdir function
+. changed max pid back to 30000
+. changed ash to use pid_t
+. imported (freebsd) nice utility + added system calls
+. fix for bug no. 2 reported by Joren l'Ami - PM panic if tried to reply
+  to a process that killed itself during a signal handler (causing delayed
+  delivery of a lethal signal). More info in bug no. 2.
+. new log device (/dev/klog) that makes the kernel and system server
+  diagnostic messages available to userland, for a syslogd.
+. usyslogd, a tiny syslogd that currently just writes /dev/klog
+  line by line (with date+hostname) to /var/log/messages.
+. more stack for aal
+. more stack for acd
+. more stack for make
+. more stack for tar
+. Newer version of flex (2.5.4)
+. TCP support for FIONREAD
+. New library functions random, strdup, and strtok_r, usleep.
+. Increased mii_read timeout in FXP driver.
+. New library function openpty in new library libutil
+  (naming from FreeBSD, no code)
+. random number generator
+. probecd code in filesystem
+. new autopart partitioner
+. change in kernel and server diagnostic messages - are sent to log device
+  directly, from which they are buffered (for usyslogd) and sent to tty
+  (for printing). log device is suspendable and selectable.
+. boot monitor bugfix (causing weird behaviour after e.g. ls())
+. new select test (pty)
+. socket library
+. bios_wini driver
+. rs232 support
+. various setup script improvements
+. separate cmos driver
+. many various fs, pm, driver, kernel cleanups
+. drivers (notably tty and log) converted from REVIVE 'upcall' to
+  notify() 'callback signal', breaking some cyclical message paths
+. pty select fd support

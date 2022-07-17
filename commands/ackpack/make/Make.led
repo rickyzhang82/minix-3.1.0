@@ -1,0 +1,58 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+e = etc
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+default : $l/em_led
+
+CLED = -I$o -I$h -I$m -I$s/object -I$s/system -DNOSTATISTICS
+
+$o/led/archive.o : $u/led/archive.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/archive.c
+$o/led/error.o : $u/led/error.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/error.c
+$o/led/extract.o : $u/led/extract.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/extract.c
+$o/led/finish.o : $u/led/finish.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/finish.c
+$o/led/main.o : $u/led/main.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/main.c
+$o/led/memory.o : $u/led/memory.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/memory.c
+$o/led/output.o : $u/led/output.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/output.c
+$o/led/read.o : $u/led/read.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/read.c
+$o/led/relocate.o : $u/led/relocate.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/relocate.c
+$o/led/save.o : $u/led/save.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/save.c
+$o/led/scan.o : $u/led/scan.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/scan.c
+$o/led/sym.o : $u/led/sym.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/sym.c
+$o/led/write.o : $u/led/write.c
+	$(CC) -c -DNDEBUG -o $@ $(CLED) $u/led/write.c
+
+LED_OBJS = $o/led/archive.o $o/led/error.o $o/led/extract.o \
+		$o/led/finish.o $o/led/main.o $o/led/memory.o \
+		$o/led/output.o $o/led/read.o $o/led/relocate.o \
+		$o/led/save.o $o/led/scan.o $o/led/sym.o \
+		$o/led/write.o
+
+$l/em_led : $(LED_OBJS) $o/libmodule.a
+	$(CC) -o $@ $(LED_OBJS) -L$o -lmodule
+

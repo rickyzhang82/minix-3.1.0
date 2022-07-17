@@ -1,0 +1,720 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+l = image
+s = lang/basic/test
+t = obj/test/basic
+u = /usr/lib/i386
+
+BC = $l/em_basic -Vw4p4f8
+OPT = $l/em_opt
+CG = $l/i386/cg -F__fp_hook
+AS = $l/i386/as
+LED = $l/em_led -a0:4 -a1:4 -a2:4 -a3:4 -b0:0 -b1:0
+CV = $l/cv -x -mi386
+
+HEAD = $u/crtso.o
+TAIL = $l/i386/libbas.a $u/libd.a $u/libc.a $u/libfp.a $u/libe.a $u/end.a
+
+# Failures:
+#  test34 fails with compilation error (not yet investigated)
+#  creator requires _inkey; not yet added to the Basic runtime
+#  opg3, opg4, test26 requires _exp, _log; not yet added to the Basic runtime
+
+# Building K_OBJECTS just tests the front-end
+K_OBJECTS = $t/bull.k $t/buzzword.k $t/checker.k $t/creator.k $t/grafiek.k \
+	$t/gunner.k $t/learn.k $t/opg1.k $t/opg2.k $t/opg3.k $t/opg4.k \
+	$t/opg5.k $t/opg6.k $t/som4.k $t/test01.k $t/test02.k $t/test03.k \
+	$t/test04.k $t/test05.k $t/test06.k $t/test07.k $t/test08.k \
+	$t/test09.k $t/test10.k $t/test11.k $t/test12.k $t/test13.k \
+	$t/test14.k $t/test15.k $t/test16.k $t/test17.k $t/test18.k \
+	$t/test19.k $t/test20.k $t/test21.k $t/test22.k $t/test23.k \
+	$t/test24.k $t/test25.k $t/test26.k $t/test27.k $t/test29.k \
+	$t/test30.k $t/test31.k $t/test32.k $t/test33.k $t/test35.k
+
+# Testing the EM processing pipeline
+M_OBJECTS = $t/bull.m $t/buzzword.m $t/checker.m $t/creator.m $t/grafiek.m \
+	$t/gunner.m $t/learn.m $t/opg1.m $t/opg2.m $t/opg3.m $t/opg4.m \
+	$t/opg5.m $t/opg6.m $t/som4.m $t/test01.m $t/test02.m $t/test03.m \
+	$t/test04.m $t/test05.m $t/test06.m $t/test07.m $t/test08.m \
+	$t/test09.m $t/test10.m $t/test11.m $t/test12.m $t/test13.m \
+	$t/test14.m $t/test15.m $t/test16.m $t/test17.m $t/test18.m \
+	$t/test19.m $t/test20.m $t/test21.m $t/test22.m $t/test23.m \
+	$t/test24.m $t/test25.m $t/test26.m $t/test27.m $t/test29.m \
+	$t/test30.m $t/test31.m $t/test32.m $t/test33.m $t/test35.m
+S_OBJECTS = $t/bull.s $t/buzzword.s $t/checker.s $t/creator.s $t/grafiek.s \
+	$t/gunner.s $t/learn.s $t/opg1.s $t/opg2.s $t/opg3.s $t/opg4.s \
+	$t/opg5.s $t/opg6.s $t/som4.s $t/test01.s $t/test02.s $t/test03.s \
+	$t/test04.s $t/test05.s $t/test06.s $t/test07.s $t/test08.s \
+	$t/test09.s $t/test10.s $t/test11.s $t/test12.s $t/test13.s \
+	$t/test14.s $t/test15.s $t/test16.s $t/test17.s $t/test18.s \
+	$t/test19.s $t/test20.s $t/test21.s $t/test22.s $t/test23.s \
+	$t/test24.s $t/test25.s $t/test26.s $t/test27.s $t/test29.s \
+	$t/test30.s $t/test31.s $t/test32.s $t/test33.s $t/test35.s
+O_OBJECTS = $t/bull.o $t/buzzword.o $t/checker.o $t/creator.o $t/grafiek.o \
+	$t/gunner.o $t/learn.o $t/opg1.o $t/opg2.o $t/opg3.o $t/opg4.o \
+	$t/opg5.o $t/opg6.o $t/som4.o $t/test01.o $t/test02.o $t/test03.o \
+	$t/test04.o $t/test05.o $t/test06.o $t/test07.o $t/test08.o \
+	$t/test09.o $t/test10.o $t/test11.o $t/test12.o $t/test13.o \
+	$t/test14.o $t/test15.o $t/test16.o $t/test17.o $t/test18.o \
+	$t/test19.o $t/test20.o $t/test21.o $t/test22.o $t/test23.o \
+	$t/test24.o $t/test25.o $t/test26.o $t/test27.o $t/test29.o \
+	$t/test30.o $t/test31.o $t/test32.o $t/test33.o $t/test35.o
+
+# Due to library limitations, not all programs can currently be linked
+# into an executable.
+PROGRAMS = $t/bull $t/buzzword $t/checker $t/grafiek \
+	$t/gunner $t/learn $t/opg1 $t/opg2 \
+	$t/opg5 $t/opg6 $t/som4 $t/test01 $t/test02 $t/test03 \
+	$t/test04 $t/test05 $t/test06 $t/test07 $t/test08 \
+	$t/test09 $t/test10 $t/test11 $t/test12 $t/test13 \
+	$t/test14 $t/test15 $t/test16 $t/test17 $t/test18 \
+	$t/test19 $t/test20 $t/test21 $t/test22 $t/test23 \
+	$t/test24 $t/test25 $t/test27 $t/test29 \
+	$t/test30 $t/test31 $t/test32 $t/test33 $t/test35
+
+default : x-compiler $(O_OBJECTS) $(PROGRAMS)
+
+x-compiler :
+	@if [ ! -x $l/em_basic ] ; then \
+		echo "Error: Basic front-end not built" ; exit 1 ; fi
+
+$t/bull.k : $s/bull.b
+	$(BC) $< $@ `basename $*`
+$t/bull.m : $t/bull.k
+	$(OPT) $< > $@
+$t/bull.s : $t/bull.m
+	$(CG) $< > $@
+$t/bull.o : $t/bull.s
+	$(AS) - -o $@ $<
+$t/bull.img : $t/bull.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/bull : $t/bull.img
+	$(CV) $< $@
+
+$t/buzzword.k : $s/buzzword.b
+	$(BC) $< $@ `basename $*`
+$t/buzzword.m : $t/buzzword.k
+	$(OPT) $< > $@
+$t/buzzword.s : $t/buzzword.m
+	$(CG) $< > $@
+$t/buzzword.o : $t/buzzword.s
+	$(AS) - -o $@ $<
+$t/buzzword.img : $t/buzzword.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/buzzword : $t/buzzword.img
+	$(CV) $< $@
+
+$t/checker.k : $s/checker.b
+	$(BC) $< $@ `basename $*`
+$t/checker.m : $t/checker.k
+	$(OPT) $< > $@
+$t/checker.s : $t/checker.m
+	$(CG) $< > $@
+$t/checker.o : $t/checker.s
+	$(AS) - -o $@ $<
+$t/checker.img : $t/checker.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/checker : $t/checker.img
+	$(CV) $< $@
+
+$t/creator.k : $s/creator.b
+	$(BC) $< $@ `basename $*`
+$t/creator.m : $t/creator.k
+	$(OPT) $< > $@
+$t/creator.s : $t/creator.m
+	$(CG) $< > $@
+$t/creator.o : $t/creator.s
+	$(AS) - -o $@ $<
+$t/creator.img : $t/creator.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/creator : $t/creator.img
+	$(CV) $< $@
+
+$t/grafiek.k : $s/grafiek.b
+	$(BC) $< $@ `basename $*`
+$t/grafiek.m : $t/grafiek.k
+	$(OPT) $< > $@
+$t/grafiek.s : $t/grafiek.m
+	$(CG) $< > $@
+$t/grafiek.o : $t/grafiek.s
+	$(AS) - -o $@ $<
+$t/grafiek.img : $t/grafiek.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/grafiek : $t/grafiek.img
+	$(CV) $< $@
+
+$t/gunner.k : $s/gunner.b
+	$(BC) $< $@ `basename $*`
+$t/gunner.m : $t/gunner.k
+	$(OPT) $< > $@
+$t/gunner.s : $t/gunner.m
+	$(CG) $< > $@
+$t/gunner.o : $t/gunner.s
+	$(AS) - -o $@ $<
+$t/gunner.img : $t/gunner.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/gunner : $t/gunner.img
+	$(CV) $< $@
+
+$t/learn.k : $s/learn.b
+	$(BC) $< $@ `basename $*`
+$t/learn.m : $t/learn.k
+	$(OPT) $< > $@
+$t/learn.s : $t/learn.m
+	$(CG) $< > $@
+$t/learn.o : $t/learn.s
+	$(AS) - -o $@ $<
+$t/learn.img : $t/learn.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/learn : $t/learn.img
+	$(CV) $< $@
+
+$t/opg1.k : $s/opg1.b
+	$(BC) $< $@ `basename $*`
+$t/opg1.m : $t/opg1.k
+	$(OPT) $< > $@
+$t/opg1.s : $t/opg1.m
+	$(CG) $< > $@
+$t/opg1.o : $t/opg1.s
+	$(AS) - -o $@ $<
+$t/opg1.img : $t/opg1.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/opg1 : $t/opg1.img
+	$(CV) $< $@
+
+$t/opg2.k : $s/opg2.b
+	$(BC) $< $@ `basename $*`
+$t/opg2.m : $t/opg2.k
+	$(OPT) $< > $@
+$t/opg2.s : $t/opg2.m
+	$(CG) $< > $@
+$t/opg2.o : $t/opg2.s
+	$(AS) - -o $@ $<
+$t/opg2.img : $t/opg2.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/opg2 : $t/opg2.img
+	$(CV) $< $@
+
+$t/opg3.k : $s/opg3.b
+	$(BC) $< $@ `basename $*`
+$t/opg3.m : $t/opg3.k
+	$(OPT) $< > $@
+$t/opg3.s : $t/opg3.m
+	$(CG) $< > $@
+$t/opg3.o : $t/opg3.s
+	$(AS) - -o $@ $<
+$t/opg3.img : $t/opg3.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/opg3 : $t/opg3.img
+	$(CV) $< $@
+
+$t/opg4.k : $s/opg4.b
+	$(BC) $< $@ `basename $*`
+$t/opg4.m : $t/opg4.k
+	$(OPT) $< > $@
+$t/opg4.s : $t/opg4.m
+	$(CG) $< > $@
+$t/opg4.o : $t/opg4.s
+	$(AS) - -o $@ $<
+$t/opg4.img : $t/opg4.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/opg4 : $t/opg4.img
+	$(CV) $< $@
+
+$t/opg5.k : $s/opg5.b
+	$(BC) $< $@ `basename $*`
+$t/opg5.m : $t/opg5.k
+	$(OPT) $< > $@
+$t/opg5.s : $t/opg5.m
+	$(CG) $< > $@
+$t/opg5.o : $t/opg5.s
+	$(AS) - -o $@ $<
+$t/opg5.img : $t/opg5.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/opg5 : $t/opg5.img
+	$(CV) $< $@
+
+$t/opg6.k : $s/opg6.b
+	$(BC) $< $@ `basename $*`
+$t/opg6.m : $t/opg6.k
+	$(OPT) $< > $@
+$t/opg6.s : $t/opg6.m
+	$(CG) $< > $@
+$t/opg6.o : $t/opg6.s
+	$(AS) - -o $@ $<
+$t/opg6.img : $t/opg6.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/opg6 : $t/opg6.img
+	$(CV) $< $@
+
+$t/som4.k : $s/som4.b
+	$(BC) $< $@ `basename $*`
+$t/som4.m : $t/som4.k
+	$(OPT) $< > $@
+$t/som4.s : $t/som4.m
+	$(CG) $< > $@
+$t/som4.o : $t/som4.s
+	$(AS) - -o $@ $<
+$t/som4.img : $t/som4.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/som4 : $t/som4.img
+	$(CV) $< $@
+
+$t/test01.k : $s/test01.b
+	$(BC) $< $@ `basename $*`
+$t/test01.m : $t/test01.k
+	$(OPT) $< > $@
+$t/test01.s : $t/test01.m
+	$(CG) $< > $@
+$t/test01.o : $t/test01.s
+	$(AS) - -o $@ $<
+$t/test01.img : $t/test01.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test01 : $t/test01.img
+	$(CV) $< $@
+
+$t/test02.k : $s/test02.b
+	$(BC) $< $@ `basename $*`
+$t/test02.m : $t/test02.k
+	$(OPT) $< > $@
+$t/test02.s : $t/test02.m
+	$(CG) $< > $@
+$t/test02.o : $t/test02.s
+	$(AS) - -o $@ $<
+$t/test02.img : $t/test02.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test02 : $t/test02.img
+	$(CV) $< $@
+
+$t/test03.k : $s/test03.b
+	$(BC) $< $@ `basename $*`
+$t/test03.m : $t/test03.k
+	$(OPT) $< > $@
+$t/test03.s : $t/test03.m
+	$(CG) $< > $@
+$t/test03.o : $t/test03.s
+	$(AS) - -o $@ $<
+$t/test03.img : $t/test03.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test03 : $t/test03.img
+	$(CV) $< $@
+
+$t/test04.k : $s/test04.b
+	$(BC) $< $@ `basename $*`
+$t/test04.m : $t/test04.k
+	$(OPT) $< > $@
+$t/test04.s : $t/test04.m
+	$(CG) $< > $@
+$t/test04.o : $t/test04.s
+	$(AS) - -o $@ $<
+$t/test04.img : $t/test04.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test04 : $t/test04.img
+	$(CV) $< $@
+
+$t/test05.k : $s/test05.b
+	$(BC) $< $@ `basename $*`
+$t/test05.m : $t/test05.k
+	$(OPT) $< > $@
+$t/test05.s : $t/test05.m
+	$(CG) $< > $@
+$t/test05.o : $t/test05.s
+	$(AS) - -o $@ $<
+$t/test05.img : $t/test05.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test05 : $t/test05.img
+	$(CV) $< $@
+
+$t/test06.k : $s/test06.b
+	$(BC) $< $@ `basename $*`
+$t/test06.m : $t/test06.k
+	$(OPT) $< > $@
+$t/test06.s : $t/test06.m
+	$(CG) $< > $@
+$t/test06.o : $t/test06.s
+	$(AS) - -o $@ $<
+$t/test06.img : $t/test06.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test06 : $t/test06.img
+	$(CV) $< $@
+
+$t/test07.k : $s/test07.b
+	$(BC) $< $@ `basename $*`
+$t/test07.m : $t/test07.k
+	$(OPT) $< > $@
+$t/test07.s : $t/test07.m
+	$(CG) $< > $@
+$t/test07.o : $t/test07.s
+	$(AS) - -o $@ $<
+$t/test07.img : $t/test07.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test07 : $t/test07.img
+	$(CV) $< $@
+
+$t/test08.k : $s/test08.b
+	$(BC) $< $@ `basename $*`
+$t/test08.m : $t/test08.k
+	$(OPT) $< > $@
+$t/test08.s : $t/test08.m
+	$(CG) $< > $@
+$t/test08.o : $t/test08.s
+	$(AS) - -o $@ $<
+$t/test08.img : $t/test08.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test08 : $t/test08.img
+	$(CV) $< $@
+
+$t/test09.k : $s/test09.b
+	$(BC) $< $@ `basename $*`
+$t/test09.m : $t/test09.k
+	$(OPT) $< > $@
+$t/test09.s : $t/test09.m
+	$(CG) $< > $@
+$t/test09.o : $t/test09.s
+	$(AS) - -o $@ $<
+$t/test09.img : $t/test09.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test09 : $t/test09.img
+	$(CV) $< $@
+
+$t/test10.k : $s/test10.b
+	$(BC) $< $@ `basename $*`
+$t/test10.m : $t/test10.k
+	$(OPT) $< > $@
+$t/test10.s : $t/test10.m
+	$(CG) $< > $@
+$t/test10.o : $t/test10.s
+	$(AS) - -o $@ $<
+$t/test10.img : $t/test10.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test10 : $t/test10.img
+	$(CV) $< $@
+
+$t/test11.k : $s/test11.b
+	$(BC) $< $@ `basename $*`
+$t/test11.m : $t/test11.k
+	$(OPT) $< > $@
+$t/test11.s : $t/test11.m
+	$(CG) $< > $@
+$t/test11.o : $t/test11.s
+	$(AS) - -o $@ $<
+$t/test11.img : $t/test11.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test11 : $t/test11.img
+	$(CV) $< $@
+
+$t/test12.k : $s/test12.b
+	$(BC) $< $@ `basename $*`
+$t/test12.m : $t/test12.k
+	$(OPT) $< > $@
+$t/test12.s : $t/test12.m
+	$(CG) $< > $@
+$t/test12.o : $t/test12.s
+	$(AS) - -o $@ $<
+$t/test12.img : $t/test12.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test12 : $t/test12.img
+	$(CV) $< $@
+
+$t/test13.k : $s/test13.b
+	$(BC) $< $@ `basename $*`
+$t/test13.m : $t/test13.k
+	$(OPT) $< > $@
+$t/test13.s : $t/test13.m
+	$(CG) $< > $@
+$t/test13.o : $t/test13.s
+	$(AS) - -o $@ $<
+$t/test13.img : $t/test13.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test13 : $t/test13.img
+	$(CV) $< $@
+
+$t/test14.k : $s/test14.b
+	$(BC) $< $@ `basename $*`
+$t/test14.m : $t/test14.k
+	$(OPT) $< > $@
+$t/test14.s : $t/test14.m
+	$(CG) $< > $@
+$t/test14.o : $t/test14.s
+	$(AS) - -o $@ $<
+$t/test14.img : $t/test14.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test14 : $t/test14.img
+	$(CV) $< $@
+
+$t/test15.k : $s/test15.b
+	$(BC) $< $@ `basename $*`
+$t/test15.m : $t/test15.k
+	$(OPT) $< > $@
+$t/test15.s : $t/test15.m
+	$(CG) $< > $@
+$t/test15.o : $t/test15.s
+	$(AS) - -o $@ $<
+$t/test15.img : $t/test15.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test15 : $t/test15.img
+	$(CV) $< $@
+
+$t/test16.k : $s/test16.b
+	$(BC) $< $@ `basename $*`
+$t/test16.m : $t/test16.k
+	$(OPT) $< > $@
+$t/test16.s : $t/test16.m
+	$(CG) $< > $@
+$t/test16.o : $t/test16.s
+	$(AS) - -o $@ $<
+$t/test16.img : $t/test16.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test16 : $t/test16.img
+	$(CV) $< $@
+
+$t/test17.k : $s/test17.b
+	$(BC) $< $@ `basename $*`
+$t/test17.m : $t/test17.k
+	$(OPT) $< > $@
+$t/test17.s : $t/test17.m
+	$(CG) $< > $@
+$t/test17.o : $t/test17.s
+	$(AS) - -o $@ $<
+$t/test17.img : $t/test17.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test17 : $t/test17.img
+	$(CV) $< $@
+
+$t/test18.k : $s/test18.b
+	$(BC) $< $@ `basename $*`
+$t/test18.m : $t/test18.k
+	$(OPT) $< > $@
+$t/test18.s : $t/test18.m
+	$(CG) $< > $@
+$t/test18.o : $t/test18.s
+	$(AS) - -o $@ $<
+$t/test18.img : $t/test18.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test18 : $t/test18.img
+	$(CV) $< $@
+
+$t/test19.k : $s/test19.b
+	$(BC) $< $@ `basename $*`
+$t/test19.m : $t/test19.k
+	$(OPT) $< > $@
+$t/test19.s : $t/test19.m
+	$(CG) $< > $@
+$t/test19.o : $t/test19.s
+	$(AS) - -o $@ $<
+$t/test19.img : $t/test19.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test19 : $t/test19.img
+	$(CV) $< $@
+
+$t/test20.k : $s/test20.b
+	$(BC) $< $@ `basename $*`
+$t/test20.m : $t/test20.k
+	$(OPT) $< > $@
+$t/test20.s : $t/test20.m
+	$(CG) $< > $@
+$t/test20.o : $t/test20.s
+	$(AS) - -o $@ $<
+$t/test20.img : $t/test20.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test20 : $t/test20.img
+	$(CV) $< $@
+
+$t/test21.k : $s/test21.b
+	$(BC) $< $@ `basename $*`
+$t/test21.m : $t/test21.k
+	$(OPT) $< > $@
+$t/test21.s : $t/test21.m
+	$(CG) $< > $@
+$t/test21.o : $t/test21.s
+	$(AS) - -o $@ $<
+$t/test21.img : $t/test21.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test21 : $t/test21.img
+	$(CV) $< $@
+
+$t/test22.k : $s/test22.b
+	$(BC) $< $@ `basename $*`
+$t/test22.m : $t/test22.k
+	$(OPT) $< > $@
+$t/test22.s : $t/test22.m
+	$(CG) $< > $@
+$t/test22.o : $t/test22.s
+	$(AS) - -o $@ $<
+$t/test22.img : $t/test22.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test22 : $t/test22.img
+	$(CV) $< $@
+
+$t/test23.k : $s/test23.b
+	$(BC) $< $@ `basename $*`
+$t/test23.m : $t/test23.k
+	$(OPT) $< > $@
+$t/test23.s : $t/test23.m
+	$(CG) $< > $@
+$t/test23.o : $t/test23.s
+	$(AS) - -o $@ $<
+$t/test23.img : $t/test23.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test23 : $t/test23.img
+	$(CV) $< $@
+
+$t/test24.k : $s/test24.b
+	$(BC) $< $@ `basename $*`
+$t/test24.m : $t/test24.k
+	$(OPT) $< > $@
+$t/test24.s : $t/test24.m
+	$(CG) $< > $@
+$t/test24.o : $t/test24.s
+	$(AS) - -o $@ $<
+$t/test24.img : $t/test24.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test24 : $t/test24.img
+	$(CV) $< $@
+
+$t/test25.k : $s/test25.b
+	$(BC) $< $@ `basename $*`
+$t/test25.m : $t/test25.k
+	$(OPT) $< > $@
+$t/test25.s : $t/test25.m
+	$(CG) $< > $@
+$t/test25.o : $t/test25.s
+	$(AS) - -o $@ $<
+$t/test25.img : $t/test25.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test25 : $t/test25.img
+	$(CV) $< $@
+
+$t/test26.k : $s/test26.b
+	$(BC) $< $@ `basename $*`
+$t/test26.m : $t/test26.k
+	$(OPT) $< > $@
+$t/test26.s : $t/test26.m
+	$(CG) $< > $@
+$t/test26.o : $t/test26.s
+	$(AS) - -o $@ $<
+$t/test26.img : $t/test26.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test26 : $t/test26.img
+	$(CV) $< $@
+
+$t/test27.k : $s/test27.b
+	$(BC) $< $@ `basename $*`
+$t/test27.m : $t/test27.k
+	$(OPT) $< > $@
+$t/test27.s : $t/test27.m
+	$(CG) $< > $@
+$t/test27.o : $t/test27.s
+	$(AS) - -o $@ $<
+$t/test27.img : $t/test27.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test27 : $t/test27.img
+	$(CV) $< $@
+
+$t/test28.k : $s/test28.b
+	$(BC) $< $@ `basename $*`
+$t/test28.m : $t/test28.k
+	$(OPT) $< > $@
+$t/test28.s : $t/test28.m
+	$(CG) $< > $@
+$t/test28.o : $t/test28.s
+	$(AS) - -o $@ $<
+$t/test28.img : $t/test28.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test28 : $t/test28.img
+	$(CV) $< $@
+
+$t/test29.k : $s/test29.b
+	$(BC) $< $@ `basename $*`
+$t/test29.m : $t/test29.k
+	$(OPT) $< > $@
+$t/test29.s : $t/test29.m
+	$(CG) $< > $@
+$t/test29.o : $t/test29.s
+	$(AS) - -o $@ $<
+$t/test29.img : $t/test29.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test29 : $t/test29.img
+	$(CV) $< $@
+
+$t/test30.k : $s/test30.b
+	$(BC) $< $@ `basename $*`
+$t/test30.m : $t/test30.k
+	$(OPT) $< > $@
+$t/test30.s : $t/test30.m
+	$(CG) $< > $@
+$t/test30.o : $t/test30.s
+	$(AS) - -o $@ $<
+$t/test30.img : $t/test30.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test30 : $t/test30.img
+	$(CV) $< $@
+
+$t/test31.k : $s/test31.b
+	$(BC) $< $@ `basename $*`
+$t/test31.m : $t/test31.k
+	$(OPT) $< > $@
+$t/test31.s : $t/test31.m
+	$(CG) $< > $@
+$t/test31.o : $t/test31.s
+	$(AS) - -o $@ $<
+$t/test31.img : $t/test31.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test31 : $t/test31.img
+	$(CV) $< $@
+
+$t/test32.k : $s/test32.b
+	$(BC) $< $@ `basename $*`
+$t/test32.m : $t/test32.k
+	$(OPT) $< > $@
+$t/test32.s : $t/test32.m
+	$(CG) $< > $@
+$t/test32.o : $t/test32.s
+	$(AS) - -o $@ $<
+$t/test32.img : $t/test32.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test32 : $t/test32.img
+	$(CV) $< $@
+
+$t/test33.k : $s/test33.b
+	$(BC) $< $@ `basename $*`
+$t/test33.m : $t/test33.k
+	$(OPT) $< > $@
+$t/test33.s : $t/test33.m
+	$(CG) $< > $@
+$t/test33.o : $t/test33.s
+	$(AS) - -o $@ $<
+$t/test33.img : $t/test33.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test33 : $t/test33.img
+	$(CV) $< $@
+
+$t/test34.k : $s/test34.b
+	$(BC) $< $@ `basename $*`
+$t/test34.m : $t/test34.k
+	$(OPT) $< > $@
+$t/test34.s : $t/test34.m
+	$(CG) $< > $@
+$t/test34.o : $t/test34.s
+	$(AS) - -o $@ $<
+$t/test34.img : $t/test34.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test34 : $t/test34.img
+	$(CV) $< $@
+
+$t/test35.k : $s/test35.b
+	$(BC) $< $@ `basename $*`
+$t/test35.m : $t/test35.k
+	$(OPT) $< > $@
+$t/test35.s : $t/test35.m
+	$(CG) $< > $@
+$t/test35.o : $t/test35.s
+	$(AS) - -o $@ $<
+$t/test35.img : $t/test35.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/test35 : $t/test35.img
+	$(CV) $< $@
+

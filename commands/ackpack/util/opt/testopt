@@ -1,0 +1,9 @@
+: '$Id: testopt,v 1.3 2005/09/01 12:13:35 beng Exp $'
+while true
+do
+  (echo ' mes 2,2,2
+ pro $foo,0';cat;echo ' end') >t.e
+  ack -Ropt=${1-opt} -O -c.m t.e;ack -c.e t.m
+  cat t.e
+  echo '===== next case (interrupt to stop) ====='
+done

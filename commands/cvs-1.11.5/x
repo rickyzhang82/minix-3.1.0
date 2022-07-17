@@ -1,0 +1,61 @@
+make  all-recursive
+Making all in lib
+make: 'all' is up to date
+Making all in zlib
+make: 'all' is up to date
+Making all in diff
+make: 'all' is up to date
+Making all in src
+source='server.c' object='server.o' libtool=no \
+	depfile='.deps/server.Po' tmpdepfile='.deps/server.TPo' \
+	depmode=none /bin/sh ../depcomp \
+	cc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib   \
+	  -g -c `test -f 'server.c' || echo './'`server.c
+"cvs.h", line 63: (warning) old-fashioned function declaration
+"hash.h", line 34: (warning) old-fashioned function declaration
+"../lib/regex.h", line 488: (warning) old-fashioned function declaration
+"../lib/regex.h", line 489: (warning) old-fashioned function declaration
+"../lib/getopt.h", line 124: (warning) old-fashioned function declaration
+"cvs.h", line 478: (warning) old-fashioned function declaration
+"server.c", line 59: cannot open include file "sys/socket.h"
+"server.c", line 184: (strict) incompatible pointers in call
+"server.c", line 185: (strict) incompatible pointers in call
+"server.c", line 576: (warning) 'print_error' old-fashioned function definition
+"server.c", line 604: (warning) 'print_pending_error' old-fashioned function definition
+"server.c", line 677: (warning) 'serve_valid_responses' old-fashioned function definition
+"server.c", line 723: (warning) 'serve_root' old-fashioned function definition
+"server.c", line 918: (warning) 'serve_max_dotdot' old-fashioned function definition
+"server.c", line 946: (warning) 'dirswitch' old-fashioned function definition
+"server.c", line 1137: (warning) 'serve_repository' old-fashioned function definition
+"server.c", line 1147: (warning) 'serve_directory' old-fashioned function definition
+"server.c", line 1186: (warning) 'serve_static_directory' old-fashioned function definition
+"server.c", line 1213: (warning) 'serve_sticky' old-fashioned function definition
+"server.c", line 1258: (warning) 'receive_partial_file' old-fashioned function definition
+"server.c", line 1330: (warning) 'receive_file' old-fashioned function definition
+"server.c", line 1607: (warning) 'serve_enable_unchanged' old-fashioned function definition
+"server.c", line 2048: (warning) 'server_notify' old-fashioned function definition
+"server.c", line 2113: (warning) 'serve_argument' old-fashioned function definition
+"server.c", line 2143: (warning) 'serve_argumentx' old-fashioned function definition
+"server.c", line 2163: (warning) 'serve_global_option' old-fashioned function definition
+"server.c", line 2201: (warning) 'serve_set' old-fashioned function definition
+"server.c", line 2384: (warning) 'protocol_memory_error' old-fashioned function definition
+"server.c", line 2397: (warning) 'outbuf_memory_error' old-fashioned function definition
+"server.c", line 2420: (warning) 'input_memory_error' old-fashioned function definition
+"server.c", line 2433: (warning) 'check_command_legal_p' old-fashioned function definition
+"server.c", line 2601: fd_set is not a type identifier
+"server.c", line 2612: (warning) 'do_cvs_command' old-fashioned function definition
+"server.c", line 2822: (warning) implicit declaration of function FD_ZERO
+"server.c", line 2824: (warning) implicit declaration of function FD_SET
+"server.c", line 2839: FD_SETSIZE undefined
+"server.c", line 2908: fd_set is not a type identifier
+"server.c", line 2909: fd_set is not a type identifier
+"server.c", line 2912: unknown struct-type
+"server.c", line 2912: size of local timeout unknown
+"server.c", line 2941: unknown selector tv_sec
+"server.c", line 2942: unknown selector tv_usec
+"server.c", line 2979: (warning) implicit declaration of function select
+"server.c", line 2980: fd_set undefined
+"server.c", line 2980: ) not expected
+make in /usr/minix/cvs-1.11.5/src: Exit code 1
+make in /usr/minix/cvs-1.11.5: Exit code 1
+make in /usr/minix/cvs-1.11.5: Exit code 1

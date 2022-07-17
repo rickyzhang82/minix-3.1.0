@@ -1,0 +1,24 @@
+# C-Kermit UNINSTALL script
+# Tue Oct 18 23:11:21 GMT 2005
+CKVER=8.0.211
+PrN Uninstalling C-Kermit version 8.0.211...
+set flag=f
+PrC Removing binaries
+RmF /usr/local/bin/kermit-sshsub
+RmF /usr/local/bin/kermit
+RmF /usr/local/bin/ckermit.ini
+EfM
+set flag=f
+PrC Removing man pages
+RmF /usr/local/man/man1/kermit.1
+EfM
+set flag=d
+PrN Removing empty dirs...
+RmD /usr/local/bin
+RmD 
+RmD 
+RmD 
+RmD /usr/local/man/man1
+RmD 
+EfM
+PrN C-Kermit version 8.0.211 is uninstalled!

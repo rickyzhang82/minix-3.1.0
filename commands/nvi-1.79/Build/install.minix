@@ -1,0 +1,6 @@
+#!/bin/sh
+cp nvi vi
+cp nvi ex
+install -o bin -m 755 nvi /usr/local/bin
+install -o bin -m 755 vi /usr/bin
+install -o bin -m 755 ex /usr/bin

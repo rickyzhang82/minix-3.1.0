@@ -1,0 +1,8 @@
+
+# Kermit is large and the compiler passes (/usr/lib/em_*) have to be given
+# More chmem space.
+
+# To compile and install Kermit, type:
+
+make minix3
+make install

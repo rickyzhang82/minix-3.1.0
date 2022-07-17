@@ -1,0 +1,7 @@
+#!/bin/sh
+sh MINIX/lynx.sh
+binsizes big
+make install
+make install-help
+make install-doc
+binsizes normal

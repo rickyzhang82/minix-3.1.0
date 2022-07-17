@@ -1,0 +1,164 @@
+echo Installing C-Kermit version $CKVER...
+rm -f UNINSTALL;
+exec 3>./UNINSTALL;
+echo "# C-Kermit UNINSTALL script" >&3;
+echo "# `date`" >&3;
+echo "CKVER=$CKVER" >&3;
+echo "PrN Uninstalling C-Kermit version $CKVER..." >&3;
+echo DESTDIR=$DESTDIR;
+if test -n "$DESTDIR"; then
+	if test -d $DESTDIR; then
+		echo  "$DESTDIR exists...";
+	else
+		echo "Creating $DESTDIR...";
+		DESTDIR=`echo $DESTDIR | sed 's!/*$$!!'`;
+		mkdir $$DESTDIR  || exit 1;
+	fi;
+	chmod 755 $DESTDIR || exit 1;
+fi;
+echo BINARY=$BINARY;
+if test -f $BINARY; then
+	ls -l $BINARY;
+else
+	echo "?$BINARY not found";
+	exit 1;
+fi;
+if test -z "$DESTDIR$BINDIR"; then
+	echo "Binary directory not specified";
+	exit 1;
+fi;
+if test -d $DESTDIR$BINDIR; then
+	echo  "$DESTDIR$BINDIR exists...";
+else
+	echo "Creating $DESTDIR$BINDIR/...";
+	mkdir     $DESTDIR$BINDIR || exit 1;
+	chmod 755 $DESTDIR$BINDIR;
+fi;
+rm -f $DESTDIR$BINDIR/kermit;
+cp $BINARY $DESTDIR$BINDIR/kermit || exit 1;
+chmod 755    $DESTDIR$BINDIR/kermit || exit 1;
+rm -f        $DESTDIR$BINDIR/kermit-sshsub;
+cp           $DESTDIR$BINDIR/kermit $DESTDIR$BINDIR/kermit-sshsub || exit 1;
+	echo 'set flag=f' >&3
+	echo 'PrC Removing binaries' >&3;
+	echo "RmF $DESTDIR$BINDIR/kermit-sshsub" >&3;
+	echo "RmF $DESTDIR$BINDIR/kermit" >&3;
+if test -f ckermit.ini; then
+	echo "#!$DESTDIR$BINDIR/kermit" > $DESTDIR$BINDIR/_tmp.ini;
+	cat ckermit.ini >> $DESTDIR$BINDIR/_tmp.ini;
+	mv $DESTDIR$BINDIR/_tmp.ini $DESTDIR$BINDIR/ckermit.ini;
+	chmod 755 $DESTDIR$BINDIR/ckermit.ini;
+		echo "RmF $DESTDIR$BINDIR/ckermit.ini" >&3;
+fi;
+echo;
+echo 'EfM' >&3;
+echo "Kermit binary installed:";
+ls -l $DESTDIR$BINDIR/kermit $DESTDIR$BINDIR/kermit-sshsub $DESTDIR$BINDIR/ckermit.ini
+echo;
+echo " WARNING: If C-Kermit is to be used for dialing out,";
+echo " you must change its owner and group and permissions";
+echo " to match the 'cu' program.  See the ckuins.txt file";
+echo " for details.";
+echo;
+echo MANDIR=$MANDIR;
+if test -n "$MANDIR"; then
+	if test -d $MANDIR; then
+		echo  "$MANDIR exists...";
+	else
+		echo "Creating $MANDIR...";
+		mkdir $MANDIR || exit 1;
+		chmod 755 $MANDIR || exit 1;
+	fi;
+	echo "Installing man page...";
+	rm -f $MANDIR/kermit.$MANEXT;
+	cp    ckuker.nr $MANDIR/kermit.$MANEXT || exit 1;
+	chmod 644       $MANDIR/kermit.$MANEXT || exit 1;
+	echo 'set flag=f' >&3
+	echo 'PrC Removing man pages' >&3;
+	echo "RmF $MANDIR/kermit.$MANEXT" >&3;
+	echo 'EfM' >&3;
+	echo;
+else
+	echo "Not installing man page!";
+fi;
+echo CERTDIR=$CERTDIR;
+if test -n "$CERTDIR"; then
+	if test -f ca_certs.pem; then
+		if test -d $CERTDIR; then
+			echo  "$CERTDIR exists...";
+		else
+			echo "Creating $CERTDIR...";
+			mkdir $CERTDIR || exit 1;
+			chmod 755 $CERTDIR || exit 1;
+		fi;
+		echo "Installing certificates file...";
+		cp ca_certs.pem $CERTDIR || exit 1;
+		echo 'set flag=f' >&3;
+		echo 'PrC Removing certificates file' >&3;
+		echo "RmF $CERTDIR/ca_certs.pem" >&3;
+		echo 'EfM' >&3;
+		echo;
+	fi;
+else
+	echo "Not installing certificates file!";
+fi;
+echo SRCDIR=$DESTDIR$SRCDIR;
+if test -n "$SRCDIR"; then
+	echo "Installing source files...";
+	if test -d $DESTDIR$SRCDIR; then
+		echo  "$DESTDIR$SRCDIR exists...";
+	else
+		echo "Creating $DESTDIR$SRCDIR/...";
+		mkdir     $DESTDIR$SRCDIR || exit 1;
+		chmod 755 $DESTDIR$SRCDIR;
+	fi;
+	echo "Copying source files to $DESTDIR$SRCDIR...";
+	echo 'set flag=f' >&3;
+	echo 'PrC Removing source files' >&3;
+	for TextFile in COPYING.TXT ck[cuw_]*.[cwh] makefile; do
+		cp $$TextFile $DESTDIR$SRCDIR/ && echo ".\c";
+		echo "RmF $DESTDIR$SRCDIR/$$TextFile" >&3;
+	done; echo;
+	echo 'EfM' >&3;
+	( cd $DESTDIR$SRCDIR/ &&
+	ls -l COPYING.TXT ck[cuw_]*.[cwh] makefile );echo;
+else
+	echo "Not installing source code!";
+fi;
+echo INFODIR=$DESTDIR$INFODIR;
+if test -n "$INFODIR"; then
+	echo "Installing info files...";
+	if test -d $DESTDIR$INFODIR; then
+		echo  "$DESTDIR$INFODIR exists...";
+	else
+		echo "Creating $DESTDIR$INFODIR/...";
+		mkdir     $DESTDIR$INFODIR || exit 1;
+		chmod 755 $DESTDIR$INFODIR;
+	fi;
+	echo "Copying text files to $DESTDIR$INFODIR...";
+	echo 'set flag=f' >&3
+	echo 'PrC Removing text files' >&3;
+	FileCopyList='';
+	for TextFile in $(TEXTFILES); do
+		test -f $$TextFile || continue;
+		cp $$TextFile $DESTDIR$INFODIR && echo ".\c" &&
+		FileCopyList="$$FileCopyList $$TextFile";
+		echo "RmF $DESTDIR$INFODIR/$$TextFile" >&3;
+	done; echo;
+	echo 'EfM' >&3;
+	( cd $DESTDIR$INFODIR/ && chmod  644   $$FileCopyList );
+	( cd $DESTDIR$INFODIR/ && pwd && ls -l $$FileCopyList );
+else
+	echo "Not installing text files!";
+fi;
+echo "set flag=d" >&3;
+echo "PrN Removing empty dirs..." >&3;
+echo "RmD $DESTDIR$BINDIR" >&3;
+echo "RmD $DESTDIR$SRCDIR" >&3;
+echo "RmD $DESTDIR$INFODIR" >&3;
+echo "RmD $CERTDIR" >&3;
+echo "RmD $MANDIR" >&3;
+echo "RmD $DESTDIR" >&3;
+echo "EfM" >&3;
+echo "PrN C-Kermit version $CKVER is uninstalled!" >&3;
+echo C-Kermit version $CKVER installed!

@@ -1,0 +1,210 @@
+CHLEN	vs_relative.c	/^#define	CHLEN(val) (ch = *(u_char *)p++) == '\\t' &/
+HANDLE_WEIRDNESS	vs_smap.c	/^#define	HANDLE_WEIRDNESS(cnt) {						\\$/
+KEY	vi.c	/^#define	KEY(key, ec_flags) {						\\$/
+UPDATE_POSITION	v_txt.c	/^#define	UPDATE_POSITION(sp, tp) {					\\$/
+bword	v_word.c	/^bword(sp, vp, type)$/
+cs_bblank	getc.c	/^cs_bblank(sp, csp)$/
+cs_fblank	getc.c	/^cs_fblank(sp, csp)$/
+cs_fspace	getc.c	/^cs_fspace(sp, csp)$/
+cs_init	getc.c	/^cs_init(sp, csp)$/
+cs_next	getc.c	/^cs_next(sp, csp)$/
+cs_prev	getc.c	/^cs_prev(sp, csp)$/
+eword	v_word.c	/^eword(sp, vp, type)$/
+fword	v_word.c	/^fword(sp, vp, type)$/
+goto_adjust	v_scroll.c	/^goto_adjust(vp)$/
+inc_buf	v_put.c	/^inc_buf(sp, vp)$/
+inc_err	v_increment.c	/^inc_err(sp, nret)$/
+io	v_itxt.c	/^io(sp, vp, cmd)$/
+ishex	v_increment.c	/^#define	ishex(c)	(isdigit(c) || strchr("abcdefABCD/
+isoctal	v_increment.c	/^#define	isoctal(c)	(isdigit(c) && (c) != '8' && (c/
+mark	v_mark.c	/^mark(sp, vp, cmd)$/
+noprev	v_ch.c	/^noprev(sp)$/
+notfound	v_ch.c	/^notfound(sp, ch)$/
+set_txt_std	v_itxt.c	/^set_txt_std(sp, vp, flags)$/
+txt_Rresolve	v_txt.c	/^txt_Rresolve(sp, tiqh, tp, orig_len)$/
+txt_abbrev	v_txt.c	/^txt_abbrev(sp, tp, pushcp, isinfoline, didsubp, tu/
+txt_ai_resolve	v_txt.c	/^txt_ai_resolve(sp, tp, changedp)$/
+txt_backup	v_txt.c	/^txt_backup(sp, tiqh, tp, flagsp)$/
+txt_dent	v_txt.c	/^txt_dent(sp, tp, isindent)$/
+txt_emark	v_txt.c	/^txt_emark(sp, tp, cno)$/
+txt_err	v_txt.c	/^txt_err(sp, tiqh)$/
+txt_fc	v_txt.c	/^txt_fc(sp, tp, redrawp)$/
+txt_fc_col	v_txt.c	/^txt_fc_col(sp, argc, argv)$/
+txt_hex	v_txt.c	/^txt_hex(sp, tp)$/
+txt_insch	v_txt.c	/^txt_insch(sp, tp, chp, flags)$/
+txt_isrch	v_txt.c	/^txt_isrch(sp, vp, tp, is_flagsp)$/
+txt_map_end	v_txt.c	/^txt_map_end(sp)$/
+txt_map_init	v_txt.c	/^txt_map_init(sp)$/
+txt_margin	v_txt.c	/^txt_margin(sp, tp, wmtp, didbreak, flags)$/
+txt_nomorech	v_txt.c	/^txt_nomorech(sp)$/
+txt_resolve	v_txt.c	/^txt_resolve(sp, tiqh, flags)$/
+txt_showmatch	v_txt.c	/^txt_showmatch(sp, tp)$/
+txt_unmap	v_txt.c	/^txt_unmap(sp, tp, ec_flagsp)$/
+ulcase	v_ulcase.c	/^ulcase(sp, lno, lp, len, scno, ecno)$/
+v_Put	v_put.c	/^v_Put(sp, vp)$/
+v_Replace	v_itxt.c	/^v_Replace(sp, vp)$/
+v_Undo	v_undo.c	/^v_Undo(sp, vp)$/
+v_Xchar	v_xchar.c	/^v_Xchar(sp, vp)$/
+v_again	v_ex.c	/^v_again(sp, vp)$/
+v_alias	vi.c	/^v_alias(sp, vp, kp)$/
+v_at	v_at.c	/^v_at(sp, vp)$/
+v_bmark	v_mark.c	/^v_bmark(sp, vp)$/
+v_bottom	v_scroll.c	/^v_bottom(sp, vp)$/
+v_buildps	v_paragraph.c	/^v_buildps(sp, p_p, s_p)$/
+v_cfirst	v_left.c	/^v_cfirst(sp, vp)$/
+v_chF	v_ch.c	/^v_chF(sp, vp)$/
+v_chT	v_ch.c	/^v_chT(sp, vp)$/
+v_change	v_itxt.c	/^v_change(sp, vp)$/
+v_chf	v_ch.c	/^v_chf(sp, vp)$/
+v_chrepeat	v_ch.c	/^v_chrepeat(sp, vp)$/
+v_chrrepeat	v_ch.c	/^v_chrrepeat(sp, vp)$/
+v_cht	v_ch.c	/^v_cht(sp, vp)$/
+v_cmd	vi.c	/^v_cmd(sp, dp, vp, ismotion, comcountp, mappedp)$/
+v_comlog	vi.c	/^v_comlog(sp, vp)$/
+v_correct	v_search.c	/^v_correct(sp, vp, isdelta)$/
+v_count	vi.c	/^v_count(sp, fkey, countp)$/
+v_cr	v_scroll.c	/^v_cr(sp, vp)$/
+v_delete	v_delete.c	/^v_delete(sp, vp)$/
+v_dollar	v_right.c	/^v_dollar(sp, vp)$/
+v_down	v_scroll.c	/^v_down(sp, vp)$/
+v_dtoh	vi.c	/^v_dtoh(sp)$/
+v_ecl	v_ex.c	/^v_ecl(sp)$/
+v_ecl_exec	v_ex.c	/^v_ecl_exec(sp)$/
+v_ecl_init	v_ex.c	/^v_ecl_init(sp)$/
+v_ecl_log	v_ex.c	/^v_ecl_log(sp, tp)$/
+v_emsg	v_util.c	/^v_emsg(sp, p, which)$/
+v_eof	v_util.c	/^v_eof(sp, mp)$/
+v_eol	v_util.c	/^v_eol(sp, mp)$/
+v_event_exec	v_ex.c	/^v_event_exec(sp, vp)$/
+v_ex	v_ex.c	/^v_ex(sp, vp)$/
+v_ex_done	v_ex.c	/^v_ex_done(sp, vp)$/
+v_exaddr	v_search.c	/^v_exaddr(sp, vp, dir)$/
+v_exec_ex	v_ex.c	/^v_exec_ex(sp, vp, exp)$/
+v_exmode	v_ex.c	/^v_exmode(sp, vp)$/
+v_filter	v_ex.c	/^v_filter(sp, vp)$/
+v_first	v_left.c	/^v_first(sp, vp)$/
+v_fmark	v_mark.c	/^v_fmark(sp, vp)$/
+v_home	v_scroll.c	/^v_home(sp, vp)$/
+v_hpagedown	v_scroll.c	/^v_hpagedown(sp, vp)$/
+v_hpageup	v_scroll.c	/^v_hpageup(sp, vp)$/
+v_iA	v_itxt.c	/^v_iA(sp, vp)$/
+v_iI	v_itxt.c	/^v_iI(sp, vp)$/
+v_iO	v_itxt.c	/^v_iO(sp, vp)$/
+v_ia	v_itxt.c	/^v_ia(sp, vp)$/
+v_ii	v_itxt.c	/^v_ii(sp, vp)$/
+v_increment	v_increment.c	/^v_increment(sp, vp)$/
+v_init	vi.c	/^v_init(sp)$/
+v_io	v_itxt.c	/^v_io(sp, vp)$/
+v_isempty	v_util.c	/^v_isempty(p, len)$/
+v_join	v_ex.c	/^v_join(sp, vp)$/
+v_key	vi.c	/^v_key(sp, command_events, evp, ec_flags)$/
+v_keyword	vi.c	/^v_keyword(sp)$/
+v_left	v_left.c	/^v_left(sp, vp)$/
+v_lgoto	v_scroll.c	/^v_lgoto(sp, vp)$/
+v_linedown	v_scroll.c	/^v_linedown(sp, vp)$/
+v_lineup	v_scroll.c	/^v_lineup(sp, vp)$/
+v_mark	v_mark.c	/^v_mark(sp, vp)$/
+v_match	v_match.c	/^v_match(sp, vp)$/
+v_middle	v_scroll.c	/^v_middle(sp, vp)$/
+v_motion	vi.c	/^v_motion(sp, dm, vp, mappedp)$/
+v_mulcase	v_ulcase.c	/^v_mulcase(sp, vp)$/
+v_ncol	v_left.c	/^v_ncol(sp, vp)$/
+v_nomove	v_util.c	/^v_nomove(sp)$/
+v_optchange	v_init.c	/^v_optchange(sp, offset, str, valp)$/
+v_pagedown	v_scroll.c	/^v_pagedown(sp, vp)$/
+v_pageup	v_scroll.c	/^v_pageup(sp, vp)$/
+v_paragraphb	v_paragraph.c	/^v_paragraphb(sp, vp)$/
+v_paragraphf	v_paragraph.c	/^v_paragraphf(sp, vp)$/
+v_put	v_put.c	/^v_put(sp, vp)$/
+v_redraw	v_redraw.c	/^v_redraw(sp, vp)$/
+v_replace	v_replace.c	/^v_replace(sp, vp)$/
+v_right	v_right.c	/^v_right(sp, vp)$/
+v_screen	v_screen.c	/^v_screen(sp, vp)$/
+v_screen_copy	v_init.c	/^v_screen_copy(orig, sp)$/
+v_screen_end	v_init.c	/^v_screen_end(sp)$/
+v_search	v_search.c	/^v_search(sp, vp, ptrn, plen, flags, dir)$/
+v_searchN	v_search.c	/^v_searchN(sp, vp)$/
+v_searchb	v_search.c	/^v_searchb(sp, vp)$/
+v_searchf	v_search.c	/^v_searchf(sp, vp)$/
+v_searchn	v_search.c	/^v_searchn(sp, vp)$/
+v_searchw	v_search.c	/^v_searchw(sp, vp)$/
+v_sectionb	v_section.c	/^v_sectionb(sp, vp)$/
+v_sectionf	v_section.c	/^v_sectionf(sp, vp)$/
+v_sentenceb	v_sentence.c	/^v_sentenceb(sp, vp)$/
+v_sentencef	v_sentence.c	/^v_sentencef(sp, vp)$/
+v_shiftl	v_ex.c	/^v_shiftl(sp, vp)$/
+v_shiftr	v_ex.c	/^v_shiftr(sp, vp)$/
+v_sof	v_util.c	/^v_sof(sp, mp)$/
+v_sol	v_util.c	/^v_sol(sp)$/
+v_status	v_status.c	/^v_status(sp, vp)$/
+v_subst	v_itxt.c	/^v_subst(sp, vp)$/
+v_suspend	v_ex.c	/^v_suspend(sp, vp)$/
+v_switch	v_ex.c	/^v_switch(sp, vp)$/
+v_tagpop	v_ex.c	/^v_tagpop(sp, vp)$/
+v_tagpush	v_ex.c	/^v_tagpush(sp, vp)$/
+v_tcmd	v_txt.c	/^v_tcmd(sp, vp, prompt, flags)$/
+v_txt	v_txt.c	/^v_txt(sp, vp, tm, lp, len, prompt, ai_line, rcount/
+v_txt_auto	v_txt.c	/^v_txt_auto(sp, lno, aitp, len, tp)$/
+v_ulcase	v_ulcase.c	/^v_ulcase(sp, vp)$/
+v_undo	v_undo.c	/^v_undo(sp, vp)$/
+v_up	v_scroll.c	/^v_up(sp, vp)$/
+v_wordB	v_word.c	/^v_wordB(sp, vp)$/
+v_wordE	v_word.c	/^v_wordE(sp, vp)$/
+v_wordW	v_word.c	/^v_wordW(sp, vp)$/
+v_wordb	v_word.c	/^v_wordb(sp, vp)$/
+v_worde	v_word.c	/^v_worde(sp, vp)$/
+v_wordw	v_word.c	/^v_wordw(sp, vp)$/
+v_xchar	v_xchar.c	/^v_xchar(sp, vp)$/
+v_yank	v_yank.c	/^v_yank(sp, vp)$/
+v_z	v_z.c	/^v_z(sp, vp)$/
+v_zero	v_left.c	/^v_zero(sp, vp)$/
+v_zexit	v_zexit.c	/^v_zexit(sp, vp)$/
+vi	vi.c	/^vi(spp)$/
+vs_bg	vs_split.c	/^vs_bg(sp)$/
+vs_busy	vs_msg.c	/^vs_busy(sp, msg, btype)$/
+vs_change	vs_smap.c	/^vs_change(sp, lno, op)$/
+vs_colpos	vs_relative.c	/^vs_colpos(sp, lno, cno)$/
+vs_column	vs_relative.c	/^vs_column(sp, colp)$/
+vs_columns	vs_relative.c	/^vs_columns(sp, lp, lno, cnop, diffp)$/
+vs_crel	v_z.c	/^vs_crel(sp, count)$/
+vs_deleteln	vs_smap.c	/^vs_deleteln(sp, cnt)$/
+vs_discard	vs_split.c	/^vs_discard(sp, spp)$/
+vs_divider	vs_msg.c	/^vs_divider(sp)$/
+vs_ex_resolve	vs_msg.c	/^vs_ex_resolve(sp, continuep)$/
+vs_fg	vs_split.c	/^vs_fg(sp, nspp, name, newscreen)$/
+vs_getbg	vs_split.c	/^vs_getbg(sp, name)$/
+vs_home	vs_msg.c	/^vs_home(sp)$/
+vs_insertln	vs_smap.c	/^vs_insertln(sp, cnt)$/
+vs_line	vs_line.c	/^vs_line(sp, smp, yp, xp)$/
+vs_modeline	vs_refresh.c	/^vs_modeline(sp)$/
+vs_msg	vs_msg.c	/^vs_msg(sp, mtype, line, len)$/
+vs_msgsave	vs_msg.c	/^vs_msgsave(sp, mt, p, len)$/
+vs_number	vs_line.c	/^vs_number(sp)$/
+vs_output	vs_msg.c	/^vs_output(sp, mtype, line, llen)$/
+vs_paint	vs_refresh.c	/^vs_paint(sp, flags)$/
+vs_rcm	vs_relative.c	/^vs_rcm(sp, lno, islast)$/
+vs_refresh	vs_refresh.c	/^vs_refresh(sp, forcepaint)$/
+vs_repaint	vs_refresh.c	/^vs_repaint(sp, evp)$/
+vs_resize	vs_split.c	/^vs_resize(sp, count, adj)$/
+vs_resolve	vs_msg.c	/^vs_resolve(sp, csp, forcewait)$/
+vs_screens	vs_relative.c	/^vs_screens(sp, lno, cnop)$/
+vs_scroll	vs_msg.c	/^vs_scroll(sp, continuep, wtype)$/
+vs_sm_1down	vs_smap.c	/^vs_sm_1down(sp)$/
+vs_sm_1up	vs_smap.c	/^vs_sm_1up(sp)$/
+vs_sm_cursor	vs_smap.c	/^vs_sm_cursor(sp, smpp)$/
+vs_sm_delete	vs_smap.c	/^vs_sm_delete(sp, lno)$/
+vs_sm_down	vs_smap.c	/^vs_sm_down(sp, rp, count, scmd, smp)$/
+vs_sm_erase	vs_smap.c	/^vs_sm_erase(sp)$/
+vs_sm_fill	vs_smap.c	/^vs_sm_fill(sp, lno, pos)$/
+vs_sm_insert	vs_smap.c	/^vs_sm_insert(sp, lno)$/
+vs_sm_next	vs_smap.c	/^vs_sm_next(sp, p, t)$/
+vs_sm_nlines	vs_smap.c	/^vs_sm_nlines(sp, from_sp, to_lno, max)$/
+vs_sm_position	vs_smap.c	/^vs_sm_position(sp, rp, cnt, pos)$/
+vs_sm_prev	vs_smap.c	/^vs_sm_prev(sp, p, t)$/
+vs_sm_reset	vs_smap.c	/^vs_sm_reset(sp, lno)$/
+vs_sm_scroll	vs_smap.c	/^vs_sm_scroll(sp, rp, count, scmd)$/
+vs_sm_up	vs_smap.c	/^vs_sm_up(sp, rp, count, scmd, smp)$/
+vs_split	vs_split.c	/^vs_split(sp, new, ccl)$/
+vs_swap	vs_split.c	/^vs_swap(sp, nspp, name)$/
+vs_update	vs_msg.c	/^vs_update(sp, m1, m2)$/
+vs_wait	vs_msg.c	/^vs_wait(sp, continuep, wtype)$/

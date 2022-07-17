@@ -1,0 +1,6 @@
+t_long
+long / * % divmod
+long bit-operation identities
+long str/hex/oct/atol
+long miscellaneous operations
+

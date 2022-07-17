@@ -1,0 +1,12 @@
+#define ps_bss 150
+#define ps_con 151
+#define ps_end 152
+#define ps_exa 153
+#define ps_exc 154
+#define ps_exp 155
+#define ps_hol 156
+#define ps_ina 157
+#define ps_inp 158
+#define ps_mes 159
+#define ps_pro 160
+#define ps_rom 161

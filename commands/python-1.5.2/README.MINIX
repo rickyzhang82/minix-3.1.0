@@ -1,0 +1,146 @@
+Python-1.5.2 for Minix (2.0.3)
+
+This is a cutdown and modified version of Python 1.5.2 for Minix. The
+original source files are available at http://www.python.org. It has
+been necessary to modified to the standard distribution to get it to
+compile and work on Minix. One of the biggest changes is the renaming
+of files to fit within the 14 character limitation of filenames in
+Minix. Other significant changes include removing standard networking
+modules, since Python does not support the standard BSD socket() function.
+
+Instructions for compiling Python are given at the end of this file.
+
+A list of changes (possibly incomplete) is given below. Rough notes
+on the reason for the change are given in square brackets [].
+In hindsight, some modules have been unnecessarily removed, and it
+would be possible to restore them. If you do this, please send me the
+changes (mike@laurasia.com.au).
+
+Enjoy!
+
+Michael Kennett
+26/Jan/2005
+
+
+Changes affecting available modules:
+- removed Lib/asynchat.py           [import socket]
+- removed Lib/asyncore.py           [import socket]
+- removed Lib/audiodev.py           [not supported on Minix]
+- removed Lib/BaseHTTPServer.py     [import socket]
+- removed Lib/cgi.py                [import urllib]
+- removed Lib/CGIHTTPServer.py      [import socket]
+- removed Lib/ConfigParser.py       [??? name too long ???]
+- removed Lib/dos-8x3/*             [DOS specific renamings]
+- removed Lib/ftplib.py             [import socket]
+- removed Lib/gopherlib.py          [import socket]
+- removed Lib/grep.py               [???]
+- renamed Lib/htmlentitydefs.py as Lib/htmledefs.py
+- modified Lib/htmllib.py           [to use htmledefs]
+- removed Lib/httplib.py            [import socket]
+- removed Lib/imaplib.py            [import socket]
+- removed Lib/lib-old/*
+- removed Lib/lib-stdwin/*          [STDWIN not supported on Minix]
+- removed Lib/lib-tk/*              [Tk not supported on Minix]
+- removed Lib/macurl2path.py        [name too long & platform specific]
+- removed Lib/mhlib.py              [import mimetools]
+- removed Lib/mimetools.py          [import socket -- could work around this]
+- removed Lib/MimeWriter.py         [import mimetools]
+- removed Lib/nntplib.py            [import socket]
+- removed Lib/nturl2path.py         [name too long & platform specific]
+- removed Lib/poplib.py             [import socket]
+- removed Lib/pty.py                [???]
+- removed Lib/Queue.py              [import thread]
+- rename Lib/regex_syntax.py as Lib/re_syntax.py
+- modified Lib/reconvert.py
+- removed Lib/SimpleHttpServer.py   [import socket]
+- removed Lib/smtplib.py            [import socket]
+- removed Lib/SocketServer.py       [import socket]
+- removed Lib/sunau.py              [platform specific]
+- removed Lib/sunaudio.py           [platform specific]
+- removed Lib/telnetlib.py          [import socket]
+- removed Lib/threading.py          [import thread]
+- removed Lib/turtle.py             [import Tkinter]
+- removed Lib/urllib.py             [import socket]
+- removed Modules/_tkinter.c        [Tk not supported on Minix]
+- removed Modules/almodule.c        [SGI specific]
+- removed Modules/cdmodule.c        [SGI specific]
+- removed Modules/clmodule.c        [SGI specific]
+- removed Modules/dlmodule.c        [dynamic loading not supported]
+- removed Modules/flmodule.c        [SGI specific]
+- removed Modules/fmmodule.c        [SGI specific]
+- removed Modules/glmodule.c        [SGI specific]
+- removed Modules/imgfile.c         [SGI specific]
+- removed Modules/ld_so_aix         [AIX specific]
+- removed Modules/makexp_aix        [AIX specific]
+- removed Modules/nismodule.c       [SUN yellow pages not supported]
+- removed Modules/puremodule.c      [Purify not supported]
+- removed Modules/resource.c        [not supported on Minix]
+- removed Modules/sgimodule.c       [SGI specific]
+- removed Modules/socketmodule.c    [not supported on Minix]
+- removed Modules/stdwinmodule.c    [not supported on Minix]
+- removed Modules/sunaudiodev.c     [SUN specific]
+- removed Modules/svmodule.c        [SGI specific]
+- removed Modules/syslogmodule.c    [not supported on Minix]
+- removed Modules/tclNotify.c       [TCL not supported on Minix]
+- removed Modules/threadmodule.c    [threads not supported on Minix]
+- removed Modules/tkappinit.c       [Tk not supported on Minix]
+- removed Modules/yuv.h             [SGI specific]
+- removed Modules/yuvconvert.c      [SGI specific]
+
+Changes removing support for other systems:
+- removed BeOS/*
+- removed Demo/*
+- removed PC/*
+- removed PCbuild/*
+- delete Python/thread* files
+- removed Python/atof.c
+- removed Python/dup2.c
+- removed Python/fmod.c
+- removed Python/getcwd.c
+- removed Python/getopt.c
+- removed Python/memmove.c
+- removed Python/strerror.c
+- removed Python/strtod.c
+- removed Lib/plat-*/* [except generic]
+
+Other changes:
+- modified configure
+- modified Makefile.in
+- renamed Include/complexobject.h as Include/cmplxobject.h, and changed
+  Include/Python.h to reflect this change
+- modified Include/mymath.h
+- rename Lib/test/test_* files Lib/test/t_*, and modify Lib/test/output/*
+- removed Misc/AIX-NOTES
+- removed Misc/HPUX-NOTES
+- removed Misc/NEXT-NOTES
+- removed Misc/PURIFY.README
+- removed Misc/RENAME
+- removed Misc/ccpy-style.el
+- removed Misc/indent.pro
+- removed Misc/python-mode.el
+- renamed and modified Misc/Makefile.pre.in as Misc/Makefile.p.in
+- renamed and modified Modules/Makefile.pre.in as Modules/Makefile.p.in
+- renamed Modules/Setup.thread.in as Modules/Setup.thrd.in
+- modified Modules/Setup.in
+- modified Modules/makesetup
+- modified Modules/signalmodule.c
+- modified Modules/timemodule.c
+- rename Modules/_localemodule.c as Modules/_localemod.c
+- rename Modules/fpetestmodule.c as Modules/fpetestmod.c
+- renamed Objects/complexobject.c as Object/cmplxobject.c
+- modified Objects/Makefile.in
+- modified Python/Makefile.in
+- removed Tools/* except for scripts
+- rename Tools/scripts/mailerdaemon.py as Tools/scripts/maildaemon.py
+
+HOW TO COMPILE PYTHON FOR MINIX
+
+Log in as bin and type the following commands
+
+cd /usr/src/commands/python*
+chmem =65536 /bin/sh
+chmem =1200000 /usr/lib/em_cemcom.ansi
+chmem =300000 /usr/lib/i386/as
+make distclean
+CC="cc -wo" ./configure
+make install

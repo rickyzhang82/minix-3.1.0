@@ -1,0 +1,74 @@
+#!/usr/bin/make
+#
+# Makefile for 'i86' code generator
+# (C) 2005 Michael Kennett
+
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+# Assume current cpp is working
+$o/cg/i86/tables.c : ncg/i86/table $x/ncgg
+	cd $o/cg/i86 && $(CC) -E -I../../../ncg -I../../../ncg/i86 ../../../ncg/i86/table | ../../../$x/ncgg
+
+# Convoluted renaming - works regardless of the case-sensitivity
+# of different filesystems.
+$o/cg/i86/tables.h : $o/cg/i86/tables.c
+	mv $o/cg/i86/tables.H x-table
+	mv x-table $@
+
+CCG = -I$h -I$m -I$s/flt_arith -I$o -I$o/cg/i86 -Incg/i86 -Incg/proto -Incg/i86
+
+$o/cg/i86/codegen.o :ncg/proto/codegen.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/codegen.c
+$o/cg/i86/compute.o :ncg/proto/compute.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/compute.c
+$o/cg/i86/equiv.o :ncg/proto/equiv.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/equiv.c
+$o/cg/i86/fillem.o :ncg/proto/fillem.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/fillem.c
+$o/cg/i86/gencode.o :ncg/proto/gencode.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/gencode.c
+$o/cg/i86/glosym.o :ncg/proto/glosym.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/glosym.c
+$o/cg/i86/label.o :ncg/proto/label.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/label.c
+$o/cg/i86/main.o :ncg/proto/main.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/main.c
+$o/cg/i86/move.o :ncg/proto/move.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/move.c
+$o/cg/i86/nextem.o :ncg/proto/nextem.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/nextem.c
+$o/cg/i86/reg.o :ncg/proto/reg.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/reg.c
+$o/cg/i86/regvar.o :ncg/proto/regvar.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/regvar.c
+$o/cg/i86/salloc.o :ncg/proto/salloc.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/salloc.c
+$o/cg/i86/state.o :ncg/proto/state.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/state.c
+$o/cg/i86/subr.o :ncg/proto/subr.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/subr.c
+$o/cg/i86/tables.o :$o/cg/i86/tables.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) $o/cg/i86/tables.c
+$o/cg/i86/var.o :ncg/proto/var.c
+	$(CC) -c -DNDEBUG -o $@ $(CCG) ncg/proto/var.c
+
+CG_OBJS = $o/cg/i86/codegen.o $o/cg/i86/compute.o $o/cg/i86/equiv.o \
+	$o/cg/i86/fillem.o $o/cg/i86/gencode.o $o/cg/i86/glosym.o \
+	$o/cg/i86/label.o $o/cg/i86/main.o $o/cg/i86/move.o \
+	$o/cg/i86/nextem.o $o/cg/i86/reg.o $o/cg/i86/regvar.o \
+	$o/cg/i86/salloc.o $o/cg/i86/state.o $o/cg/i86/subr.o \
+	$o/cg/i86/tables.o $o/cg/i86/var.o
+
+$l/i86/cg : $o/cg/i86/tables.h $(CG_OBJS) $o/libmodule.a $o/libem_data.a
+	$(CC) -o $@ $(CG_OBJS) -L$o -lem_data -lmodule
+

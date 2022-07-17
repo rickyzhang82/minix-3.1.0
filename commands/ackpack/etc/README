@@ -1,0 +1,14 @@
+This directory contains the EM machine specification.
+
+The specification is encoded in the file 'em_table', which is processed
+by the shell script 'new_table'. The invocation of new_table takes two
+arguments:
+    new_table $(TARGET_HOME)/h $(SRC_HOME)/util/data
+
+The file 'em_table' has a very special structure:
+ section 1: <command> <opcode>
+ section 2: <command> <offset> <condn> - fpseu command
+ section 3: <command> <code1> <code2> - fmnem command
+		code1 has two characters -> PAR_\1 | FLO_\2
+			where - is interpreted as 'NO'
+		code2 is not used

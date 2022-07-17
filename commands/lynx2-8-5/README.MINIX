@@ -1,0 +1,27 @@
+lynx 2.8.5 rel.1 for Minix 3
+============================
+
+The MINIX subdirectory have instructions to configure and compile
+lynx 2.8.5 rel.1 under Minix v3
+
+This is the original lynx distribution. 
+
+You need to uncompress and open this file with tar
+
+# gzip -d lynx-285r1.tar.gz
+# tar xvf lynx-285r1.tar
+
+This will create the directory lynx2-8-5 tree.
+
+You must move to the directory
+
+# cd lynx2-8-5
+
+Follow the INSTALL instructions in MINIX subdirectory to build and install.
+
+# cd MINIX
+# more INSTALL
+
+
+
+

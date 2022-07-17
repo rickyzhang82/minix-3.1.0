@@ -1,0 +1,78 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+e = etc
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+default : $x/ncgg
+
+$o/ncgg/scan.c : $u/ncgg/scan.l
+	flex -st $u/ncgg/scan.l > scan.c
+	if test -f $@ && diff scan.c $@ > /dev/null 2>&1 ; then rm scan.c ; else mv scan.c $@ ; fi
+	touch $@
+
+$o/ncgg/y.tab.c : $u/ncgg/cgg.y $o/ncgg/scan.c
+	yacc -d -l $u/ncgg/cgg.y
+	if test -f $@ && diff y.tab.c $@ > /dev/null 2>&1 ; then rm y.tab.c ; else mv y.tab.c $@ ; fi
+	touch $@
+	mv y.tab.h $o/ncgg/y.tab.h
+
+$o/ncgg/keywords.c : $o/ncgg/y.tab.c
+	awk -f$u/ncgg/cvtkeywds.awk $o/ncgg/y.tab.h $u/ncgg/keywords > $@
+
+$o/ncgg/coerc.o : $u/ncgg/coerc.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/coerc.c
+$o/ncgg/emlookup.o : $u/ncgg/emlookup.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/emlookup.c
+$o/ncgg/error.o : $u/ncgg/error.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/error.c
+$o/ncgg/expr.o : $u/ncgg/expr.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/expr.c
+$o/ncgg/hall.o : $u/ncgg/hall.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/hall.c
+$o/ncgg/instruct.o : $u/ncgg/instruct.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/instruct.c
+$o/ncgg/iocc.o : $u/ncgg/iocc.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/iocc.c
+$o/ncgg/keywords.o : $o/ncgg/keywords.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $o/ncgg/keywords.c
+$o/ncgg/lookup.o : $u/ncgg/lookup.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/lookup.c
+$o/ncgg/main.o : $u/ncgg/main.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/main.c
+$o/ncgg/output.o : $u/ncgg/output.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/output.c
+$o/ncgg/set.o : $u/ncgg/set.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/set.c
+$o/ncgg/strlookup.o : $u/ncgg/strlookup.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/strlookup.c
+$o/ncgg/subr.o : $u/ncgg/subr.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/subr.c
+$o/ncgg/var.o : $u/ncgg/var.c
+	$(CC) -c -DNDEBUG -o $@ -I$h -I$u/ncgg $u/ncgg/var.c
+# Flex-2.3.7/2.5.4 handling of yywrap() differs
+$o/ncgg/y.tab.o : $o/ncgg/y.tab.c
+	$(CC) -c -DNDEBUG -D_POSIX_SOURCE -DYY_SKIP_YYWRAP -o $@ -I$h -I$u/ncgg $o/ncgg/y.tab.c
+
+NCGG_OBJS = $o/ncgg/coerc.o $o/ncgg/emlookup.o $o/ncgg/error.o \
+			$o/ncgg/expr.o $o/ncgg/hall.o $o/ncgg/instruct.o \
+			$o/ncgg/iocc.o $o/ncgg/keywords.o $o/ncgg/lookup.o \
+			$o/ncgg/main.o $o/ncgg/output.o $o/ncgg/set.o \
+			$o/ncgg/strlookup.o $o/ncgg/subr.o $o/ncgg/var.o \
+			$o/ncgg/y.tab.o
+
+# Reasonable size heap req'd for processing large tables
+$x/ncgg : $(NCGG_OBJS) $o/libem_data.a
+	$(CC) -stack 64kw -o $@ $(NCGG_OBJS) -L$o -lem_data

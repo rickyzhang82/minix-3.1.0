@@ -1,0 +1,6 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+cc -o conftest -D_MINIX=1 -D_POSIX_SOURCE=1 conftest.c
+"configure", line 889: (warning) 'main' old-fashioned function definition
+"configure", line 889: (warning) implicit declaration of function exit

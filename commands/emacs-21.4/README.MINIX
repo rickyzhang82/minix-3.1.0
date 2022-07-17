@@ -1,0 +1,121 @@
+##############################################################################
+# Emacs 21.4 for Minix
+##############################################################################
+
+Quick build instructions:
+Extract the tar and change to emacs-21.4 dir
+Execute the following commands as user bin
+./configure		create files required to build emacs
+make			compile the source files
+make install		install the program files
+
+When installation has finished, the following command will
+clean any temporary files that were created:
+make clean 		remove any temporary files 
+
+The Makefiles in the subdirectories cannot be used, since they expect
+parameters that are passed through the generated Makefile.
+
+##############################################################################
+# Build options
+##############################################################################
+
+The following variables can be passed to configure on the command line:
+
+Options:
+  --chmem-size=CHMEM     assign emacs CHMEM bytes of memory [16000000]
+  --install-info=IINFO   use IINFO to install info files [echo]
+Directories:
+  --prefix=PREFIX        install architecture-independent files in PREFIX 
+                         [/usr/local]
+  --exec-prefix=EPREFIX  install architecture-dependent files in EPREFIX
+                         [same as prefix]
+  --bindir=DIR           user executables in DIR [EPREFIX/bin]
+  --datadir=DIR          read-only architecture-independent data in DIR
+                         [PREFIX/share]
+  --libexecdir=DIR       program executables in DIR [EPREFIX/libexec]
+  --mandir=DIR           man documentation in DIR [PREFIX/man]
+  --infodir=DIR          info documentation in DIR [PREFIX/info]
+
+The option --chmem-size=<n> specifies the number of bytes allocated to emacs. 
+This defaults to 16000000 bytes. Emacs will probably run with less memory, 
+but building might be a problem. The build will fail on in src/Makefile on 
+the line:
+./emacs -q -batch -f list-load-path-shadows.
+This line does not really need to be executed, as it only tries to detect
+lisp files that are hidden because another file with the same name exists
+in the search path.
+
+The option --install-info=<cmd> specifies the command to use to install
+info files. install-info is a program used by the info package to
+install info files. This package is not available on Minix, so echo is used
+to prevent build errors. The info files are still installed, since they can be
+viewed from within emacs. If install-info is available, specify it using
+this option.
+
+##############################################################################
+# Keyboard
+##############################################################################
+
+The key-sequence Ctrl-H is reported as backspace by the Minix terminal.
+This means that they cannot be assigned different actions in emacs. As it is
+likely the user will want to be able to use the backspace key normally, they
+are assigned to the normal backspace function. The help function is now
+available through Alt-h.
+
+The functions keys are assigned to the Information Server and are not 
+available in emacs. They have not been rebound, since alternative bindings are
+already available for them.
+
+##############################################################################
+# unexec
+##############################################################################
+
+Emacs uses a process known as unexec to dump the contents of memory to an
+executable file. This is done after the lisp files are loaded, and speeds up
+loading on the next run, as the lisp files are then in the executable.
+This process has been changed somewhat for Minix. The text section is copied
+from the original executable rather than memory. This should not be a problem,
+unless self-modifying code is used, which I haven't found.
+The original way to detect the end of the data section returned too low an
+address, sbrk(0) is now used to detect the end of the data section.
+
+##############################################################################
+# Main changes
+##############################################################################
+
+In addition to a lot of tweaking to the configuration files, the following
+things have been changed in the source code.
+
+- Added lisp/term/minix.el for Minix terminal initialization. This file is
+  loaded automatically by emacs if the TERM=minix.
+- Added minix.c and startoftext.s for Minix-specific functions.
+- keyboard.c: 6203: used O_NONBLOCK for O_NDELAY
+- alloc.c: disabled compiler optimizations, since this requires the compiler
+  to use too much memory and time.
+- removed unexelf.o
+- atimer.c: renamed time parameter in start_atimer: clash with function time
+- lstat => stat, works since there are no symlinks
+- S_ISLNK defined as 0 in filelock.c
+- vfork => fork
+- croak implemented.
+- getpagesize hardcoded to 4096 
+- clash detection (file locking) for multi-user systems disabled: symlinks
+  or rewrite required
+- ftello => ftell
+- sysdep.c 492: wait3 disabled
+- setpgrp defined as setpgid(0,0)
+- wait3 implemented as waitpid, rusage is never used, so this should work
+- end of data in unexec explicitely set to sbrk (0)
+- text section is copied from temacs executable in unexec, should not be a
+  problem, unless the text section is modified in memory
+- O1 used in lib-src to avoid compiler crashes
+- Info files are copied, but not installed using install-info, as the info
+  system is not available.
+- Normal install uses tar -chf, -h flag has been disabled
+- Used emacs' alloca function. The built-in alloca causes data on the stack
+  to be overwritten.
+- Commented out something in lisp/Makefile, around line 190
+- Commented out STARTFILES in src/Makefile
+
+

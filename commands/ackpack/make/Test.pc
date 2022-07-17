@@ -1,0 +1,205 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+l = image
+s = lang/pc/test
+t = obj/test/pc
+u = /usr/lib/i386
+
+DEFINES = -D__minix -D__i386 -D_EM_WSIZE=4 -D_EM_PSIZE=4 -D_EM_SSIZE=2 \
+	-D_EM_LSIZE=4 -D_EM_FSIZE=4 -D_EMDSIZE=8 -D__ACK__ -D_ACK
+
+CC = $l/em_cemcom.ansi -L $(DEFINES) -Vw4.4i4.4p4.4f4.4s2.2l4.4d8.4 -Vr
+CPP = $l/cpp.ansi $(DEFINES)
+PC = $l/em_pc -Vw4.4i4.4l4.4p4.4f8.4S4.4
+OPT = $l/em_opt
+CG = $l/i386/cg -F__fp_hook
+CG2 = $l/i386/cg
+AS = $l/i386/as
+LED = $l/em_led -a0:4 -a1:4 -a2:4 -a3:4 -b0:0 -b1:0
+CV = $l/cv -x -mi386
+
+HEAD = $u/prtso.o
+TAIL = $u/libp.a $u/libc.a $u/libfp.a $u/libe.a $u/end.a
+
+# Building K_OBJECTS just tests the front-end
+K_OBJECTS = $t/b.k $t/callc.k $t/cmod.k $t/machar.k $t/t1.k $t/t2.k \
+	$t/t3.k $t/t4.k $t/t5.k $t/tstenc.k $t/tstgto.k
+
+# Testing the EM processing pipeline
+M_OBJECTS = $t/b.m $t/callc.m $t/cmod.m $t/machar.m $t/t1.m $t/t2.m \
+	$t/t3.m $t/t4.m $t/t5.m $t/tstenc.m $t/tstgto.m
+S_OBJECTS = $t/b.s $t/callc.s $t/cmod.s $t/machar.s $t/t1.s $t/t2.s \
+	$t/t3.s $t/t4.s $t/t5.s $t/tstenc.s $t/tstgto.s
+O_OBJECTS = $t/b.o $t/callc.o $t/cmod.o $t/machar.o $t/t1.o $t/t2.o \
+	$t/t3.o $t/t4.o $t/t5.o $t/tstenc.o $t/tstgto.o
+
+# Due to library limitations, not all programs can currently be linked
+# into an executable.
+# XXX $t/callc
+PROGRAMS = $t/b $t/t1 $t/t2 $t/t3 $t/t4 $t/t5 $t/tstenc $t/tstgto
+
+default : x-compiler $(O_OBJECTS) $(PROGRAMS)
+
+x-compiler :
+	@if [ ! -x $l/em_basic ] ; then \
+		echo "Error: Basic front-end not built" ; exit 1 ; fi
+
+$t/b.k : $s/b.p
+	$(PC) $< $@
+$t/b.m : $t/b.k
+	$(OPT) $< > $@
+$t/b.s : $t/b.m
+	$(CG) $< > $@
+$t/b.o : $t/b.s
+	$(AS) - -o $@ $<
+$t/b.img : $t/b.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/b : $t/b.img
+	$(CV) $< $@
+
+$t/callc.i : $s/callc.p
+	$(CPP) $< > $@
+$t/callc.k : $t/callc.i
+	$(PC) $< $@
+$t/callc.m : $t/callc.k
+	$(OPT) $< > $@
+$t/callc.s : $t/callc.m
+	$(CG) $< > $@
+$t/callc.o : $t/callc.s
+	$(AS) - -o $@ $<
+
+# Don't define __fp_hook
+$t/cmod.k : $s/cmod.c
+	$(CC) $< $@
+$t/cmod.m : $t/cmod.k
+	$(OPT) $< > $@
+$t/cmod.s : $t/cmod.m
+	$(CG2) $< > $@
+$t/cmod.o : $t/cmod.s
+	$(AS) - -o $@ $<
+
+# XXX Not yet working
+$t/callc.img : $t/callc.o $t/cmod.o
+	$(LED) -o $@ $(HEAD) $t/callc.o $t/cmod.o $(TAIL)
+$t/callc : $t/callc.img
+	$(CV) $< $@
+
+$t/machar.k : $s/machar.p
+	$(PC) $< $@
+$t/machar.m : $t/machar.k
+	$(OPT) $< > $@
+$t/machar.s : $t/machar.m
+	$(CG) $< > $@
+$t/machar.o : $t/machar.s
+	$(AS) - -o $@ $<
+$t/machar.img : $t/machar.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/machar : $t/machar.img
+	$(CV) $< $@
+
+$t/t1.i : $s/t1.p
+	$(CPP) $< > $@
+$t/t1.k : $t/t1.i
+	$(PC) $< $@
+$t/t1.m : $t/t1.k
+	$(OPT) $< > $@
+$t/t1.s : $t/t1.m
+	$(CG) $< > $@
+$t/t1.o : $t/t1.s
+	$(AS) - -o $@ $<
+$t/t1.img : $t/t1.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL) \
+	|| echo "*** 'make fix-pascal-support' to support heap allocation'"
+$t/t1 : $t/t1.img
+	-$(CV) $< $@
+
+$t/t2.i : $s/t2.p
+	$(CPP) $< > $@
+$t/t2.k : $t/t2.i
+	$(PC) $< $@
+$t/t2.m : $t/t2.k
+	$(OPT) $< > $@
+$t/t2.s : $t/t2.m
+	$(CG) $< > $@
+$t/t2.o : $t/t2.s
+	$(AS) - -o $@ $<
+$t/t2.img : $t/t2.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL) \
+	|| echo "*** 'make fix-pascal-support' to support heap allocation'"
+$t/t2 : $t/t2.img
+	-$(CV) $< $@
+
+$t/t3.i : $s/t3.p
+	$(CPP) $< > $@
+$t/t3.k : $t/t3.i
+	$(PC) $< $@
+$t/t3.m : $t/t3.k
+	$(OPT) $< > $@
+$t/t3.s : $t/t3.m
+	$(CG) $< > $@
+$t/t3.o : $t/t3.s
+	$(AS) - -o $@ $<
+$t/t3.img : $t/t3.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/t3 : $t/t3.img
+	$(CV) $< $@
+
+$t/t4.i : $s/t4.p
+	$(CPP) $< > $@
+$t/t4.k : $t/t4.i
+	$(PC) $< $@
+$t/t4.m : $t/t4.k
+	$(OPT) $< > $@
+$t/t4.s : $t/t4.m
+	$(CG) $< > $@
+$t/t4.o : $t/t4.s
+	$(AS) - -o $@ $<
+$t/t4.img : $t/t4.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL) \
+	|| echo "*** 'make fix-pascal-support' to support heap allocation'"
+$t/t4 : $t/t4.img
+	-$(CV) $< $@
+
+$t/t5.k : $s/t5.p
+	$(PC) $< $@
+$t/t5.m : $t/t5.k
+	$(OPT) $< > $@
+$t/t5.s : $t/t5.m
+	$(CG) $< > $@
+$t/t5.o : $t/t5.s
+	$(AS) - -o $@ $<
+$t/t5.img : $t/t5.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/t5 : $t/t5.img
+	$(CV) $< $@
+
+$t/tstenc.k : $s/tstenc.p
+	$(PC) $< $@
+$t/tstenc.m : $t/tstenc.k
+	$(OPT) $< > $@
+$t/tstenc.s : $t/tstenc.m
+	$(CG) $< > $@
+$t/tstenc.o : $t/tstenc.s
+	$(AS) - -o $@ $<
+$t/tstenc.img : $t/tstenc.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL)
+$t/tstenc : $t/tstenc.img
+	$(CV) $< $@
+
+$t/tstgto.k : $s/tstgto.p
+	$(PC) $< $@
+$t/tstgto.m : $t/tstgto.k
+	$(OPT) $< > $@
+$t/tstgto.s : $t/tstgto.m
+	$(CG) $< > $@
+$t/tstgto.o : $t/tstgto.s
+	$(AS) - -o $@ $<
+$t/tstgto.img : $t/tstgto.o
+	$(LED) -o $@ $(HEAD) $< $(TAIL) \
+	|| echo "*** 'make fix-pascal-support' to support heap allocation'"
+$t/tstgto : $t/tstgto.img
+	-$(CV) $< $@
+

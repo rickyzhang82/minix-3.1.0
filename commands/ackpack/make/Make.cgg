@@ -1,0 +1,47 @@
+#!/usr/bin/make
+#
+# Minix compiler sources makefile
+# (C) 2005 Michael Kennett
+
+e = etc
+h = h
+m = modules/h
+s = modules/src
+u = util
+
+# Build directories
+l = image
+o = obj
+
+# executables used only in the build (e.g. LLgen)
+x = $o/bin
+
+default : $x/cgg
+
+$o/cgg/bootlex.c : $u/cgg/bootlex.l
+	flex -st $u/cgg/bootlex.l > bootlex.c
+	if test -f $@ && diff bootlex.c $@ > /dev/null 2>&1 ; then rm bootlex.c ; else mv bootlex.c $@ ; fi
+	touch $@
+
+$o/cgg/y.tab.c : $u/cgg/bootgram.y $o/cgg/bootlex.c
+	yacc -d -l $u/cgg/bootgram.y
+	if test -f $@ && diff y.tab.c $@ > /dev/null 2>&1 ; then rm y.tab.c ; else mv y.tab.c $@ ; fi
+	touch $@
+	mv y.tab.h $o/cgg/y.tab.h
+
+CCGG = -DNDEBUG -I$h -I$o/cgg -I$u/cgg
+
+$o/cgg/bootlex.o : $o/cgg/bootlex.c $o/cgg/y.tab.c
+	$(CC) -c -o $@ $(CCGG) $o/cgg/bootlex.c
+$o/cgg/main.o : $u/cgg/main.c
+	$(CC) -c -o $@ $(CCGG) $u/cgg/main.c
+
+# Flex-2.3.7/2.5.4 handling of yywrap() differs
+$o/cgg/y.tab.o : $o/cgg/y.tab.c
+	$(CC) -c -D_POSIX_SOURCE -DYY_SKIP_YYWRAP -o $@ $(CCGG) $o/cgg/y.tab.c
+
+CGG_OBJS = $o/cgg/bootlex.o $o/cgg/main.o $o/cgg/y.tab.o
+
+# Reasonable size heap req'd for processing large tables
+$x/cgg : $(CGG_OBJS) $o/libem_data.a
+	$(CC) -stack 64kw -o $@ $(CGG_OBJS) -L$o -lem_data

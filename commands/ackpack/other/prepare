@@ -1,0 +1,28 @@
+#!/usr/bin/sh
+#
+# Prepare Minix system to build the ACK sources
+# (C) 2005 Michael Kennett
+
+patch() {
+  chmod u+w $1
+  mem=`chmem +0 $1 | sed -e 's/.*to \([0-9]*\).*/\1/'`
+  if [ $mem -lt $2 ]
+  then
+    echo "*** Increasing memory allocated to $1"
+    chmem =$2 $1
+  fi
+}
+
+patch /usr/lib/cv 600000
+patch /usr/lib/em_cemcom.ansi 600000
+
+# Values below allow self compilation of ACK with -O2
+patch /usr/lib/ego/bo 786432
+patch /usr/lib/ego/ca 786432
+patch /usr/lib/ego/cf 786432
+patch /usr/lib/ego/cj 786432
+patch /usr/lib/ego/ic 1179648
+patch /usr/lib/ego/sp 786432
+
+exit 0
+
