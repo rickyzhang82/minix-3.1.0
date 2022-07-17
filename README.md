@@ -73,7 +73,7 @@ Choose terminal type `minix`. You can find more by `man 5 termcap`
 
 ## Step 6 Compile kernel + user space => image
 
-10 cores M1 Max Mac Studio takes `1:37.95`
+- 10 cores M1 Max Mac Studio takes `1:37.95`
 
 ```
 cd /usr/src/tools
@@ -81,7 +81,7 @@ make clean
 time make images
 
 ...
-     text     data      bss      size
+    text     data      bss      size
     19568     3144    29808     52520  ../kernel/kernel
     19504     2360    48616     70480  ../servers/pm/pm
     42624     5556  5316124   5364304  ../servers/fs/fs
@@ -95,11 +95,11 @@ time make images
      7088     2284     1356     10728  ../servers/init/init
    ------   ------   ------   -------
    175328    34424  5533432   5743184  total
-    1:37.95 real      50.16 user      41.56 sys
+    1:21.75 real      37.51 user      27.26 sys
 
 make hdboot
 ```
-16 inch 10 cores M1 PRO Macbook PRO takes `1:31.05`
+- 10 cores M1 PRO 16 inch Macbook pro takes `1:31.05`
 
 ```
 …
@@ -120,7 +120,7 @@ make hdboot
     1:31.05 real      50.23 user      35.50 sys
 ```
 
-By using kvm acceleartion in QEMU, quad-core Intel(R) Xeon(R) CPU E3-1225 v5 @ 3.30GHz takes `5.36`.
+By using kvm acceleartion in QEMU, quad-core Intel(R) Xeon(R) CPU E3-1225 v5 @ 3.30GHz takes `5.36` seconds.
 
 ```
 …
