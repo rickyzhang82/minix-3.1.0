@@ -73,6 +73,8 @@ Choose terminal type `minix`. You can find more by `man 5 termcap`
 
 ## Step 6 Compile kernel + user space => image
 
+10 cores M1 Max Mac Studio takes `1:37.95`
+
 ```
 cd /usr/src/tools
 make clean
@@ -97,8 +99,49 @@ time make images
 
 make hdboot
 ```
+16 inch 10 cores M1 PRO Macbook PRO takes `1:31.05`
 
-My M1 Mac Studio takes `1:37.95` to finish compiling in x86 emulation.
+```
+…
+     text     data      bss      size
+    19568     3144    29808     52520  ../kernel/kernel
+    19504     2360    48616     70480  ../servers/pm/pm
+    42624     5556  5316124   5364304  ../servers/fs/fs
+     4352      616     4696      9664  ../servers/rs/rs
+    26144     4996    44192     75332  ../drivers/tty/tty
+     4784      764     3012      8560  ../drivers/memory/memory
+     5904      504    63276     69684  ../drivers/log/log
+    23680    10776    10932     45388  AT:../drivers/at_wini/at_wini
+    11328     1944     7276     20548  BIOS:../drivers/bios_wini/bios_wini
+    10352     1480     4144     15976  FLOPPY:../drivers/floppy/floppy
+     7088     2284     1356     10728  ../servers/init/init
+   ------   ------   ------   -------
+   175328    34424  5533432   5743184  total
+    1:31.05 real      50.23 user      35.50 sys
+```
+
+Quad-core Intel(R) Xeon(R) CPU E3-1225 v5 @ 3.30GHz takes `26.41`
+
+```
+…
+     text     data      bss      size
+    19568     3144    29808     52520  ../kernel/kernel
+    19504     2360    48616     70480  ../servers/pm/pm
+    42624     5556  5316124   5364304  ../servers/fs/fs
+     4352      616     4696      9664  ../servers/rs/rs
+    26144     4996    44192     75332  ../drivers/tty/tty
+     4784      764     3012      8560  ../drivers/memory/memory
+     5904      504    63276     69684  ../drivers/log/log
+    23680    10776    10932     45388  AT:../drivers/at_wini/at_wini
+    11328     1944     7276     20548  BIOS:../drivers/bios_wini/bios_wini
+    10352     1480     4144     15976  FLOPPY:../drivers/floppy/floppy
+     7088     2284     1356     10728  ../servers/init/init
+   ------   ------   ------   -------
+   175328    34424  5533432   5743184  total
+      26.41 real      13.98 user      11.10 sys
+
+```
+
 
 
 
