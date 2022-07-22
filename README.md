@@ -73,7 +73,7 @@ Choose terminal type `minix`. You can find more by `man 5 termcap`
 
 ## Step 6 Compile kernel + user space => image
 
-- 10 cores M1 Max Mac Studio takes `1:37.95`
+- 10 cores M1 Max Mac Studio takes `1:21.75`
 
 ```
 cd /usr/src/tools
